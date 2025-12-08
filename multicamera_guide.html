@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Multi-Camera Live Streaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #0a0a0a;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+        }
+        
+        .header {
+            background: #1e3a5f;
+            color: #ffffff;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #4a90e2;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.15) 0%, transparent 70%);
+        }
+        
+        .header h1 {
+            font-size: 2.4em;
+            margin-bottom: 12px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px 35px;
+        }
+        
+        h2 {
+            color: #1e3a5f;
+            font-size: 1.75em;
+            margin: 35px 0 20px 0;
+            border-left: 5px solid #4a90e2;
+            padding-left: 18px;
+            font-weight: 700;
+        }
+        
+        h3 {
+            color: #2c5282;
+            font-size: 1.35em;
+            margin: 25px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+        
+        .camera-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .camera-card {
+            background: #f8f8f8;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .camera-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(30, 58, 95, 0.2);
+        }
+        
+        .camera-preview {
+            background: #1a1a1a;
+            height: 180px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .camera-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(74, 144, 226, 0.9);
+            padding: 8px;
+            border-radius: 3px;
+        }
+        
+        .camera-info {
+            padding: 20px;
+        }
+        
+        .camera-info h3 {
+            margin-top: 0;
+            color: #1e3a5f;
+            font-size: 1.3em;
+        }
+        
+        .best-for {
+            background: #fff;
+            padding: 10px 15px;
+            border-radius: 0;
+            margin-top: 12px;
+            border-left: 3px solid #4a90e2;
+            font-size: 0.95em;
+        }
+        
+        .interface-demo {
+            background: #1a202c;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-screen {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border-radius: 8px;
+            height: 350px;
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #4a5568;
+        }
+        
+        .video-overlay {
+            color: #a0aec0;
+            text-align: center;
+        }
+        
+        .video-overlay svg {
+            margin-bottom: 15px;
+        }
+        
+        .camera-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .camera-btn {
+            background: #2d3748;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .camera-btn:hover {
+            background: #1e3a5f;
+            transform: scale(1.05);
+        }
+        
+        .camera-btn.active {
+            background: #1e3a5f;
+            border-color: #4a90e2;
+        }
+        
+        .feature-comparison {
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 0;
+            overflow: hidden;
+        }
+        
+        th {
+            background: #1e3a5f;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr:hover {
+            background: #f7fafc;
+        }
+        
+        .check-icon {
+            color: #48bb78;
+            font-size: 1.3em;
+        }
+        
+        .steps-guide {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 0;
+            margin: 30px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #4a90e2;
+        }
+        
+        .step-icon {
+            background: #1e3a5f;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        
+        .tip-callout {
+            background: #e8f4f8;
+            border-left: 5px solid #4a90e2;
+            padding: 20px;
+            border-radius: 0;
+            margin: 25px 0;
+        }
+        
+        .tip-callout h3 {
+            color: #1e3a5f;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .bandwidth-indicator {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .bandwidth-bar {
+            flex: 1;
+            height: 30px;
+            background: #e2e8f0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bandwidth-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: bold;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .camera-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .camera-controls {
+                flex-direction: column;
+            }
+            
+            .camera-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📹 Multi-Camera Live Streaming</h1>
+            <p>Experience Every Angle of the Action</p>
+        </div>
+        
+        <div class="content">
+            <h2>What is Multi-Camera Streaming?</h2>
+            <p>Multi-camera streaming uses several high-definition cameras positioned around the gaming table to give you different viewing angles. You're in control of what you see, just like having the best seat in a real casino.</p>
+            
+            <h2>Available Camera Views</h2>
+            <div class="camera-grid">
+                <div class="camera-card">
+                    <div class="camera-preview">
+                        <div class="camera-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                                <path d="M7 12h10M12 7v10"/>
+                            </svg>
+                        </div>
+                        <svg width="200" height="150" viewBox="0 0 200 150">
+                            <!-- Table -->
+                            <ellipse cx="100" cy="100" rx="80" ry="40" fill="#0f5132"/>
+                            <!-- Dealer -->
+                            <circle cx="100" cy="50" r="15" fill="#ffd700"/>
+                            <rect x="90" y="65" width="20" height="25" fill="#333"/>
+                            <!-- Cards -->
+                            <rect x="85" y="95" width="12" height="18" fill="white" rx="2"/>
+                            <rect x="103" y="95" width="12" height="18" fill="white" rx="2"/>
+                            <text x="100" y="130" font-size="10" fill="#a0aec0" text-anchor="middle">OVERHEAD VIEW</text>
+                        </svg>
+                    </div>
+                    <div class="camera-info">
+                        <h3>📐 Main View</h3>
+                        <p>Standard overhead angle showing the entire table, dealer, and all the action.</p>
+                        <div class="best-for">
+                            <strong>Best for:</strong> Following overall game flow and seeing all players
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="camera-card">
+                    <div class="camera-preview">
+                        <div class="camera-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="10" r="3"/>
+                                <path d="M7 18c0-1.5 2-3 5-3s5 1.5 5 3"/>
+                            </svg>
+                        </div>
+                        <svg width="200" height="150" viewBox="0 0 200 150">
+                            <!-- Dealer close-up -->
+                            <circle cx="100" cy="60" r="30" fill="#ffd700"/>
+                            <circle cx="90" cy="55" r="5" fill="#333"/>
+                            <circle cx="110" cy="55" r="5" fill="#333"/>
+                            <path d="M 85 75 Q 100 85 115 75" stroke="#333" stroke-width="3" fill="none"/>
+                            <rect x="70" y="90" width="60" height="40" fill="#1a202c"/>
+                            <text x="100" y="140" font-size="10" fill="#a0aec0" text-anchor="middle">DEALER FOCUS</text>
+                        </svg>
+                    </div>
+                    <div class="camera-info">
+                        <h3>👤 Dealer Close-Up</h3>
+                        <p>Camera focused on the dealer, letting you see every card dealt and enjoy social interaction.</p>
+                        <div class="best-for">
+                            <strong>Best for:</strong> Enhanced immersion and dealer interaction
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="camera-card">
+                    <div class="camera-preview">
+                        <div class="camera-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <svg width="200" height="150" viewBox="0 0 200 150">
+                            <!-- First person view -->
+                            <ellipse cx="100" cy="120" rx="90" ry="25" fill="#0f5132"/>
+                            <rect x="70" y="80" width="15" height="25" fill="white" rx="2"/>
+                            <rect x="90" y="80" width="15" height="25" fill="white" rx="2"/>
+                            <rect x="110" y="80" width="15" height="25" fill="white" rx="2"/>
+                            <circle cx="100" cy="40" r="8" fill="#ffd700"/>
+                            <text x="100" y="140" font-size="10" fill="#a0aec0" text-anchor="middle">FIRST PERSON</text>
+                        </svg>
+                    </div>
+                    <div class="camera-info">
+                        <h3>🎯 Immersive View</h3>
+                        <p>First-person perspective placing you right at the table for the most realistic experience.</p>
+                        <div class="best-for">
+                            <strong>Best for:</strong> Maximum immersion and feeling present
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="camera-card">
+                    <div class="camera-preview">
+                        <div class="camera-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <circle cx="12" cy="12" r="4"/>
+                            </svg>
+                        </div>
+                        <svg width="200" height="150" viewBox="0 0 200 150">
+                            <!-- Card close-up -->
+                            <rect x="50" y="30" width="100" height="90" fill="white" rx="8" stroke="#333" stroke-width="3"/>
+                            <text x="100" y="85" font-size="48" font-weight="bold" text-anchor="middle" fill="#d63447">A</text>
+                            <text x="100" y="140" font-size="10" fill="#a0aec0" text-anchor="middle">CARD DETAIL</text>
+                        </svg>
+                    </div>
+                    <div class="camera-info">
+                        <h3>🔍 Card Close-Up</h3>
+                        <p>Ultra-close view of cards being dealt, perfect for following every detail.</p>
+                        <div class="best-for">
+                            <strong>Best for:</strong> Verifying cards and catching every detail
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>How to Switch Camera Views</h2>
+            <div class="interface-demo">
+                <div class="video-screen">
+                    <div class="video-overlay">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        <p style="font-size: 1.2em; margin: 0;">LIVE GAME STREAM</p>
+                        <p style="font-size: 0.9em; margin: 5px 0 0 0; opacity: 0.7;">Click camera buttons below to change view</p>
+                    </div>
+                </div>
+                
+                <div class="camera-controls">
+                    <div class="camera-btn active">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="6" width="20" height="12" rx="2"/>
+                            <path d="M7 12h10M12 7v10"/>
+                        </svg>
+                        Main View
+                    </div>
+                    <div class="camera-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="10" r="3"/>
+                            <path d="M7 18c0-1.5 2-3 5-3s5 1.5 5 3"/>
+                        </svg>
+                        Dealer
+                    </div>
+                    <div class="camera-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        Immersive
+                    </div>
+                    <div class="camera-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="12" cy="12" r="4"/>
+                        </svg>
+                        Card Detail
+                    </div>
+                </div>
+            </div>
+            
+            <div class="steps-guide">
+                <h3 style="color: #d97706; margin-top: 0;">Switching is Easy:</h3>
+                <div class="step-item">
+                    <div class="step-icon">1</div>
+                    <div>
+                        <strong>Locate the camera icons</strong><br>
+                        Find them at the bottom or side of your screen (position varies by game)
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">2</div>
+                    <div>
+                        <strong>Click your preferred view</strong><br>
+                        Simply click or tap the icon for the angle you want
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">3</div>
+                    <div>
+                        <strong>Instant transition</strong><br>
+                        The video switches immediately with no interruption to your game
+                    </div>
+                </div>
+            </div>
+            
+            <h2>When to Use Different Views</h2>
+            <div class="feature-comparison">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Situation</th>
+                            <th>Recommended View</th>
+                            <th>Why</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Starting out</strong></td>
+                            <td>Main View</td>
+                            <td>Get oriented and see everything at once</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Want interaction</strong></td>
+                            <td>Dealer Close-Up</td>
+                            <td>See expressions and engage with chat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multiple tables</strong></td>
+                            <td>Main View</td>
+                            <td>Quick overview of all action</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Verifying cards</strong></td>
+                            <td>Card Close-Up</td>
+                            <td>See exact values clearly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maximum immersion</strong></td>
+                            <td>Immersive View</td>
+                            <td>Feel like you're at the table</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Technical Tips</h2>
+            
+            <div class="tip-callout">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Bandwidth Optimization
+                </h3>
+                <p>Different views use different amounts of data. Here's what you need to know:</p>
+                
+                <div class="bandwidth-indicator">
+                    <strong>Main View:</strong>
+                    <div class="bandwidth-bar">
+                        <div class="bandwidth-fill" style="width: 60%;">Medium</div>
+                    </div>
+                </div>
+                
+                <div class="bandwidth-indicator">
+                    <strong>Dealer/Cards:</strong>
+                    <div class="bandwidth-bar">
+                        <div class="bandwidth-fill" style="width: 80%;">Higher</div>
+                    </div>
+                </div>
+                
+                <div class="bandwidth-indicator">
+                    <strong>Immersive:</strong>
+                    <div class="bandwidth-bar">
+                        <div class="bandwidth-fill" style="width: 90%;">Highest</div>
+                    </div>
+                </div>
+            </div>
+            
+            <ul style="margin-left: 20px;">
+                <li style="margin-bottom: 10px;">Camera switching works on all devices – desktop, tablet, and mobile</li>
+                <li style="margin-bottom: 10px;">If you experience lag, switch to Main View (uses less bandwidth)</li>
+                <li style="margin-bottom: 10px;">Your camera preference is automatically saved for next time</li>
+                <li style="margin-bottom: 10px;">Change views as often as you like – even between hands!</li>
+            </ul>
+            
+            <h2>Customizing Your Experience</h2>
+            <p>There's no "right" way to watch the game. Experiment with different views and find what works best for you. Many players like to switch views throughout their session to keep things fresh and engaging.</p>
+            
+            <div style="background: #1a1a1a; color: white; padding: 30px; border-radius: 0; text-align: center; margin-top: 40px; border-top: 4px solid #4a90e2;">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-bottom: 15px;">
+                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+                    <polyline points="17 2 12 7 7 2"/>
+                </svg>
+                <h2 style="color: #4a90e2; border: none; padding: 0; margin-bottom: 15px;">Take Control of Your View</h2>
+                <p style="font-size: 1.1em; margin-bottom: 0;">The multi-camera feature puts you in charge of your Live casino experience. Explore the different perspectives and find your favorite angle!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

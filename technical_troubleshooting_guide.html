@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Casino Troubleshooting Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        }
+        
+        .header {
+            background: #000;
+            border-top: 6px solid #ff6b00;
+            border-bottom: 6px solid #ff6b00;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 44px;
+            margin-bottom: 10px;
+            color: #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+        
+        .header p {
+            font-size: 18px;
+        }
+        
+        .quick-links {
+            background: #f5f5f5;
+            padding: 30px;
+            border-bottom: 4px solid #ff6b00;
+        }
+        
+        .quick-links h3 {
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .quick-link {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            border: 3px solid #ff6b00;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .quick-link:hover {
+            background: #ff6b00;
+            color: #fff;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #000;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+        
+        .problem-card {
+            background: #f8f8f8;
+            border-left: 6px solid #ff6b00;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .problem-title {
+            font-size: 22px;
+            color: #000;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        
+        .problem-icon {
+            font-size: 28px;
+        }
+        
+        .causes {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+        }
+        
+        .causes h4 {
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+        
+        .solution-steps {
+            background: #f0fdf4;
+            border-left: 6px solid #16a34a;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .solution-steps h4 {
+            color: #166534;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+        
+        .solution-steps ol {
+            margin-left: 20px;
+            line-height: 2;
+        }
+        
+        .solution-steps li {
+            margin: 10px 0;
+        }
+        
+        .tip-box {
+            background: #fffbf0;
+            border-left: 6px solid #d4af37;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h4 {
+            color: #000;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 6px solid #dc2626;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h4 {
+            color: #991b1b;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border-left: 6px solid #0284c7;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-box h4 {
+            color: #075985;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        
+        .checklist {
+            background: white;
+            border: 3px solid #ff6b00;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ff6b00;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .requirements-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        
+        .requirements-table th {
+            background: #000;
+            color: #ff6b00;
+            padding: 15px;
+            text-align: left;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .requirements-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            background: #fff;
+        }
+        
+        .requirements-table tr:nth-child(even) td {
+            background: #f8f8f8;
+        }
+        
+        .contact-section {
+            background: #000;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 6px solid #ff6b00;
+        }
+        
+        .contact-section h2 {
+            color: #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            background: #ff6b00;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid #ff6b00;
+        }
+        
+        .contact-btn:hover {
+            background: #fff;
+            color: #ff6b00;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Complete Troubleshooting Guide</h1>
+            <p>Quick solutions to common casino gaming issues</p>
+        </div>
+        
+        <div class="quick-links">
+            <h3>Jump to Common Issues:</h3>
+            <div class="links-grid">
+                <a href="#login" class="quick-link">🔐 Login Problems</a>
+                <a href="#games" class="quick-link">🎮 Game Issues</a>
+                <a href="#deposits" class="quick-link">💳 Deposit Failures</a>
+                <a href="#withdrawals" class="quick-link">💰 Withdrawal Delays</a>
+                <a href="#performance" class="quick-link">⚡ Performance</a>
+                <a href="#mobile" class="quick-link">📱 Mobile App</a>
+            </div>
+        </div>
+        
+        <div class="content">
+            
+            <!-- LOGIN PROBLEMS -->
+            <div id="login" class="section">
+                <h2 class="section-title">🔐 Login & Account Access Issues</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🚫</span>
+                        <span>Can't Log In / "Invalid Credentials" Error</span>
+                    </div>
+                    
+                    <div class="causes">
+                        <h4>Common Causes:</h4>
+                        <ul style="line-height: 2;">
+                            <li>Incorrect username or password (typos)</li>
+                            <li>CAPS LOCK is turned on</li>
+                            <li>Account locked after multiple failed attempts</li>
+                            <li>Browser auto-fill entering wrong credentials</li>
+                            <li>Account suspended or closed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Check CAPS LOCK:</strong> Make sure it's off - passwords are case-sensitive</li>
+                            <li><strong>Try manual entry:</strong> Clear the fields and type your credentials manually (don't use auto-fill)</li>
+                            <li><strong>Reset your password:</strong> Click "Forgot Password" and follow the email instructions</li>
+                            <li><strong>Clear browser cache:</strong> Old cached data can cause login issues
+                                <ul style="margin-top: 10px;">
+                                    <li>Chrome: Ctrl+Shift+Delete (Cmd+Shift+Delete on Mac)</li>
+                                    <li>Safari: Cmd+Option+E</li>
+                                    <li>Firefox: Ctrl+Shift+Delete</li>
+                                </ul>
+                            </li>
+                            <li><strong>Try a different browser:</strong> Test with Chrome, Firefox, or Safari</li>
+                            <li><strong>Wait 30 minutes:</strong> If locked out after failed attempts, the system will auto-unlock</li>
+                            <li><strong>Contact support:</strong> If still unable to log in, reach out to our team</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4>💡 Pro Tip:</h4>
+                        Save your password in a secure password manager like LastPass, 1Password, or Bitwarden to avoid typos.
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">📧</span>
+                        <span>Not Receiving Verification Email</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Check spam/junk folder:</strong> Our emails sometimes get filtered</li>
+                            <li><strong>Wait 10 minutes:</strong> Emails can be delayed during peak times</li>
+                            <li><strong>Add to safe senders:</strong> Whitelist <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4729283522372b3e072426342e29286924282a">[email&#160;protected]</a> in your email settings</li>
+                            <li><strong>Check email address:</strong> Make sure you entered it correctly during registration</li>
+                            <li><strong>Try a different email:</strong> Gmail and Outlook work best (avoid temporary email services)</li>
+                            <li><strong>Resend verification:</strong> Click the "Resend Email" button on the login page</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4>⚠️ Important:</h4>
+                        Verification links expire after 24 hours. If your link expired, request a new one.
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🌍</span>
+                        <span>"Access Denied" / Geographic Restrictions</span>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>ℹ️ What This Means:</h4>
+                        Our casino is licensed to operate only in specific states/countries. If you see this message, you're attempting to access from a restricted location.
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Verify your location:</strong> We operate in NJ, PA, MI, WV only</li>
+                            <li><strong>Disable VPN:</strong> Turn off any VPN, proxy, or location masking services</li>
+                            <li><strong>Enable location services:</strong> Allow your browser to access your location</li>
+                            <li><strong>Use WiFi:</strong> Some cellular networks show incorrect locations</li>
+                            <li><strong>Check device settings:</strong> Ensure GPS/location services are enabled on your phone</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4>⚠️ Warning:</h4>
+                        Using VPNs or location spoofing to bypass geographic restrictions violates our terms of service and may result in account closure and forfeiture of funds.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME ISSUES -->
+            <div id="games" class="section">
+                <h2 class="section-title">🎮 Game Loading & Performance Issues</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">⏳</span>
+                        <span>Games Won't Load / Stuck on Loading Screen</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Quick Fix (Works 80% of the time):</h4>
+                        <ol>
+                            <li><strong>Refresh the page:</strong> Press F5 or Cmd+R</li>
+                            <li><strong>Clear cache and cookies:</strong> Ctrl+Shift+Delete</li>
+                            <li><strong>Close and reopen browser:</strong> Completely quit and restart</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Advanced Solutions:</h4>
+                        <ol>
+                            <li><strong>Update your browser:</strong> Use the latest version of Chrome, Firefox, Safari, or Edge</li>
+                            <li><strong>Disable extensions:</strong> Ad blockers and privacy extensions can interfere
+                                <ul style="margin-top: 10px;">
+                                    <li>Chrome: Menu > More Tools > Extensions > Toggle off</li>
+                                    <li>Firefox: Menu > Add-ons > Extensions > Disable</li>
+                                </ul>
+                            </li>
+                            <li><strong>Enable JavaScript:</strong> Games require JavaScript to run
+                                <ul style="margin-top: 10px;">
+                                    <li>Chrome: Settings > Privacy > Site Settings > JavaScript > Allowed</li>
+                                    <li>Firefox: about:config > javascript.enabled > true</li>
+                                </ul>
+                            </li>
+                            <li><strong>Check internet speed:</strong> You need at least 5 Mbps for smooth gameplay
+                                <ul style="margin-top: 10px;">
+                                    <li>Test at: fast.com or speedtest.net</li>
+                                </ul>
+                            </li>
+                            <li><strong>Switch to WiFi:</strong> Cellular data can be unreliable for gaming</li>
+                            <li><strong>Try a different game:</strong> If only one game won't load, it might be under maintenance</li>
+                            <li><strong>Use incognito/private mode:</strong> This bypasses cache issues temporarily</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4 style="margin-bottom: 20px;">System Requirements Checklist:</h4>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>
+                                <strong>Browser:</strong> Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>
+                                <strong>Internet Speed:</strong> Minimum 5 Mbps (10+ Mbps recommended for live games)
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>
+                                <strong>JavaScript:</strong> Enabled in browser settings
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>
+                                <strong>Cookies:</strong> Enabled for our domain
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>
+                                <strong>Pop-ups:</strong> Allowed for our site (games open in new windows)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🔌</span>
+                        <span>Game Disconnected / Lost Connection</span>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>ℹ️ Don't Worry About Your Bet:</h4>
+                        If you disconnect during gameplay, your bet is protected. The game result is saved on our servers. When you reconnect, you'll see the outcome and any winnings will be in your account.
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ To See Your Last Result:</h4>
+                        <ol>
+                            <li>Reload the game</li>
+                            <li>The game will display the outcome from your disconnected session</li>
+                            <li>Check "Transaction History" in your account to verify the result</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Prevent Future Disconnections:</h4>
+                        <ol>
+                            <li><strong>Use stable WiFi:</strong> Avoid public or weak WiFi networks</li>
+                            <li><strong>Close other apps:</strong> Free up bandwidth by closing streaming services, downloads, etc.</li>
+                            <li><strong>Sit closer to router:</strong> Improve signal strength</li>
+                            <li><strong>Restart your router:</strong> Unplug for 30 seconds, plug back in</li>
+                            <li><strong>Use ethernet cable:</strong> Wired connections are most reliable</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🐌</span>
+                        <span>Games Running Slowly / Lag / Freezing</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Close unnecessary tabs:</strong> Each tab uses memory and processing power</li>
+                            <li><strong>Close other programs:</strong> Quit apps running in the background</li>
+                            <li><strong>Check CPU usage:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>Windows: Ctrl+Shift+Esc to open Task Manager</li>
+                                    <li>Mac: Cmd+Space, type "Activity Monitor"</li>
+                                    <li>Close programs using high CPU</li>
+                                </ul>
+                            </li>
+                            <li><strong>Lower game quality settings:</strong> If available in game options</li>
+                            <li><strong>Restart your device:</strong> Clear memory leaks and temporary files</li>
+                            <li><strong>Update graphics drivers:</strong> Especially important for Windows PCs</li>
+                            <li><strong>Try a different browser:</strong> Chrome is generally fastest for games</li>
+                        </ol>
+                    </div>
+                    
+                    <table class="requirements-table">
+                        <thead>
+                            <tr>
+                                <th>Device Type</th>
+                                <th>Minimum Specs</th>
+                                <th>Recommended Specs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Desktop/Laptop</strong></td>
+                                <td>4GB RAM, Dual-core 2.0 GHz</td>
+                                <td>8GB+ RAM, Quad-core 2.5 GHz+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>iPhone</strong></td>
+                                <td>iPhone 8 or newer, iOS 14+</td>
+                                <td>iPhone 11 or newer, iOS 15+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Android</strong></td>
+                                <td>4GB RAM, Android 8.0+</td>
+                                <td>6GB+ RAM, Android 10+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Internet</strong></td>
+                                <td>5 Mbps download</td>
+                                <td>25+ Mbps download</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- DEPOSIT ISSUES -->
+            <div id="deposits" class="section">
+                <h2 class="section-title">💳 Deposit & Payment Issues</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">❌</span>
+                        <span>Deposit Declined / Payment Failed</span>
+                    </div>
+                    
+                    <div class="causes">
+                        <h4>Why Deposits Get Declined:</h4>
+                        <ul style="line-height: 2;">
+                            <li><strong>Insufficient funds:</strong> Not enough balance in your account</li>
+                            <li><strong>Bank blocks gambling:</strong> Some banks block gambling transactions</li>
+                            <li><strong>Card expired:</strong> Check your card's expiration date</li>
+                            <li><strong>Wrong details:</strong> Incorrect card number, CVV, or ZIP code</li>
+                            <li><strong>Daily limit reached:</strong> You've hit your deposit limit</li>
+                            <li><strong>International card:</strong> We only accept cards from eligible states</li>
+                            <li><strong>Prepaid cards:</strong> Some prepaid cards don't work for gaming</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Verify card details:</strong> Double-check every number entered</li>
+                            <li><strong>Try a different payment method:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>PayPal (highest success rate)</li>
+                                    <li>Apple Pay</li>
+                                    <li>Different credit/debit card</li>
+                                    <li>Online banking/ACH</li>
+                                </ul>
+                            </li>
+                            <li><strong>Call your bank:</strong> Ask if they blocked the transaction</li>
+                            <li><strong>Use a different card:</strong> Try a card from a different bank</li>
+                            <li><strong>Lower the amount:</strong> Try depositing less (maybe you hit a limit)</li>
+                            <li><strong>Wait and retry:</strong> Sometimes temporary issues resolve within an hour</li>
+                            <li><strong>Contact support:</strong> We can see specific decline codes to help identify the issue</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4>💡 Best Practices:</h4>
+                        <ul style="line-height: 2; margin-top: 10px;">
+                            <li>PayPal and e-wallets have the highest success rates</li>
+                            <li>Let your bank know you'll be making gambling transactions</li>
+                            <li>Use a card from a gambling-friendly bank (ask your bank)</li>
+                            <li>Have backup payment methods ready</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">⏰</span>
+                        <span>Deposit Not Showing in Account</span>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>ℹ️ Normal Processing Times:</h4>
+                        <ul style="line-height: 2; margin-top: 10px;">
+                            <li><strong>Credit/Debit Cards:</strong> Instant to 5 minutes</li>
+                            <li><strong>PayPal/E-Wallets:</strong> Instant to 2 minutes</li>
+                            <li><strong>Bank Transfer:</strong> 1-3 business days</li>
+                            <li><strong>Cash at Cage:</strong> Instant</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Wait 5 minutes:</strong> Most deposits appear within 5 minutes</li>
+                            <li><strong>Refresh your account:</strong> Log out and log back in</li>
+                            <li><strong>Check your email:</strong> Look for a deposit confirmation</li>
+                            <li><strong>Verify the charge:</strong> Check your bank account - was money actually deducted?</li>
+                            <li><strong>Check transaction history:</strong> Account > Transactions - is it showing as "pending"?</li>
+                            <li><strong>Contact support with:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>Transaction date and time</li>
+                                    <li>Deposit amount</li>
+                                    <li>Payment method used</li>
+                                    <li>Last 4 digits of card or transaction ID</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4>⚠️ Important:</h4>
+                        Don't attempt multiple deposits if the first one is pending - this can result in multiple charges!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WITHDRAWAL ISSUES -->
+            <div id="withdrawals" class="section">
+                <h2 class="section-title">💰 Withdrawal Issues</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🕐</span>
+                        <span>Withdrawal Stuck in "Pending" Status</span>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>ℹ️ Normal Processing Times:</h4>
+                        <ul style="line-height: 2; margin-top: 10px;">
+                            <li><strong>Internal Review:</strong> 24-48 hours (all withdrawals)</li>
+                            <li><strong>PayPal:</strong> 0-24 hours after approval</li>
+                            <li><strong>Debit Card:</strong> 2-5 business days after approval</li>
+                            <li><strong>Bank Transfer:</strong> 3-7 business days after approval</li>
+                            <li><strong>Check:</strong> 7-14 business days after approval</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ What to Check:</h4>
+                        <ol>
+                            <li><strong>Account verification:</strong> Have you verified your identity?
+                                <ul style="margin-top: 10px;">
+                                    <li>Check your email for verification requests</li>
+                                    <li>Upload ID if requested</li>
+                                    <li>This is required for first withdrawal</li>
+                                </ul>
+                            </li>
+                            <li><strong>Bonus wagering:</strong> Have you completed playthrough requirements?
+                                <ul style="margin-top: 10px;">
+                                    <li>Check "My Bonuses" for progress</li>
+                                    <li>Can't withdraw until 100% complete</li>
+                                </ul>
+                            </li>
+                            <li><strong>Withdrawal method:</strong> Is it the same as your deposit method?
+                                <ul style="margin-top: 10px;">
+                                    <li>Must withdraw to original deposit method first</li>
+                                    <li>Alternative methods available after that</li>
+                                </ul>
+                            </li>
+                            <li><strong>Minimum amount:</strong> Most methods require $10-$50 minimum</li>
+                            <li><strong>Document requests:</strong> Check email - did we request additional documents?</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4>💡 Speed Up Withdrawals:</h4>
+                        <ul style="line-height: 2; margin-top: 10px;">
+                            <li>Complete verification BEFORE requesting withdrawal</li>
+                            <li>Use PayPal or e-wallets for fastest payouts</li>
+                            <li>Withdraw to same method you deposited with</li>
+                            <li>Upload clear, color photos of documents</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🚫</span>
+                        <span>Withdrawal Request Declined/Cancelled</span>
+                    </div>
+                    
+                    <div class="causes">
+                        <h4>Common Reasons for Declined Withdrawals:</h4>
+                        <ul style="line-height: 2;">
+                            <li>Bonus wagering requirements not completed</li>
+                            <li>Documents failed verification (blurry, incomplete, expired)</li>
+                            <li>Attempted withdrawal to different name/account</li>
+                            <li>Payment method not available in your region</li>
+                            <li>Violated bonus terms (max bet exceeded, restricted games played)</li>
+                            <li>Duplicate accounts detected</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Check your email:</strong> We always send a specific reason for decline</li>
+                            <li><strong>Fix the issue:</strong> Follow instructions in the email</li>
+                            <li><strong>Reupload documents:</strong> If verification failed, submit better quality photos</li>
+                            <li><strong>Complete wagering:</strong> If bonus incomplete, continue playing eligible games</li>
+                            <li><strong>Choose different method:</strong> Try another withdrawal option</li>
+                            <li><strong>Contact support:</strong> We can explain exactly why and how to fix it</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MOBILE APP ISSUES -->
+            <div id="mobile" class="section">
+                <h2 class="section-title">📱 Mobile App Issues</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">📲</span>
+                        <span>App Won't Download or Install</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ For iOS (iPhone/iPad):</h4>
+                        <ol>
+                            <li><strong>Check iOS version:</strong> You need iOS 14.0 or higher
+                                <ul style="margin-top: 10px;">
+                                    <li>Settings > General > About > Software Version</li>
+                                    <li>Update if needed: Settings > General > Software Update</li>
+                                </ul>
+                            </li>
+                            <li><strong>Free up space:</strong> You need at least 200MB free
+                                <ul style="margin-top: 10px;">
+                                    <li>Settings > General > iPhone Storage</li>
+                                    <li>Delete unused apps or photos</li>
+                                </ul>
+                            </li>
+                            <li><strong>Restart App Store:</strong> Double-click home, swipe up on App Store</li>
+                            <li><strong>Sign out of Apple ID:</strong> Settings > [Your Name] > Sign Out, then sign back in</li>
+                            <li><strong>Reset network:</strong> Settings > General > Reset > Reset Network Settings</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ For Android:</h4>
+                        <ol>
+                            <li><strong>Check Android version:</strong> You need Android 8.0 or higher
+                                <ul style="margin-top: 10px;">
+                                    <li>Settings > About Phone > Android Version</li>
+                                </ul>
+                            </li>
+                            <li><strong>Enable unknown sources:</strong> If downloading from our website (not Play Store)
+                                <ul style="margin-top: 10px;">
+                                    <li>Settings > Security > Install Unknown Apps</li>
+                                    <li>Allow for your browser</li>
+                                </ul>
+                            </li>
+                            <li><strong>Free up space:</strong> Need at least 200MB
+                                <ul style="margin-top: 10px;">
+                                    <li>Settings > Storage > Free up space</li>
+                                </ul>
+                            </li>
+                            <li><strong>Clear Play Store cache:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>Settings > Apps > Google Play Store > Storage > Clear Cache</li>
+                                </ul>
+                            </li>
+                            <li><strong>Restart device:</strong> Power off, wait 10 seconds, power on</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🔋</span>
+                        <span>App Drains Battery Quickly</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Reduce Battery Usage:</h4>
+                        <ol>
+                            <li><strong>Lower screen brightness:</strong> Biggest battery saver</li>
+                            <li><strong>Close background apps:</strong> Don't leave app running when not playing</li>
+                            <li><strong>Disable location services:</strong> Only enable when needed for geolocation check</li>
+                            <li><strong>Turn off push notifications:</strong> App Settings > Notifications > Off</li>
+                            <li><strong>Use WiFi instead of cellular:</strong> Much more battery efficient</li>
+                            <li><strong>Enable low power mode:</strong> iOS: Settings > Battery > Low Power Mode</li>
+                            <li><strong>Restart app regularly:</strong> Close completely every few hours</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4>ℹ️ Expected Battery Usage:</h4>
+                        <p>Gaming apps are power-intensive. You can expect approximately:</p>
+                        <ul style="line-height: 2; margin-top: 10px;">
+                            <li><strong>Slots:</strong> 3-4 hours of continuous play per charge</li>
+                            <li><strong>Table Games:</strong> 4-5 hours per charge</li>
+                            <li><strong>Live Dealer:</strong> 2-3 hours per charge (video streaming)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">📶</span>
+                        <span>"Location Detection Failed" Error</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Solution Steps:</h4>
+                        <ol>
+                            <li><strong>Enable location services:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>iOS: Settings > Privacy > Location Services > ON</li>
+                                    <li>Android: Settings > Location > ON</li>
+                                </ul>
+                            </li>
+                            <li><strong>Allow app location access:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>iOS: Settings > Privacy > Location Services > [Casino App] > While Using</li>
+                                    <li>Android: Settings > Apps > [Casino App] > Permissions > Location > Allow</li>
+                                </ul>
+                            </li>
+                            <li><strong>Improve GPS signal:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>Go near a window or outside</li>
+                                    <li>Avoid basements or thick-walled buildings</li>
+                                    <li>Wait 30 seconds for GPS to lock</li>
+                                </ul>
+                            </li>
+                            <li><strong>Switch to WiFi:</strong> Helps with more accurate location</li>
+                            <li><strong>Restart app:</strong> Close completely and reopen</li>
+                            <li><strong>Restart device:</strong> Refresh GPS system</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GENERAL PERFORMANCE -->
+            <div id="performance" class="section">
+                <h2 class="section-title">⚡ General Performance Issues</h2>
+                
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <span class="problem-icon">🐢</span>
+                        <span>Slow Website / Takes Forever to Load</span>
+                    </div>
+                    
+                    <div class="solution-steps">
+                        <h4>✅ Immediate Fixes:</h4>
+                        <ol>
+                            <li><strong>Test your internet speed:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>Visit fast.com or speedtest.net</li>
+                                    <li>You need minimum 5 Mbps</li>
+                                    <li>Recommended: 25+ Mbps</li>
+                                </ul>
+                            </li>
+                            <li><strong>Close unnecessary programs:</strong> Free up bandwidth</li>
+                            <li><strong>Pause downloads/uploads:</strong> Stop any file transfers</li>
+                            <li><strong>Disconnect other devices:</strong> Stop streaming on other devices</li>
+                            <li><strong>Use ethernet cable:</strong> Wired > WiFi for speed</li>
+                            <li><strong>Restart your router:</strong> Unplug for 30 seconds</li>
+                            <li><strong>Clear browser cache:</strong> Ctrl+Shift+Delete</li>
+                            <li><strong>Try different browser:</strong> Chrome is usually fastest</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h4>💡 Optimize Your Setup:</h4>
+                        <ul style="line-height: 2; margin-top: 10px;">
+                            <li>Position router in central, elevated location</li>
+                            <li>Keep router away from metal objects and walls</li>
+                            <li>Upgrade to 5GHz WiFi if available</li>
+                            <li>Contact ISP if speeds consistently slow</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="contact-section">
+            <h2 style="margin-bottom: 15px;">Still Having Issues?</h2>
+            <p style="font-size: 18px; margin-bottom: 25px;">Our support team is available 24/7 to help!</p>
+            
+            <div class="contact-buttons">
+                <a href="#" class="contact-btn">💬 Live Chat (Fastest)</a>
+                <a href="#" class="contact-btn">📧 Email Support</a>
+                <a href="#" class="contact-btn">📞 Call Us</a>
+                <a href="#" class="contact-btn">❓ Help Center</a>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 14px; opacity: 0.9;">
+                Average response time: Live C

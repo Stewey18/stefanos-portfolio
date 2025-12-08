@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Baccarat - The VIP Experience Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Palatino', 'Garamond', serif;
+            line-height: 1.7;
+            color: #e8e6e3;
+            background: #0f0f0f;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a0033 0%, #0d001a 100%);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            border: 3px solid #d4af37;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2d004d 0%, #1a0033 100%);
+            color: #d4af37;
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 4px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '♠ ♣ ♥ ♦';
+            position: absolute;
+            font-size: 15em;
+            opacity: 0.03;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .header h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .header p {
+            font-size: 1.4em;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            color: #f0e68c;
+            letter-spacing: 2px;
+        }
+        
+        .content {
+            padding: 50px 45px;
+        }
+        
+        h2 {
+            color: #d4af37;
+            font-size: 2.3em;
+            margin: 40px 0 22px 0;
+            font-weight: 300;
+            text-align: center;
+            border-bottom: 2px solid #8b6f47;
+            padding-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        h3 {
+            color: #f0e68c;
+            font-size: 1.7em;
+            margin: 32px 0 18px 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: #c9c5c0;
+        }
+        
+        .vip-banner {
+            background: linear-gradient(135deg, #8b4513 0%, #5c2e0a 100%);
+            border: 3px solid #d4af37;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .vip-banner h3 {
+            color: #d4af37;
+            margin: 0 0 15px 0;
+            font-size: 2em;
+        }
+        
+        .vip-banner p {
+            color: #f0e68c;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        
+        .baccarat-table {
+            background: linear-gradient(135deg, #0a5c3a 0%, #064028 100%);
+            border: 8px solid #d4af37;
+            border-radius: 50px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7), inset 0 0 50px rgba(212, 175, 55, 0.1);
+        }
+        
+        .betting-positions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .bet-spot {
+            background: rgba(0,0,0,0.4);
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .bet-spot:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .bet-spot h4 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .payout-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a0033;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.3em;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .card-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .playing-card {
+            width: 90px;
+            height: 130px;
+            background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+            border-radius: 10px;
+            border: 3px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            position: relative;
+        }
+        
+        .card-value {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            font-size: 1.2em;
+            color: #000;
+        }
+        
+        .card-suit {
+            font-size: 2em;
+        }
+        
+        .rules-elegant {
+            background: linear-gradient(135deg, #2d004d 0%, #1a0033 100%);
+            border: 3px solid #8b6f47;
+            border-radius: 10px;
+            padding: 35px;
+            margin: 35px 0;
+        }
+        
+        .rules-elegant h3 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .rule-item {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .rule-item strong {
+            color: #f0e68c;
+            font-size: 1.15em;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .comparison-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 111, 71, 0.1) 100%);
+            border: 2px solid #8b6f47;
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-box:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .comparison-box h4 {
+            color: #d4af37;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            text-align: center;
+        }
+        
+        .stat-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            color: #c9c5c0;
+        }
+        
+        .stat-line:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-label {
+            color: #8b6f47;
+        }
+        
+        .stat-value {
+            color: #d4af37;
+            font-weight: 600;
+        }
+        
+        .strategy-premium {
+            background: linear-gradient(135deg, #8b4513 0%, #5c2e0a 100%);
+            border: 3px solid #d4af37;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.3);
+        }
+        
+        .strategy-premium h3 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        
+        .strategy-premium ul {
+            margin-left: 30px;
+            line-height: 2.3;
+            color: #f0e68c;
+        }
+        
+        .strategy-premium li {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+        
+        .odds-luxury {
+            background: #0f0f0f;
+            border: 3px solid #d4af37;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 35px 0;
+            overflow-x: auto;
+        }
+        
+        .odds-luxury table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .odds-luxury th {
+            background: linear-gradient(135deg, #2d004d 0%, #1a0033 100%);
+            color: #d4af37;
+            padding: 18px;
+            text-align: left;
+            font-weight: 300;
+            font-size: 1.15em;
+            letter-spacing: 1px;
+        }
+        
+        .odds-luxury td {
+            padding: 18px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            color: #c9c5c0;
+        }
+        
+        .odds-luxury tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .highlight-best {
+            color: #d4af37;
+            font-weight: 700;
+        }
+        
+        .mini-baccarat {
+            background: linear-gradient(135deg, rgba(45, 0, 77, 0.6) 0%, rgba(26, 0, 51, 0.6) 100%);
+            border: 2px solid #8b6f47;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .mini-baccarat h4 {
+            color: #d4af37;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+        
+        .mini-baccarat p {
+            margin: 0;
+            color: #c9c5c0;
+        }
+        
+        .score-card {
+            background: #0f0f0f;
+            border: 3px solid #d4af37;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .score-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .score-example {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 111, 71, 0.05) 100%);
+            border: 2px solid #8b6f47;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .score-example h5 {
+            color: #d4af37;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        
+        .card-combo {
+            font-family: monospace;
+            font-size: 1.8em;
+            color: #f0e68c;
+            margin: 10px 0;
+        }
+        
+        .final-score {
+            color: #d4af37;
+            font-size: 2em;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        
+        .etiquette-box {
+            background: linear-gradient(135deg, #2d004d 0%, #1a0033 100%);
+            border: 2px solid #8b6f47;
+            border-radius: 10px;
+            padding: 35px;
+            margin: 35px 0;
+        }
+        
+        .etiquette-box h3 {
+            color: #d4af37;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .etiquette-box ul {
+            margin-left: 25px;
+            line-height: 2.2;
+            color: #c9c5c0;
+        }
+        
+        .cta-footer {
+            background: linear-gradient(135deg, #2d004d 0%, #1a0033 100%);
+            color: #d4af37;
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 4px solid #d4af37;
+        }
+        
+        .cta-footer h2 {
+            color: #d4af37;
+            border: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .cta-footer p {
+            color: #f0e68c;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .betting-positions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BACCARAT</h1>
+            <p>The Game of Elegance & Fortune</p>
+        </div>
+        
+        <div class="content">
+            <div class="vip-banner">
+                <h3>🎩 Welcome to the VIP Table</h3>
+                <p>Baccarat is the game of choice for high rollers and sophisticated players worldwide. Simple rules, elegant gameplay, and the best odds in the casino make it a timeless classic.</p>
+            </div>
+            
+            <h2>What is Baccarat?</h2>
+            <p>Baccarat (pronounced bah-kah-rah) is a comparing card game where you bet on which of two hands—the "Player" or the "Banker"—will have a total closest to 9. Despite its reputation as a high-stakes VIP game, baccarat is remarkably simple to learn and offers some of the best odds in the casino.</p>
+            
+            <p><strong>Important:</strong> You don't play against the dealer or other players. You simply bet on which hand you think will win. The dealer handles all the cards according to fixed rules.</p>
+            
+            <div class="baccarat-table">
+                <h3 style="color: #d4af37; text-align: center; margin-bottom: 30px; font-size: 2em;">The Baccarat Table</h3>
+                <div class="betting-positions">
+                    <div class="bet-spot">
+                        <h4>PLAYER</h4>
+                        <p style="color: #f0e68c;">Bet that Player hand wins</p>
+                        <div class="payout-gold">Pays 1:1</div>
+                        <p style="color: #8b6f47; margin-top: 15px; font-size: 0.9em;">House Edge: 1.24%</p>
+                    </div>
+                    
+                    <div class="bet-spot">
+                        <h4>BANKER</h4>
+                        <p style="color: #f0e68c;">Bet that Banker hand wins</p>
+                        <div class="payout-gold">Pays 0.95:1</div>
+                        <p style="color: #8b6f47; margin-top: 15px; font-size: 0.9em;">House Edge: 1.06%</p>
+                    </div>
+                    
+                    <div class="bet-spot">
+                        <h4>TIE</h4>
+                        <p style="color: #f0e68c;">Bet that both hands tie</p>
+                        <div class="payout-gold">Pays 8:1</div>
+                        <p style="color: #c53030; margin-top: 15px; font-size: 0.9em;">House Edge: 14.36%</p>
+                    </div>
+                </div>
+                <p style="color: #f0e68c; text-align: center; margin-top: 30px; font-style: italic;">Place your chips in the designated betting area</p>
+            </div>
+            
+            <h2>Card Values in Baccarat</h2>
+            <p>Understanding card values is crucial. Unlike blackjack, card suits don't matter in baccarat—only the numerical value:</p>
+            
+            <div class="card-display">
+                <div class="playing-card">
+                    <span class="card-value">A</span>
+                    <span class="card-suit" style="color: #c41e3a;">♥</span>
+                </div>
+                <div style="display: flex; align-items: center; color: #d4af37; font-size: 2em;">=</div>
+                <div style="display: flex; align-items: center; color: #d4af37; font-size: 3em; font-weight: 700;">1</div>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-box">
+                    <h4>Aces</h4>
+                    <div class="stat-line">
+                        <span class="stat-label">Value</span>
+                        <span class="stat-value">1 point</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #8b6f47;">A♠ A♥ A♦ A♣</p>
+                </div>
+                
+                <div class="comparison-box">
+                    <h4>Number Cards (2-9)</h4>
+                    <div class="stat-line">
+                        <span class="stat-label">Value</span>
+                        <span class="stat-value">Face value</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #8b6f47;">5♣ = 5 points</p>
+                </div>
+                
+                <div class="comparison-box">
+                    <h4>Face Cards & Tens</h4>
+                    <div class="stat-line">
+                        <span class="stat-label">Value</span>
+                        <span class="stat-value">0 points</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #8b6f47;">10, J, Q, K = 0</p>
+                </div>
+            </div>
+            
+            <h2>How Scoring Works</h2>
+            <p>Baccarat uses a unique scoring system where only the last digit of the total matters:</p>
+            
+            <div class="score-card">
+                <h3 style="color: #d4af37; text-align: center; margin-bottom: 25px;">Scoring Examples</h3>
+                <div class="score-examples">
+                    <div class="score-example">
+                        <h5>Simple Total</h5>
+                        <div class="card-combo">3 + 4</div>
+                        <div style="color: #8b6f47; margin: 5px 0;">= 7</div>
+                        <div class="final-score">Score: 7</div>
+                    </div>
+                    
+                    <div class="score-example">
+                        <h5>Double Digits</h5>
+                        <div class="card-combo">7 + 6</div>
+                        <div style="color: #8b6f47; margin: 5px 0;">= 13</div>
+                        <div class="final-score">Score: 3</div>
+                    </div>
+                    
+                    <div class="score-example">
+                        <h5>With Face Card</h5>
+                        <div class="card-combo">K + 5</div>
+                        <div style="color: #8b6f47; margin: 5px 0;">= 0 + 5</div>
+                        <div class="final-score">Score: 5</div>
+                    </div>
+                    
+                    <div class="score-example">
+                        <h5>Natural 9</h5>
+                        <div class="card-combo">9 + Q</div>
+                        <div style="color: #8b6f47; margin: 5px 0;">= 9 + 0</div>
+                        <div class="final-score">Score: 9</div>
+                    </div>
+                    
+                    <div class="score-example">
+                        <h5>Three Cards</h5>
+                        <div class="card-combo">5 + 7 + 4</div>
+                        <div style="color: #8b6f47; margin: 5px 0;">= 16</div>
+                        <div class="final-score">Score: 6</div>
+                    </div>
+                    
+                    <div class="score-example">
+                        <h5>Zero (Baccarat)</h5>
+                        <div class="card-combo">10 + K</div>
+                        <div style="color: #8b6f47; margin: 5px 0;">= 0 + 0</div>
+                        <div class="final-score">Score: 0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>How to Play: Complete Walkthrough</h2>
+            
+            <div class="rules-elegant">
+                <h3>Game Flow</h3>
+                
+                <div class="rule-item">
+                    <strong>Step 1: Place Your Bets</strong>
+                    <p>Before cards are dealt, choose to bet on Player, Banker, or Tie. You can bet on multiple options simultaneously.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <strong>Step 2: Initial Deal</strong>
+                    <p>The dealer deals two cards to the Player hand and two cards to the Banker hand, all face-up.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <strong>Step 3: Check for Naturals</strong>
+                    <p>If either hand totals 8 or 9, it's called a "natural." The hand with the higher natural wins immediately. If both have naturals, the higher one wins (or it's a tie).</p>
+                </div>
+                
+                <div class="rule-item">
+                    <strong>Step 4: Third Card Rules (If Needed)</strong>
+                    <p>If neither hand has a natural, the dealer follows strict rules to determine if a third card is drawn. You don't make any decisions—it's all automatic.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <strong>Step 5: Determine Winner</strong>
+                    <p>After all cards are dealt, the hand closest to 9 wins. Winning bets are paid out immediately.</p>
+                </div>
+            </div>
+            
+            <h2>Third Card Rules</h2>
+            <p>Don't worry about memorizing these—the dealer handles everything automatically. But understanding them helps you follow the game:</p>
+            
+            <div class="odds-luxury">
+                <h3 style="color: #d4af37; margin-bottom: 25px; text-align: center;">Player's Third Card Rule</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Player's First Two Cards</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0, 1, 2, 3, 4, 5</td>
+                            <td class="highlight-best">Draws a third card</td>
+                        </tr>
+                        <tr>
+                            <td>6, 7</td>
+                            <td>Stands (no third card)</td>
+                        </tr>
+                        <tr>
+                            <td>8, 9</td>
+                            <td>Natural - No more cards</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="odds-luxury">
+                <h3 style="color: #d4af37; margin-bottom: 25px; text-align: center;">Banker's Third Card Rule</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Banker's Total</th>
+                            <th>Draws When Player's 3rd Card Is</th>
+                            <th>Stands When Player's 3rd Card Is</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0, 1, 2</td>
+                            <td>Always draws</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>0-7, 9</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2-7</td>
+                            <td>0, 1, 8, 9</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>4-7</td>
+                            <td>0-3, 8, 9</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>6, 7</td>
+                            <td>0-5, 8, 9</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>—</td>
+                            <td>Always stands</td>
+                        </tr>
+                        <tr>
+                            <td>8, 9</td>
+                            <td>Natural - No more cards</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Betting Strategy</h2>
+            
+            <div class="strategy-premium">
+                <h3>🎯 Expert Recommendations</h3>
+                <ul>
+                    <li><strong>Always Bet on Banker:</strong> With a 1.06% house edge, the Banker bet offers the best odds in baccarat. The 5% commission on wins is worth it.</li>
+                    <li><strong>Avoid the Tie Bet:</strong> Despite its attractive 8:1 payout, the 14.36% house edge makes this a sucker bet. Only bet on ties for fun, not strategy.</li>
+                    <li><strong>Player Bet is Second Best:</strong> At 1.24% house edge, it's nearly as good as Banker. Some players alternate to avoid commission.</li>
+                    <li><strong>Ignore Pattern Tracking:</strong> Many players keep scorecards to spot "patterns," but each hand is independent. Past results don't predict future outcomes.</li>
+                    <li><strong>Set Win/Loss Limits:</strong> Decide before playing when you'll walk away after winning or losing a certain amount.</li>
+                    <li><strong>Flat Betting is Safest:</strong> Bet the same amount every hand rather than progressive systems like Martingale.</li>
+                    <li><strong>Commission Awareness:</strong> Remember that Banker wins pay 0.95:1 due to the 5% commission. Calculate your actual winnings accordingly.</li>
+                </ul>
+            </div>
+            
+            <h2>Odds & Probabilities</h2>
+            <div class="odds-luxury">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bet Type</th>
+                            <th>Payout</th>
+                            <th>Win Probability</th>
+                            <th>House Edge</th>
+                            <th>Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Banker</strong></td>
+                            <td>0.95:1</td>
+                            <td>45.86%</td>
+                            <td class="highlight-best">1.06%</td>
+                            <td class="highlight-best">Best Bet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Player</strong></td>
+                            <td>1:1</td>
+                            <td>44.62%</td>
+                            <td>1.24%</td>
+                            <td style="color: #48bb78;">Good Bet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tie</strong></td>
+                            <td>8:1</td>
+                            <td>9.52%</td>
+                            <td style="color: #fc8181;">14.36%</td>
+                            <td style="color: #fc8181;">Avoid</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="vip-banner" style="margin: 40px 0;">
+                <h3>Why Banker Has Better Odds</h3>
+                <p>The Banker hand has a slight statistical advantage because it acts second and follows slightly different drawing rules. This 0.18% edge is why casinos charge 5% commission on Banker wins—even with commission, it's still the best bet!</p>
+            </div>
+            
+            <h2>Baccarat Variations</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-box">
+                    <h4>Punto Banco</h4>
+                    <p style="text-align: center; margin: 15px 0;">The most common version—everything is predetermined by fixed rules. This is what you'll find in most casinos.</p>
+                    <div class="stat-line">
+                        <span class="stat-label">Popularity</span>
+                        <span class="stat-value">Most Common</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-box">
+                    <h4>Chemin de Fer</h4>
+                    <p style="text-align: center; margin: 15px 0;">French version where players take turns being the Banker and can choose whether to draw a third card.</p>
+                    <div class="stat-line">
+                        <span class="stat-label">Popularity</span>
+                        <span class="stat-value">Rare</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-box">
+                    <h4>Baccarat Banque</h4>
+                    <p style="text-align: center; margin: 15px 0;">The Banker position is auctioned off and stays with one player for the entire shoe.</p>
+                    <div class="stat-line">
+                        <span class="stat-label">Popularity</span>
+                        <span class="stat-value">Very Rare</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mini-baccarat">
+                <h4>Mini-Baccarat</h4>
+                <p>A smaller, faster version of traditional baccarat with lower minimum bets. The rules are identical, but it's played on a blackjack-sized table with one dealer. Perfect for beginners!</p>
+                <div style="margin-top: 15px; padding: 15px; background: rgba(212, 175, 55, 0.1); border-radius: 6px;">
+                    <strong style="color: #d4af37;">Table Minimums:</strong> Traditional baccarat often starts at $25-$100, while mini-baccarat can start as low as $5-$10.
+                </div>
+            </div>
+            
+            <h2>Side Bets</h2>
+            <p>Many baccarat tables offer side bets beyond the standard Player/Banker/Tie options:</p>
+            
+            <div class="odds-luxury">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Side Bet</th>
+                            <th>Description</th>
+                            <th>Typical Payout</th>
+                            <th>House Edge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Player Pair</strong></td>
+                            <td>First two Player cards are a pair</td>
+                            <td>11:1</td>
+                            <td>10.36%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Banker Pair</strong></td>
+                            <td>First two Banker cards are a pair</td>
+                            <td>11:1</td>
+                            <td>10.36%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perfect Pair</strong></td>
+                            <td>Pair is same suit (e.g., two 7♥)</td>
+                            <td>25:1</td>
+                            <td>13.03%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dragon Bonus</strong></td>
+                            <td>Win by margin of 4+ points</td>
+                            <td>Up to 30:1</td>
+                            <td>2.65%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p style="color: #fc8181; font-weight: 600; text-align: center; margin: 25px 0;">⚠️ Side bets generally have much higher house edges than the main game. Play them for fun, not profit.</p>
+            
+            <h2>VIP Table Etiquette</h2>
+            
+            <div class="etiquette-box">
+                <h3>🎩 Sophisticated Player Guidelines</h3>
+                <ul>
+                    <li><strong>Dress Appropriately:</strong> High-limit baccarat rooms often have dress codes. Business casual or better is expected.</li>
+                    <li><strong>Wait for the Right Moment:</strong> Don't join mid-shoe unless invited. Wait for a new shoe to begin.</li>
+                    <li><strong>Handle Cards Properly:</strong> In games where you touch cards (like Chemin de Fer), handle them with one hand and keep them low over the table.</li>
+                    <li><strong>No Touching After Betting:</strong> Once you've placed your bet, don't touch your chips until the hand is resolved.</li>
+                    <li><strong>Tip the Dealer:</strong> Especially after a good run, tipping is expected and appreciated.</li>
+                    <li><strong>Be Quiet During Play:</strong> Baccarat is traditionally a quiet, focused game. Minimize chatter during hands.</li>
+                    <li><strong>Know Your Betting Limits:</strong> High-roller tables can have minimums of $100-$500 or more. Confirm before sitting.</li>
+                    <li><strong>Respect Other Players:</strong> Don't criticize others' betting choices or superstitions.</li>
+                </ul>
+            </div>
+            
+            <h2>Why Baccarat is Popular with High Rollers</h2>
+            
+            <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 111, 71, 0.05) 100%); padding: 35px; border-radius: 10px; border: 2px solid #8b6f47; margin: 35px 0;">
+                <ul style="margin-left: 25px; line-height: 2.3; color: #c9c5c0; font-size: 1.05em;">
+                    <li><strong>Best Odds in the Casino:</strong> The 1.06% house edge on Banker bets is nearly unbeatable</li>
+                    <li><strong>Simple Decisions:</strong> Unlike poker, no complex strategy decisions—just pick a bet</li>
+                    <li><strong>Fast-Paced Action:</strong> Hands resolve quickly, perfect for high-stakes excitement</li>
+                    <li><strong>High Table Limits:</strong> VIP baccarat rooms accommodate six-figure bets</li>
+                    <li><strong>Prestigious Atmosphere:</strong> The exclusive setting appeals to wealthy players</li>
+                    <li><strong>James Bond Effect:</strong> Popularized in 007 films, baccarat has a sophisticated image</li>
+                    <li><strong>No Skill Required:</strong> Pure chance means anyone can play at the highest level</li>
+                </ul>
+            </div>
+            
+            <h2>Common Baccarat Terms</h2>
+            
+            <div class="odds-luxury">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Definition</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Natural</strong></td>
+                            <td>A two-card hand totaling 8 or 9 (instant win)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Baccarat</strong></td>
+                            <td>A hand totaling zero (also the name of the game)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shoe</strong></td>
+                            <td>The box holding multiple decks of cards (usually 6 or 8 decks)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Commission</strong></td>
+                            <td>The 5% fee charged on winning Banker bets</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coup</strong></td>
+                            <td>A complete round of play (one hand)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>La Grande</strong></td>
+                            <td>A natural 9 (the best possible hand)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>La Petite</strong></td>
+                            <td>A natural 8 (second-best possible hand)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Standoff</strong></td>
+                            <td>Another term for a tie</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+        <div class="cta-footer">
+            <h2>Experience the Elegance</h2>
+            <p>Baccarat combines simplicity with sophistication, offering players the best odds in the casino alongside an atmosphere of luxury and prestige. Whether you're playing mini-baccarat with modest stakes or joining the VIP tables, remember: bet on Banker for the best odds, savor the elegant atmosphere, and enjoy the game that James Bond made famous. May fortune favor the bold! 🎩</p>
+        </div>
+    </div>
+</body>
+</html>

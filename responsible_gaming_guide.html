@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsible Gaming & Bankroll Management Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: #edf2f7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+            color: #ffffff;
+            padding: 50px 40px;
+            text-align: center;
+            border-bottom: 5px solid #63b3ed;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: #bee3f8;
+        }
+        
+        .content {
+            padding: 45px 40px;
+        }
+        
+        h2 {
+            color: #2b6cb0;
+            font-size: 2em;
+            margin: 35px 0 20px 0;
+            font-weight: 700;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #e2e8f0;
+        }
+        
+        h3 {
+            color: #2c5282;
+            font-size: 1.5em;
+            margin: 28px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 1.06em;
+            line-height: 1.85;
+            color: #4a5568;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border-left: 5px solid #38b2ac;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .intro-box p {
+            color: #234e52;
+            font-size: 1.1em;
+            margin: 0;
+        }
+        
+        .warning-critical {
+            background: linear-gradient(135deg, #fed7d7 0%, #fc8181 30%);
+            border: 3px solid #c53030;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 35px 0;
+            text-align: center;
+        }
+        
+        .warning-critical h3 {
+            color: #742a2a;
+            margin: 0 0 15px 0;
+            font-size: 1.8em;
+        }
+        
+        .warning-critical p {
+            color: #742a2a;
+            font-weight: 600;
+            font-size: 1.15em;
+            margin: 0;
+        }
+        
+        .signs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .sign-card {
+            background: #fff;
+            border: 3px solid #fc8181;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .sign-card:hover {
+            box-shadow: 0 8px 20px rgba(197, 48, 48, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .sign-card h4 {
+            color: #c53030;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sign-card ul {
+            margin-left: 20px;
+            color: #4a5568;
+        }
+        
+        .sign-card li {
+            margin-bottom: 8px;
+        }
+        
+        .tools-section {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border: 3px solid #48bb78;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 35px 0;
+        }
+        
+        .tools-section h3 {
+            color: #22543d;
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+        
+        .tool-item {
+            background: #fff;
+            border: 2px solid #48bb78;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .tool-item h4 {
+            color: #2f855a;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .tool-item p {
+            color: #4a5568;
+            margin: 0;
+        }
+        
+        .bankroll-calculator {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border: 3px solid #38b2ac;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 35px 0;
+        }
+        
+        .bankroll-calculator h3 {
+            color: #234e52;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .calculator-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 2px solid #38b2ac;
+        }
+        
+        .calculator-label {
+            font-weight: 600;
+            color: #234e52;
+            font-size: 1.1em;
+        }
+        
+        .calculator-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #38b2ac;
+        }
+        
+        .limits-table {
+            background: #fff;
+            border: 3px solid #4299e1;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .limits-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .limits-table th {
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .limits-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .limits-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .checklist {
+            background: #fff;
+            border: 3px solid #4299e1;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .checklist h3 {
+            color: #2b6cb0;
+            margin-top: 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checklist-item label {
+            cursor: pointer;
+            color: #2d3748;
+            font-size: 1.05em;
+        }
+        
+        .budget-example {
+            background: #fff;
+            border: 3px solid #805ad5;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .budget-example h3 {
+            color: #553c9a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .budget-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .budget-item {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #805ad5;
+        }
+        
+        .budget-item strong {
+            display: block;
+            color: #553c9a;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .budget-amount {
+            font-size: 2em;
+            font-weight: 700;
+            color: #805ad5;
+        }
+        
+        .help-resources {
+            background: linear-gradient(135deg, #fffaf0 0%, #feebc8 100%);
+            border: 3px solid #ed8936;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 35px 0;
+        }
+        
+        .help-resources h3 {
+            color: #7c2d12;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .resource-item {
+            background: #fff;
+            border: 2px solid #ed8936;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .resource-item h4 {
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+        
+        .resource-item a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .resource-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .tip-positive {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-left: 5px solid #48bb78;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-positive h4 {
+            color: #22543d;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        .tip-positive p {
+            color: #2f855a;
+            margin: 0;
+        }
+        
+        .self-assessment {
+            background: #fff;
+            border: 3px solid #4299e1;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 35px 0;
+        }
+        
+        .self-assessment h3 {
+            color: #2b6cb0;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .question-item {
+            background: #f7fafc;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .question-item strong {
+            color: #2c5282;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .cta-footer {
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+            color: #ffffff;
+            padding: 40px;
+            text-align: center;
+            border-top: 5px solid #63b3ed;
+        }
+        
+        .cta-footer h2 {
+            color: white;
+            border: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        
+        .cta-footer p {
+            color: #bee3f8;
+            font-size: 1.1em;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .signs-grid,
+            .budget-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ Responsible Gaming Guide</h1>
+            <p>Play Smart, Stay Safe, Keep it Fun</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>Gaming should always be entertaining and fun.</strong> This comprehensive guide will help you maintain healthy gambling habits, manage your bankroll effectively, and recognize when gaming stops being enjoyable. Remember: gambling is entertainment with a cost, not a way to make money.</p>
+            </div>
+            
+            <h2>The Golden Rules of Responsible Gaming</h2>
+            
+            <div class="checklist">
+                <h3>Essential Principles</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule1">
+                    <label for="rule1"><strong>Only gamble with money you can afford to lose</strong> – Never use money meant for bills, rent, or essential expenses.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule2">
+                    <label for="rule2"><strong>Set limits before you start</strong> – Decide on loss limits and time limits before playing.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule3">
+                    <label for="rule3"><strong>Never chase losses</strong> – Trying to win back losses leads to bigger losses.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule4">
+                    <label for="rule4"><strong>Take regular breaks</strong> – Step away every 30-60 minutes to maintain perspective.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule5">
+                    <label for="rule5"><strong>Don't gamble under the influence</strong> – Alcohol and drugs impair judgment.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule6">
+                    <label for="rule6"><strong>Balance gaming with other activities</strong> – Gambling shouldn't be your only hobby.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule7">
+                    <label for="rule7"><strong>Never borrow money to gamble</strong> – This is a major warning sign of problem gambling.</label>
+                </div>
+                
+                <div class="checklist-item">
+                    <input type="checkbox" id="rule8">
+                    <label for="rule8"><strong>Keep gambling and emotions separate</strong> – Don't use gambling to cope with stress, depression, or problems.</label>
+                </div>
+            </div>
+            
+            <h2>Bankroll Management</h2>
+            <p>Proper bankroll management is the foundation of responsible gambling. It ensures your gaming sessions last longer and prevents catastrophic losses.</p>
+            
+            <h3>The 1-5% Rule</h3>
+            <div class="tip-positive">
+                <h4>💰 Safe Betting Guideline</h4>
+                <p>Never bet more than 1-5% of your total gambling bankroll on a single bet or game session. This protects you from depleting your entire bankroll quickly and allows for natural variance in the games.</p>
+            </div>
+            
+            <div class="bankroll-calculator">
+                <h3>Bankroll Examples</h3>
+                <p style="text-align: center; color: #234e52; margin-bottom: 25px;">Here's how to calculate appropriate bet sizes based on your budget:</p>
+                
+                <div class="calculator-row">
+                    <div>
+                        <div class="calculator-label">Monthly Entertainment Budget</div>
+                        <div style="color: #718096; font-size: 0.9em;">Total you can afford to lose</div>
+                    </div>
+                    <div class="calculator-value">$200</div>
+                </div>
+                
+                <div class="calculator-row">
+                    <div>
+                        <div class="calculator-label">Per Session Budget (4 sessions)</div>
+                        <div style="color: #718096; font-size: 0.9em;">$200 ÷ 4 sessions</div>
+                    </div>
+                    <div class="calculator-value">$50</div>
+                </div>
+                
+                <div class="calculator-row">
+                    <div>
+                        <div class="calculator-label">Maximum Bet Per Spin/Hand</div>
+                        <div style="color: #718096; font-size: 0.9em;">1-2% of session budget</div>
+                    </div>
+                    <div class="calculator-value">$0.50 - $1</div>
+                </div>
+                
+                <div class="calculator-row">
+                    <div>
+                        <div class="calculator-label">Expected Spins/Hands</div>
+                        <div style="color: #718096; font-size: 0.9em;">Session budget ÷ bet size</div>
+                    </div>
+                    <div class="calculator-value">50 - 100</div>
+                </div>
+            </div>
+            
+            <h3>Budget Allocation Strategy</h3>
+            <div class="budget-example">
+                <h3>Example: $500 Monthly Budget</h3>
+                <div class="budget-breakdown">
+                    <div class="budget-item">
+                        <strong>Weekly Budget</strong>
+                        <div class="budget-amount">$125</div>
+                        <p style="margin-top: 10px; color: #553c9a;">Split monthly into 4 weeks</p>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <strong>Per Session</strong>
+                        <div class="budget-amount">$62</div>
+                        <p style="margin-top: 10px; color: #553c9a;">2 sessions per week</p>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <strong>Max Bet</strong>
+                        <div class="budget-amount">$1.25</div>
+                        <p style="margin-top: 10px; color: #553c9a;">2% of session budget</p>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <strong>Playing Time</strong>
+                        <div class="budget-amount">~1hr</div>
+                        <p style="margin-top: 10px; color: #553c9a;">At 50 spins/hour</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Setting Limits</h2>
+            <p>Effective limits are the cornerstone of responsible gambling. Most reputable casinos offer tools to help you set and enforce these limits.</p>
+            
+            <div class="tools-section">
+                <h3>🛠️ Available Limit Tools</h3>
+                
+                <div class="tool-item">
+                    <h4>Deposit Limits</h4>
+                    <p>Set daily, weekly, or monthly limits on how much money you can deposit into your casino account. This is your first line of defense against overspending.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h4>Loss Limits</h4>
+                    <p>Define the maximum amount you're willing to lose in a given period. Once reached, you can't place any more bets until the period resets.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h4>Wager Limits</h4>
+                    <p>Control the total amount you can wager (regardless of wins or losses) within a specific timeframe.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h4>Session Time Limits</h4>
+                    <p>Set a timer for your gaming session. When time expires, you receive a notification or are logged out automatically.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h4>Cooling-Off Periods</h4>
+                    <p>Take a temporary break from gambling for 24 hours, 7 days, or 30 days. During this time, you cannot access your account.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h4>Self-Exclusion</h4>
+                    <p>The most serious tool: permanently or temporarily block yourself from all gambling sites for 6 months to 5 years (or permanently).</p>
+                </div>
+            </div>
+            
+            <h3>Recommended Limit Settings</h3>
+            <div class="limits-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Limit Type</th>
+                            <th>Conservative</th>
+                            <th>Moderate</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Daily Deposit</strong></td>
+                            <td>$20-$50</td>
+                            <td>$50-$100</td>
+                            <td>Prevents impulsive large deposits</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Weekly Deposit</strong></td>
+                            <td>$100-$200</td>
+                            <td>$200-$500</td>
+                            <td>Controls weekly spending</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monthly Loss Limit</strong></td>
+                            <td>$200-$500</td>
+                            <td>$500-$1000</td>
+                            <td>Caps total potential losses</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Session Time</strong></td>
+                            <td>30-60 minutes</td>
+                            <td>60-120 minutes</td>
+                            <td>Prevents marathon sessions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Single Bet Max</strong></td>
+                            <td>1-2% bankroll</td>
+                            <td>2-5% bankroll</td>
+                            <td>Limits per-bet exposure</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Warning Signs of Problem Gambling</h2>
+            <p>It's crucial to recognize when gambling transitions from entertainment to a problem. Here are key warning signs:</p>
+            
+            <div class="warning-critical">
+                <h3>⚠️ Seek Help Immediately If You:</h3>
+                <p>Have borrowed money to gamble, lied to loved ones about gambling, or feel you can't stop even when you want to</p>
+            </div>
+            
+            <div class="signs-grid">
+                <div class="sign-card">
+                    <h4>🚩 Financial Warning Signs</h4>
+                    <ul>
+                        <li>Spending money meant for bills or essentials</li>
+                        <li>Borrowing money to gamble or cover losses</li>
+                        <li>Selling possessions to fund gambling</li>
+                        <li>Hiding financial problems from family</li>
+                        <li>Accumulating debt due to gambling</li>
+                    </ul>
+                </div>
+                
+                <div class="sign-card">
+                    <h4>🚩 Behavioral Warning Signs</h4>
+                    <ul>
+                        <li>Chasing losses by gambling more</li>
+                        <li>Gambling for longer than intended</li>
+                        <li>Lying about gambling activities</li>
+                        <li>Neglecting work, school, or relationships</li>
+                        <li>Becoming defensive about gambling</li>
+                    </ul>
+                </div>
+                
+                <div class="sign-card">
+                    <h4>🚩 Emotional Warning Signs</h4>
+                    <ul>
+                        <li>Feeling anxious when not gambling</li>
+                        <li>Gambling to escape problems or emotions</li>
+                        <li>Mood swings related to wins/losses</li>
+                        <li>Feeling guilty or ashamed about gambling</li>
+                        <li>Depression or thoughts of self-harm</li>
+                    </ul>
+                </div>
+                
+                <div class="sign-card">
+                    <h4>🚩 Control Warning Signs</h4>
+                    <ul>
+                        <li>Unable to stop despite wanting to</li>
+                        <li>Needing to bet more for same excitement</li>
+                        <li>Making unsuccessful attempts to cut back</li>
+                        <li>Gambling immediately after losing</li>
+                        <li>Thinking constantly about gambling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Self-Assessment Questions</h2>
+            <p>Answer these questions honestly to evaluate your gambling habits:</p>
+            
+            <div class="self-assessment">
+                <h3>Am I Gambling Responsibly?</h3>
+                
+                <div class="question-item">
+                    <strong>1. Do you gamble more money or for longer than you intended?</strong>
+                    <p style="color: #718096; margin: 0;">If yes, you may be losing control of your gambling behavior.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>2. Have you lied to family or friends about your gambling?</strong>
+                    <p style="color: #718096; margin: 0;">Secrecy and deception are major red flags.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>3. Do you feel restless or irritable when trying to cut down on gambling?</strong>
+                    <p style="color: #718096; margin: 0;">This suggests psychological dependence.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>4. Have you borrowed money or sold possessions to fund gambling?</strong>
+                    <p style="color: #718096; margin: 0;">A clear sign that gambling is harming your finances.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>5. Has gambling caused problems in your relationships or at work?</strong>
+                    <p style="color: #718096; margin: 0;">When gambling impacts other life areas, it's become a problem.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>6. Do you gamble to escape problems or relieve negative feelings?</strong>
+                    <p style="color: #718096; margin: 0;">Using gambling as a coping mechanism is unhealthy.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>7. After losing, do you feel you must return quickly to win back your losses?</strong>
+                    <p style="color: #718096; margin: 0;">"Chasing losses" is a classic sign of problem gambling.</p>
+                </div>
+                
+                <p style="margin-top: 25px; text-align: center; color: #c53030; font-weight: 600;">If you answered "yes" to three or more questions, you may have a gambling problem and should seek help.</p>
+            </div>
+            
+            <h2>Help & Support Resources</h2>
+            <p>If you're concerned about your gambling or someone else's, help is available. These organizations offer free, confidential support:</p>
+            
+            <div class="help-resources">
+                <h3>📞 Get Help Now</h3>
+                
+                <div class="resource-item">
+                    <h4>National Council on Problem Gambling</h4>
+                    <p><strong>Helpline:</strong> 1-800-522-4700 (24/7)</p>
+                    <p><strong>Text:</strong> Text "GAMBLER" to 1-800-522-4700</p>
+                    <p><strong>Website:</strong> <a href="https://www.ncpgambling.org" target="_blank">www.ncpgambling.org</a></p>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Gamblers Anonymous</h4>
+                    <p>Free peer support meetings in your area and online</p>
+                    <p><strong>Website:</strong> <a href="https://www.gamblersanonymous.org" target="_blank">www.gamblersanonymous.org</a></p>
+                    <p>Find meetings near you or join online sessions</p>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>SAMHSA National Helpline</h4>
+                    <p><strong>Helpline:</strong> 1-800-662-4357 (24/7)</p>
+                    <p>Substance Abuse and Mental Health Services Administration</p>
+                    <p>Free referrals to local treatment facilities and support groups</p>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>BeGambleAware</h4>
+                    <p><strong>Website:</strong> <a href="https://www.begambleaware.org" target="_blank">www.begambleaware.org</a></p>
+                    <p>Information, advice, and support for anyone affected by gambling harms</p>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>GamCare</h4>
+                    <p><strong>Helpline:</strong> 0808 8020 133 (UK)</p>
+                    <p><strong>Website:</strong> <a href="https://www.gamcare.org.uk" target="_blank">www.gamcare.org.uk</a></p>
+                    <p>Free counseling and support services</p>
+                </div>
+            </div>
+            
+            <h2>Tips for Maintaining Healthy Gambling Habits</h2>
+            
+            <div class="tip-positive">
+                <h4>✅ Schedule Gaming Sessions</h4>
+                <p>Treat gambling like any other entertainment activity. Schedule specific times for gaming rather than gambling impulsively whenever the urge strikes.</p>
+            </div>
+            
+            <div class="tip-positive">
+                <h4>✅ Use Cash, Not Credit</h4>
+                <p>Only deposit money you have in your account. Never use credit cards or loans to fund gambling—this creates dangerous debt.</p>
+            </div>
+            
+            <div class="tip-positive">
+                <h4>✅ Track Your Gambling</h4>
+                <p>Keep a record of time spent and money wagered. Reviewing this data monthly helps you stay accountable and aware of your habits.</p>
+            </div>
+            
+            <div class="tip-positive">
+                <h4>✅ Celebrate Wins, Accept Losses</h4>
+                <p>Enjoy victories but cash out profits. Accept losses as the cost of entertainment without trying to win them back.</p>
+            </div>
+            
+            <div class="tip-positive">
+                <h4>✅ Balance Your Life</h4>
+                <p>Maintain diverse interests and hobbies. A balanced life reduces the risk of gambling becoming your sole source of entertainment.</p>
+            </div>
+            
+            <div class="tip-positive">
+                <h4>✅ Talk About It</h4>
+                <p>Be open with trusted friends or family about your gambling. Transparency prevents secrets and provides accountability.</p>
+            </div>
+            
+            <h2>Reality Check: The Math Behind Gambling</h2>
+            <p>Understanding the mathematics helps maintain realistic expectations:</p>
+            
+            <div style="background: #fff; border: 3px solid #805ad5; border-radius: 10px; padding: 30px; margin: 30px 0;">
+                <ul style="margin-left: 25px; line-height: 2.2; color: #4a5568;">
+                    <li><strong>The house always has an edge</strong> – Every casino game is designed to profit the casino over time</li>
+                    <li><strong>Luck is temporary</strong> – Short-term wins are possible, but long-term the house edge prevails</li>
+                    <li><strong>You can't predict outcomes</strong> – Each spin, hand, or roll is independent and random</li>
+                    <li><strong>Past results don't influence future ones</strong> – The "gambler's fallacy" is a dangerous myth</li>
+                    <li><strong>Winning streaks end</strong> – All hot streaks eventually cool off due to probability</li>
+                    <li><strong>Losses mount faster than wins</strong> – The house edge ensures this mathematically</li>
+                </ul>
+            </div>
+            
+            <div class="warning-critical">
+                <h3>🎯 The Ultimate Truth</h3>
+                <p>Gambling is not an investment. It's not a way to make money. It's not a solution to financial problems. It's entertainment that costs money—budget accordingly.</p>
+            </div>
+            
+        </div>
+        
+        <div class="cta-footer">
+            <h2>Remember: You're in Control</h2>
+            <p>Responsible gambling means staying in control of your time, money, and emotions. Set limits, recognize warning signs, and never hesitate to seek help if gambling stops being fun. Gaming should enhance your life, not control it. If you need support, reach out to the resources listed above—help is always available, free, and confidential.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Poker Guide - Texas Hold'em Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #e8e8e8;
+            background: #0a0a0a;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            box-shadow: 0 0 50px rgba(139, 101, 56, 0.3);
+            border: 2px solid #8b6538;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+            color: #d4af37;
+            padding: 50px 35px;
+            text-align: center;
+            border-bottom: 3px solid #8b6538;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80" opacity="0.03">♠♥♦♣</text></svg>');
+            background-size: 200px;
+        }
+        
+        .header h1 {
+            font-size: 2.6em;
+            margin-bottom: 12px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            color: #c9a961;
+        }
+        
+        .content {
+            padding: 45px 40px;
+            background: #1a1a1a;
+        }
+        
+        h2 {
+            color: #d4af37;
+            font-size: 2em;
+            margin: 40px 0 22px 0;
+            font-weight: 400;
+            border-bottom: 2px solid #8b6538;
+            padding-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        
+        h3 {
+            color: #c9a961;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            font-weight: 400;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 1.06em;
+            line-height: 1.9;
+            color: #d0d0d0;
+        }
+        
+        .poker-table {
+            background: linear-gradient(135deg, #0d5c2f 0%, #0a4725 100%);
+            border: 8px solid #8b6538;
+            border-radius: 50%;
+            padding: 50px;
+            margin: 40px auto;
+            max-width: 700px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+            position: relative;
+        }
+        
+        .poker-table::before {
+            content: 'TEXAS HOLD\'EM';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: rgba(212, 175, 55, 0.15);
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+        
+        .community-cards {
+            display: flex;
+            gap: 12px;
+            margin: 25px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card {
+            width: 70px;
+            height: 100px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .card.red {
+            color: #c41e3a;
+        }
+        
+        .card.black {
+            color: #000;
+        }
+        
+        .card-rank {
+            position: absolute;
+            top: 5px;
+            left: 8px;
+            font-size: 1.2em;
+        }
+        
+        .card-suit {
+            font-size: 1.5em;
+        }
+        
+        .hand-rankings {
+            margin: 35px 0;
+        }
+        
+        .hand-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+            border: 2px solid #8b6538;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .hand-card:hover {
+            transform: translateX(10px);
+            border-color: #d4af37;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        .hand-rank {
+            background: #d4af37;
+            color: #1a1a1a;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .hand-name {
+            flex: 1;
+            margin: 0 20px;
+        }
+        
+        .hand-name h4 {
+            color: #d4af37;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+        
+        .hand-example {
+            font-family: monospace;
+            font-size: 1.8em;
+            color: #c9a961;
+            white-space: nowrap;
+        }
+        
+        .betting-round {
+            background: #2a2a2a;
+            border: 2px solid #8b6538;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .betting-round h4 {
+            color: #d4af37;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #8b6538;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            border-color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        .action-btn h4 {
+            color: #d4af37;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        
+        .action-btn p {
+            color: #a0a0a0;
+            font-size: 0.95em;
+            margin: 0;
+        }
+        
+        .strategy-box {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+            border: 3px solid #8b6538;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+        
+        .strategy-box h3 {
+            color: #d4af37;
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+        
+        .strategy-box ul {
+            margin-left: 25px;
+            line-height: 2;
+        }
+        
+        .strategy-box li {
+            color: #d0d0d0;
+            margin-bottom: 12px;
+        }
+        
+        .position-diagram {
+            background: #2a2a2a;
+            border: 3px solid #8b6538;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .positions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .position {
+            background: #1a1a1a;
+            border: 2px solid #8b6538;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .position.early {
+            border-color: #c41e3a;
+        }
+        
+        .position.middle {
+            border-color: #ffa500;
+        }
+        
+        .position.late {
+            border-color: #4ecdc4;
+        }
+        
+        .position h5 {
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+        
+        .position p {
+            font-size: 0.9em;
+            margin: 0;
+            color: #a0a0a0;
+        }
+        
+        .odds-table {
+            background: #2a2a2a;
+            border: 2px solid #8b6538;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .odds-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .odds-table th {
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #8b6538;
+            font-weight: 400;
+        }
+        
+        .odds-table td {
+            padding: 15px;
+            color: #d0d0d0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        
+        .odds-table tr:hover {
+            background: #252525;
+        }
+        
+        .tip-elegant {
+            background: linear-gradient(135deg, #8b6538 0%, #6d4f2a 100%);
+            color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid #d4af37;
+        }
+        
+        .tip-elegant h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+        
+        .warning-elegant {
+            background: #2c1810;
+            border-left: 5px solid #c41e3a;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-elegant strong {
+            color: #d4af37;
+        }
+        
+        .game-flow {
+            margin: 30px 0;
+        }
+        
+        .flow-step {
+            background: #2a2a2a;
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .flow-step h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        
+        .cta-footer {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+            color: #d4af37;
+            padding: 40px;
+            text-align: center;
+            border-top: 3px solid #8b6538;
+        }
+        
+        .cta-footer h2 {
+            color: #d4af37;
+            border: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .community-cards {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .poker-table {
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>♠️ LIVE POKER GUIDE ♥️</h1>
+            <p>Master Texas Hold'em at the Live Tables</p>
+        </div>
+        
+        <div class="content">
+            <h2>Introduction to Live Poker</h2>
+            <p>Live Poker brings the authentic casino poker experience to your screen, featuring professional dealers, real-time gameplay, and the opportunity to compete against other players from around the world. This guide focuses on Texas Hold'em, the most popular poker variant in Live casinos.</p>
+            
+            <div class="poker-table">
+                <p style="color: #d4af37; font-size: 1.2em; margin-bottom: 15px; position: relative; z-index: 1;">The Flop</p>
+                <div class="community-cards">
+                    <div class="card red">
+                        <span class="card-rank">A</span>
+                        <span class="card-suit">♥</span>
+                    </div>
+                    <div class="card black">
+                        <span class="card-rank">K</span>
+                        <span class="card-suit">♠</span>
+                    </div>
+                    <div class="card red">
+                        <span class="card-rank">Q</span>
+                        <span class="card-suit">♦</span>
+                    </div>
+                </div>
+                <p style="color: #c9a961; text-align: center; position: relative; z-index: 1; margin-top: 20px;">Community cards shared by all players</p>
+            </div>
+            
+            <h2>Understanding Texas Hold'em</h2>
+            <p>Texas Hold'em is played with a standard 52-card deck. Each player receives two private cards (hole cards), and five community cards are dealt face-up on the table. Players make the best possible five-card poker hand using any combination of their hole cards and the community cards.</p>
+            
+            <h3>Game Structure</h3>
+            <div style="background: #2a2a2a; padding: 25px; border-radius: 10px; margin: 25px 0; border: 2px solid #8b6538;">
+                <p><strong style="color: #d4af37;">2 Hole Cards:</strong> Private cards dealt to each player face-down</p>
+                <p><strong style="color: #d4af37;">5 Community Cards:</strong> Shared cards dealt in three stages:</p>
+                <ul style="margin-left: 25px; color: #d0d0d0;">
+                    <li><strong>The Flop:</strong> First three community cards</li>
+                    <li><strong>The Turn:</strong> Fourth community card</li>
+                    <li><strong>The River:</strong> Fifth and final community card</li>
+                </ul>
+            </div>
+            
+            <h2>Hand Rankings (Highest to Lowest)</h2>
+            <p>Understanding hand rankings is fundamental to poker. Here are all possible hands from strongest to weakest:</p>
+            
+            <div class="hand-rankings">
+                <div class="hand-card">
+                    <div class="hand-rank">1</div>
+                    <div class="hand-name">
+                        <h4>Royal Flush</h4>
+                        <p style="color: #a0a0a0; margin: 0;">The ultimate hand—unbeatable</p>
+                    </div>
+                    <div class="hand-example">A♠ K♠ Q♠ J♠ 10♠</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">2</div>
+                    <div class="hand-name">
+                        <h4>Straight Flush</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Five consecutive cards, same suit</p>
+                    </div>
+                    <div class="hand-example">9♥ 8♥ 7♥ 6♥ 5♥</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">3</div>
+                    <div class="hand-name">
+                        <h4>Four of a Kind</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Four cards of the same rank</p>
+                    </div>
+                    <div class="hand-example">K♠ K♥ K♦ K♣ 3♠</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">4</div>
+                    <div class="hand-name">
+                        <h4>Full House</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Three of a kind plus a pair</p>
+                    </div>
+                    <div class="hand-example">Q♣ Q♦ Q♠ 7♥ 7♦</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">5</div>
+                    <div class="hand-name">
+                        <h4>Flush</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Five cards of the same suit</p>
+                    </div>
+                    <div class="hand-example">A♦ J♦ 9♦ 5♦ 3♦</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">6</div>
+                    <div class="hand-name">
+                        <h4>Straight</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Five consecutive cards, mixed suits</p>
+                    </div>
+                    <div class="hand-example">10♠ 9♥ 8♦ 7♣ 6♠</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">7</div>
+                    <div class="hand-name">
+                        <h4>Three of a Kind</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Three cards of the same rank</p>
+                    </div>
+                    <div class="hand-example">8♥ 8♠ 8♦ K♣ 4♠</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">8</div>
+                    <div class="hand-name">
+                        <h4>Two Pair</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Two different pairs</p>
+                    </div>
+                    <div class="hand-example">A♠ A♦ 5♥ 5♣ 9♠</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">9</div>
+                    <div class="hand-name">
+                        <h4>One Pair</h4>
+                        <p style="color: #a0a0a0; margin: 0;">Two cards of the same rank</p>
+                    </div>
+                    <div class="hand-example">J♣ J♦ A♠ 8♥ 4♦</div>
+                </div>
+                
+                <div class="hand-card">
+                    <div class="hand-rank">10</div>
+                    <div class="hand-name">
+                        <h4>High Card</h4>
+                        <p style="color: #a0a0a0; margin: 0;">No matching cards—highest card wins</p>
+                    </div>
+                    <div class="hand-example">A♠ K♦ 10♣ 7♥ 3♠</div>
+                </div>
+            </div>
+            
+            <h2>How a Hand is Played</h2>
+            <p>A Texas Hold'em hand progresses through several betting rounds. Here's the complete flow:</p>
+            
+            <div class="game-flow">
+                <div class="flow-step">
+                    <h4>1. Blinds Posted</h4>
+                    <p>The two players to the left of the dealer button post the small blind and big blind (forced bets to start the action).</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>2. Hole Cards Dealt</h4>
+                    <p>Each player receives two private cards face-down. These are your hole cards that only you can see.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>3. Pre-Flop Betting</h4>
+                    <p>First betting round begins with the player to the left of the big blind. Players can fold, call, or raise.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>4. The Flop</h4>
+                    <p>Three community cards are dealt face-up in the center of the table. Second betting round begins.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>5. The Turn</h4>
+                    <p>A fourth community card is dealt. Third betting round begins.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>6. The River</h4>
+                    <p>The fifth and final community card is dealt. Final betting round begins.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>7. Showdown</h4>
+                    <p>If multiple players remain, they reveal their hands. The best five-card poker hand wins the pot!</p>
+                </div>
+            </div>
+            
+            <h2>Player Actions</h2>
+            <p>During each betting round, you have several options:</p>
+            
+            <div class="action-buttons">
+                <div class="action-btn">
+                    <h4>FOLD</h4>
+                    <p>Give up your hand and forfeit any chance of winning the pot. Use when your hand is weak.</p>
+                </div>
+                
+                <div class="action-btn">
+                    <h4>CHECK</h4>
+                    <p>Pass the action without betting. Only available if no one has bet yet in this round.</p>
+                </div>
+                
+                <div class="action-btn">
+                    <h4>CALL</h4>
+                    <p>Match the current bet to stay in the hand. Required to continue if someone has bet.</p>
+                </div>
+                
+                <div class="action-btn">
+                    <h4>BET</h4>
+                    <p>Put chips into the pot. The first person to add chips in a betting round "bets."</p>
+                </div>
+                
+                <div class="action-btn">
+                    <h4>RAISE</h4>
+                    <p>Increase the current bet amount. Forces other players to call your raise or fold.</p>
+                </div>
+                
+                <div class="action-btn">
+                    <h4>ALL-IN</h4>
+                    <p>Bet all your remaining chips. You can't be forced out but can't win more than what you've matched.</p>
+                </div>
+            </div>
+            
+            <h2>Table Positions</h2>
+            <p>Your position at the table significantly affects your strategy. Players in late position have a major advantage because they act after seeing what others do.</p>
+            
+            <div class="position-diagram">
+                <h3 style="color: #d4af37; text-align: center; margin-bottom: 25px;">Poker Table Positions</h3>
+                
+                <div class="positions">
+                    <div class="position early">
+                        <h5>Early Position</h5>
+                        <p>Small Blind, Big Blind, Under the Gun</p>
+                        <p style="color: #c41e3a; font-weight: bold; margin-top: 10px;">Play TIGHT</p>
+                    </div>
+                    
+                    <div class="position middle">
+                        <h5>Middle Position</h5>
+                        <p>Middle players after UTG</p>
+                        <p style="color: #ffa500; font-weight: bold; margin-top: 10px;">Play MODERATE</p>
+                    </div>
+                    
+                    <div class="position late">
+                        <h5>Late Position</h5>
+                        <p>Cutoff, Button (Dealer)</p>
+                        <p style="color: #4ecdc4; font-weight: bold; margin-top: 10px;">Play LOOSE</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px; padding: 20px; background: #1a1a1a; border-radius: 8px;">
+                    <p><strong style="color: #d4af37;">Why Position Matters:</strong></p>
+                    <ul style="margin-left: 20px; line-height: 2; color: #d0d0d0;">
+                        <li><strong>Information Advantage:</strong> See how others act before making your decision</li>
+                        <li><strong>Pot Control:</strong> Better ability to control the size of the pot</li>
+                        <li><strong>Bluffing Power:</strong> More credible bluffs from late position</li>
+                        <li><strong>Hand Range:</strong> Can play more hands profitably from late position</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Starting Hand Strategy</h2>
+            
+            <div class="strategy-box">
+                <h3>Premium Starting Hands (Always Play)</h3>
+                <p style="margin-bottom: 15px;">These hands are strong enough to play from any position:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; font-family: monospace; font-size: 1.2em; color: #d4af37;">
+                    <div>AA (Pocket Aces)</div>
+                    <div>KK (Pocket Kings)</div>
+                    <div>QQ (Pocket Queens)</div>
+                    <div>AK suited</div>
+                    <div>JJ (Pocket Jacks)</div>
+                    <div>AK offsuit</div>
+                </div>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Good Starting Hands (Position Dependent)</h3>
+                <p style="margin-bottom: 15px;">Play these from middle and late position:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; font-family: monospace; font-size: 1.1em; color: #c9a961;">
+                    <div>TT, 99, 88</div>
+                    <div>AQ, AJ, AT</div>
+                    <div>KQ suited</div>
+                    <div>QJ suited</div>
+                    <div>JT suited</div>
+                    <div>Small pairs (77-22)</div>
+                </div>
+            </div>
+            
+            <h2>Basic Poker Odds</h2>
+            <p>Understanding pot odds and probabilities helps you make mathematically sound decisions:</p>
+            
+            <div class="odds-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Situation</th>
+                            <th>Probability</th>
+                            <th>Odds</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Being dealt pocket Aces</td>
+                            <td>0.45%</td>
+                            <td>220 to 1</td>
+                        </tr>
+                        <tr>
+                            <td>Being dealt any pocket pair</td>
+                            <td>5.9%</td>
+                            <td>16 to 1</td>
+                        </tr>
+                        <tr>
+                            <td>Flopping a set with a pocket pair</td>
+                            <td>11.8%</td>
+                            <td>7.5 to 1</td>
+                        </tr>
+                        <tr>
+                            <td>Completing a flush draw (9 outs)</td>
+                            <td>35%</td>
+                            <td>2 to 1</td>
+                        </tr>
+                        <tr>
+                            <td>Completing an open-ended straight (8 outs)</td>
+                            <td>31.5%</td>
+                            <td>2.2 to 1</td>
+                        </tr>
+                        <tr>
+                            <td>Hitting an overcard (6 outs)</td>
+                            <td>24.1%</td>
+                            <td>3.14 to 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tip-elegant">
+                <h3>💡 Essential Poker Tips</h3>
+                <ul>
+                    <li><strong>Be Patient:</strong> Fold weak hands and wait for strong starting cards. Most hands should be folded pre-flop.</li>
+                    <li><strong>Position is Power:</strong> Play more hands from late position and fewer from early position.</li>
+                    <li><strong>Observe Opponents:</strong> Pay attention to betting patterns and player tendencies.</li>
+                    <li><strong>Manage Your Bankroll:</strong> Never buy in for more than 5% of your total poker bankroll.</li>
+                    <li><strong>Think Before Acting:</strong> Take your time to consider pot odds, opponent ranges, and board texture.</li>
+                    <li><strong>Control Emotions:</strong> Don't let bad beats affect your decision-making (avoid "tilt").</li>
+                    <li><strong>Start at Low Stakes:</strong> Build experience and confidence before moving to higher limits.</li>
+                </ul>
+            </div>
+            
+            <h2>Common Beginner Mistakes</h2>
+            
+            <div class="warning-elegant">
+                <p><strong>Playing Too Many Hands:</strong> The number one mistake. Be selective—fold most hands pre-flop.</p>
+            </div>
+            
+            <div class="warning-elegant">
+                <p><strong>Ignoring Position:</strong> Playing the same hands from every position is costly. Tighten up in early position.</p>
+            </div>
+            
+            <div class="warning-elegant">
+                <p><strong>Calling Too Much:</strong> If you're not confident enough to raise, you should probably fold. Avoid being a "calling station."</p>
+            </div>
+            
+            <div class="warning-elegant">
+                <p><strong>Playing on Tilt:</strong> Making emotional decisions after a bad beat. Take a break if you're frustrated.</p>
+            </div>
+            
+            <div class="warning-elegant">
+                <p><strong>Neglecting Bankroll Management:</strong> Playing at stakes too high for your bankroll leads to going broke.</p>
+            </div>
+            
+            <h2>Live Poker Etiquette</h2>
+            <p>Proper etiquette ensures a smooth game for everyone:</p>
+            
+            <div style="background: #2a2a2a; padding: 25px; border-radius: 10px; margin: 25px 0; border: 2px solid #8b6538;">
+                <ul style="margin-left: 20px; line-height: 2.2; color: #d0d0d0;">
+                    <li><strong>Act in Turn:</strong> Wait for your turn before folding, checking, or betting</li>
+                    <li><strong>Be Clear:</strong> Announce your actions verbally ("I call," "I raise to $20")</li>
+                    <li><strong>One Motion:</strong> Put all your chips in at once—string betting is not allowed</li>
+                    <li><strong>Don't Show Cards:</strong> Keep your folded cards face-down</li>
+                    <li><strong>Respect the Dealer:</strong> They're there to help facilitate the game</li>
+                    <li><strong>No Slow Rolling:</strong> If you have the winning hand at showdown, show it promptly</li>
+                    <li><strong>Keep Conversations Appropriate:</strong> Be respectful to other players</li>
+                </ul>
+            </div>
+            
+            <h2>Advanced Concepts to Study</h2>
+            <p>Once you've mastered the basics, explore these intermediate topics:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: #2a2a2a; padding: 20px; border-radius: 8px; border: 2px solid #8b6538;">
+                    <h4 style="color: #d4af37; margin-bottom: 10px;">Pot Odds & Implied Odds</h4>
+                    <p style="margin: 0;">Calculate whether calling bets is profitable based on pot size and your winning chances.</p>
+                </div>
+                
+                <div style="background: #2a2a2a; padding: 20px; border-radius: 8px; border: 2px solid #8b6538;">
+                    <h4 style="color: #d4af37; margin-bottom: 10px;">Reading Opponents</h4>
+                    <p style="margin: 0;">Identify betting patterns and tendencies to put opponents on likely hand ranges.</p>
+                </div>
+                
+                <div style="background: #2a2a2a; padding: 20px; border-radius: 8px; border: 2px solid #8b6538;">
+                    <h4 style="color: #d4af37; margin-bottom: 10px;">Bluffing Strategy</h4>
+                    <p style="margin: 0;">Learn when and how to bluff effectively based on board texture and opponent types.</p>
+                </div>
+                
+                <div style="background: #2a2a2a; padding: 20px; border-radius: 8px; border: 2px solid #8b6538;">
+                    <h4 style="color: #d4af37; margin-bottom: 10px;">Continuation Betting</h4>
+                    <p style="margin: 0;">Master the art of betting after raising pre-flop, even without improving your hand.</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="cta-footer">
+            <h2>Ready for the Tables?</h2>
+            <p style="font-size: 1.15em; color: #c9a961; margin-bottom: 0;">You now have the fundamentals to begin your poker journey. Remember: poker is a game of skill that takes minutes to learn but a lifetime to master. Start at low stakes, be patient, play in position, and always continue learning. Good luck at the tables! ♠️♥️♦️♣️</p>
+        </div>
+    </div>
+</body>
+</html>

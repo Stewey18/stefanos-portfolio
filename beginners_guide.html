@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your First Live Dealer Game – A Beginner's Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #0f172a;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+        }
+        
+        .header {
+            background: #0e7490;
+            color: #ffffff;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #06b6d4;
+        }
+        
+        .header::before {
+            content: '🎲';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.08;
+            top: -50px;
+            right: -50px;
+        }
+        
+        .header h1 {
+            font-size: 2.4em;
+            margin-bottom: 12px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px 35px;
+        }
+        
+        h2 {
+            color: #0e7490;
+            font-size: 1.75em;
+            margin: 35px 0 20px 0;
+            border-left: 5px solid #06b6d4;
+            padding-left: 18px;
+            font-weight: 700;
+        }
+        
+        h3 {
+            color: #0c4a6e;
+            font-size: 1.35em;
+            margin: 25px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+        
+        .intro-box {
+            background: #ecfeff;
+            padding: 25px;
+            border-radius: 0;
+            border-left: 5px solid #06b6d4;
+            margin: 25px 0;
+        }
+        
+        .game-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .game-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(14, 116, 144, 0.2);
+            border-color: #0e7490;
+        }
+        
+        .game-icon {
+            background: #0e7490;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            border-bottom: 3px solid #06b6d4;
+        }
+        
+        .game-info {
+            padding: 20px;
+        }
+        
+        .game-info h3 {
+            margin-top: 0;
+            color: #0e7490;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .difficulty.easy {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .table-comparison {
+            background: #fafafa;
+            border-radius: 0;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .table-option {
+            background: white;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #0e7490;
+        }
+        
+        .table-option h4 {
+            color: #0e7490;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .interface-diagram {
+            background: #1a1a1a;
+            border-radius: 0;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .screen-mock {
+            background: #2d3748;
+            border: 3px solid #4a5568;
+            border-radius: 0;
+            height: 400px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .ui-element {
+            position: absolute;
+            background: rgba(14, 116, 144, 0.95);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ui-element:hover {
+            background: rgba(6, 182, 212, 0.95);
+            transform: scale(1.05);
+        }
+        
+        .ui-element::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: white;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-1px);
+        }
+        
+        .step-by-step {
+            margin: 30px 0;
+        }
+        
+        .step-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            background: #f8f8f8;
+            padding: 25px;
+            border-radius: 4px;
+            border: 2px solid #e0e0e0;
+            border-left: 4px solid #0e7490;
+        }
+        
+        .step-number {
+            background: #0e7490;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 3px 6px rgba(14, 116, 144, 0.3);
+            border: 2px solid #06b6d4;
+        }
+        
+        .step-content h3 {
+            margin-top: 5px;
+            color: #0e7490;
+        }
+        
+        .visual-example {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .feature-card svg {
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            color: #0e7490;
+            margin-bottom: 10px;
+        }
+        
+        .etiquette-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        
+        .etiquette-box h3 {
+            color: #92400e;
+            margin-top: 0;
+        }
+        
+        .etiquette-box ul {
+            margin-left: 20px;
+        }
+        
+        .etiquette-box li {
+            margin-bottom: 10px;
+        }
+        
+        .mistakes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .mistake-card {
+            background: #fee2e2;
+            border: 2px solid #fca5a5;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        
+        .mistake-card h4 {
+            color: #991b1b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tip-highlight {
+            background: #d1fae5;
+            border-left: 5px solid #10b981;
+            padding: 20px;
+            border-radius: 0;
+            margin: 20px 0;
+        }
+        
+        .tip-highlight h4 {
+            color: #065f46;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cta-box {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px;
+            border-radius: 0;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 4px solid #06b6d4;
+        }
+        
+        .cta-box h2 {
+            color: #06b6d4;
+            border: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .checklist {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 0;
+            text-align: left;
+            display: inline-block;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .checklist li {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .game-cards,
+            .features-grid,
+            .mistakes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎰 Your First Live Dealer Game</h1>
+            <p>A Complete Beginner's Guide</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro-box">
+                <h2 style="color: #1e40af; margin: 0 0 15px 0; border: none; padding: 0;">Welcome to Live Casino Gaming!</h2>
+                <p style="margin: 0; font-size: 1.1em;">If you're new to Live dealer games, you're in for a treat. This guide will help you feel confident and ready for your first gaming session.</p>
+            </div>
+            
+            <h2>What Makes Live Dealer Games Different?</h2>
+            <p>Unlike standard online casino games that use computer algorithms, Live dealer games feature real professional dealers broadcasting from actual casino studios. You'll see everything happen in real-time via high-definition video streams.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <h4>Real Human Dealers</h4>
+                    <p>Interact with professional dealers you can chat with</p>
+                </div>
+                
+                <div class="feature-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+                        <polyline points="17 2 12 7 7 2"/>
+                    </svg>
+                    <h4>Authentic Atmosphere</h4>
+                    <p>Feel like you're in a real casino from anywhere</p>
+                </div>
+                
+                <div class="feature-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <h4>Complete Transparency</h4>
+                    <p>Watch every card dealt and every wheel spin</p>
+                </div>
+                
+                <div class="feature-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <h4>Social Experience</h4>
+                    <p>Chat with dealers and other players</p>
+                </div>
+            </div>
+            
+            <h2>Before You Start</h2>
+            
+            <h3>1. Choose the Right Game</h3>
+            <p>Start with games you already understand. Here are the most beginner-friendly options:</p>
+            
+            <div class="game-cards">
+                <div class="game-card">
+                    <div class="game-icon">🃏</div>
+                    <div class="game-info">
+                        <h3>Live Blackjack</h3>
+                        <p>Simple rules with player-friendly odds. Just get closer to 21 than the dealer without going over.</p>
+                        <span class="difficulty easy">★ Easy to Learn</span>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-icon">🎡</div>
+                    <div class="game-info">
+                        <h3>Live Roulette</h3>
+                        <p>Straightforward gameplay with many betting options. Pick your numbers and watch the wheel spin!</p>
+                        <span class="difficulty easy">★ Easy to Learn</span>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-icon">🎴</div>
+                    <div class="game-info">
+                        <h3>Live Baccarat</h3>
+                        <p>The simplest game to play. Just choose Player or Banker – the dealer handles everything else.</p>
+                        <span class="difficulty easy">★ Very Easy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>2. Pick Your Table</h3>
+            <p>Each game offers multiple tables with different features. Here's what to look for:</p>
+            
+            <div class="table-comparison">
+                <div class="table-option">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                        Bet Limits
+                    </h4>
+                    <p>Start with low-minimum tables (usually $1-$5) to practice without pressure. You can always move to higher stakes later.</p>
+                </div>
+                
+                <div class="table-option">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="8.5" cy="7" r="4"/>
+                            <polyline points="17 11 19 13 23 9"/>
+                        </svg>
+                        Seating
+                    </h4>
+                    <p>"Unlimited" tables let everyone play without waiting. Perfect for beginners who want to jump right in!</p>
+                </div>
+                
+                <div class="table-option">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        Language
+                    </h4>
+                    <p>Choose a dealer who speaks your preferred language for easier communication and a more comfortable experience.</p>
+                </div>
+            </div>
+            
+            <h3>3. Understand the Interface</h3>
+            <p>Take a moment to familiarize yourself with the game screen:</p>
+            
+            <div class="interface-diagram">
+                <div class="screen-mock">
+                    <div class="ui-element" style="top: 20px; left: 50%; transform: translateX(-50%);">
+                        Video Feed - Dealer & Table
+                    </div>
+                    <div class="ui-element" style="bottom: 80px; left: 20px;">
+                        Your Balance
+                    </div>
+                    <div class="ui-element" style="bottom: 80px; right: 20px;">
+                        Bet Timer ⏱️
+                    </div>
+                    <div class="ui-element" style="bottom: 20px; left: 50%; transform: translateX(-50%);">
+                        Betting Area - Place Chips Here
+                    </div>
+                    <div class="ui-element" style="top: 60%; left: 20px;">
+                        Chat Box 💬
+                    </div>
+                    <div class="ui-element" style="top: 60%; right: 20px;">
+                        Game History 📊
+                    </div>
+                </div>
+                <p style="color: #a0aec0; text-align: center; margin-top: 20px;">Click on any element label to learn more about that feature</p>
+            </div>
+            
+            <h2>Your First Hand/Round</h2>
+            
+            <div class="step-by-step">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Wait for Betting Time</h3>
+                        <p>The dealer will announce when betting opens. You'll see a countdown timer appear on your screen.</p>
+                        <div class="visual-example">
+                            <svg width="100%" height="60">
+                                <rect x="10" y="10" width="200" height="40" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                                <text x="110" y="38" font-size="18" font-weight="bold" text-anchor="middle" fill="#92400e">Place Your Bets: 0:15</text>
+                                <circle cx="280" cy="30" r="4" fill="#10b981"/>
+                                <text x="295" y="35" font-size="14" fill="#059669">Betting Open</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Place Your Bet</h3>
+                        <p>Select your chip amount and click on the betting area:</p>
+                        <div class="visual-example">
+                            <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                                <div style="display: flex; gap: 8px;">
+                                    <svg width="40" height="40" viewBox="0 0 40 40">
+                                        <circle cx="20" cy="20" r="18" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+                                        <text x="20" y="27" font-size="14" font-weight="bold" text-anchor="middle" fill="white">$1</text>
+                                    </svg>
+                                    <svg width="40" height="40" viewBox="0 0 40 40">
+                                        <circle cx="20" cy="20" r="18" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <text x="20" y="27" font-size="14" font-weight="bold" text-anchor="middle" fill="white">$5</text>
+                                    </svg>
+                                    <svg width="40" height="40" viewBox="0 0 40 40">
+                                        <circle cx="20" cy="20" r="18" fill="#16a34a" stroke="#fff" stroke-width="2"/>
+                                        <text x="20" y="27" font-size="13" font-weight="bold" text-anchor="middle" fill="white">$10</text>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 1.2em;">➔</span>
+                                <div style="background: #0f5132; padding: 10px 20px; border-radius: 8px; color: white;">
+                                    Click here to place bet
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 12px;">You can adjust or remove bets before the timer runs out!</p>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Watch the Action</h3>
+                        <p>Once betting closes, the dealer begins the game. Just sit back and watch – Live games are very visual and easy to follow.</p>
+                        <div class="visual-example">
+                            <svg width="100%" height="80">
+                                <ellipse cx="150" cy="50" rx="80" ry="30" fill="#0f5132"/>
+                                <circle cx="150" cy="20" r="12" fill="#ffd700"/>
+                                <rect x="135" y="32" width="30" height="15" fill="#1a1a1a"/>
+                                <rect x="130" cy="55" width="18" height="25" fill="white" rx="2"/>
+                                <rect x="152" cy="55" width="18" height="25" fill="white" rx="2"/>
+                                <text x="300" y="45" font-size="16" fill="#333">Dealer handles everything!</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Results</h3>
+                        <p>Winnings are automatically credited to your balance. You'll see a confirmation message if you win!</p>
+                        <div class="visual-example">
+                            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 15px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2em; margin-bottom: 5px;">🎉</div>
+                                <div style="font-weight: bold; color: #065f46; font-size: 1.2em;">You Win!</div>
+                                <div style="color: #059669; margin-top: 5px;">+$10 added to your balance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Helpful Features for Beginners</h2>
+            
+            <div class="tip-highlight">
+                <h4>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065f46" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Practice Mode
+                </h4>
+                <p>Some tables offer a "watch and learn" mode where you can observe games without placing bets. This is perfect for getting comfortable with the pace and flow!</p>
+            </div>
+            
+            <div class="tip-highlight">
+                <h4>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065f46" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Chat Function
+                </h4>
+                <p>Don't hesitate to ask the dealer questions! Type your question in the chat box. Dealers are friendly and happy to help newcomers understand the game.</p>
+            </div>
+            
+            <div class="tip-highlight">
+                <h4>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065f46" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    Game Rules
+                </h4>
+                <p>Click the "i" or "?" icon anytime to review rules and payout tables. This information is always available during gameplay.</p>
+            </div>
+            
+            <div class="etiquette-box">
+                <h3>🎩 Etiquette Tips</h3>
+                <p>While Live gaming is relaxed and fun, here are some friendly guidelines:</p>
+                <ul>
+                    <li><strong>Be courteous in chat</strong> – Dealers and players appreciate friendly conversation</li>
+                    <li><strong>Make timely decisions</strong> – Place bets within the time limit so the dealer can keep the game flowing</li>
+                    <li><strong>Keep chat game-related</strong> – Stay on topic and keep conversations appropriate</li>
+                    <li><strong>Respect the dealers</strong> – They're professionals doing their job. Treat them with kindness!</li>
+                </ul>
+            </div>
+            
+            <h2>Common Beginner Mistakes to Avoid</h2>
+            
+            <div class="mistakes-grid">
+                <div class="mistake-card">
+                    <h4>
+                        ❌ Betting Too Much
+                    </h4>
+                    <p>Start small while learning the rhythm. You can always increase your bets once you're comfortable.</p>
+                </div>
+                
+                <div class="mistake-card">
+                    <h4>
+                        ❌ Rushing Decisions
+                    </h4>
+                    <p>Take your time during betting. A thoughtful bet is better than a rushed one.</p>
+                </div>
+                
+                <div class="mistake-card">
+                    <h4>
+                        ❌ Chasing Losses
+                    </h4>
+                    <p>On a losing streak? Take a break. The games will always be here when you're ready.</p>
+                </div>
+                
+                <div class="mistake-card">
+                    <h4>
+                        ❌ Ignoring Table Limits
+                    </h4>
+                    <p>Check minimum and maximum bets before joining to ensure they match your budget.</p>
+                </div>
+            </div>
+            
+            <h2>Managing Your First Session</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <h4>Set a Budget</h4>
+                    <p>Decide how much you're comfortable spending before you start</p>
+                </div>
+                
+                <div class="feature-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <h4>Take Breaks</h4>
+                    <p>Step away between sessions to stay fresh and enjoy the experience</p>
+                </div>
+                
+                <div class="feature-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <path d="M18 20V10M12 20V4M6 20v-6"/>
+                    </svg>
+                    <h4>Start Slow</h4>
+                    <p>Play one table at a time until you're completely comfortable</p>
+                </div>
+                
+                <div class="feature-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    <h4>Learn as You Go</h4>
+                    <p>Every game is a chance to improve your understanding</p>
+                </div>
+            </div>
+            
+            <div class="cta-box">
+                <h2>Ready to Begin? 🎲</h2>
+                <p style="font-size: 1.1em;">You now have everything you need for your first Live dealer game!</p>
+                
+                <div class="checklist">
+                    <strong style="display: block; margin-bottom: 15px; font-size: 1.2em;">Your Checklist:</strong>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✓ Choose a game you understand</li>
+                        <li>✓ Start with a low-stakes table</li>
+                        <li>✓ Don't hesitate to ask questions</li>
+                        <li>✓ Most importantly, have fun!</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 25px; font-size: 1.05em;">The beauty of Live dealer games is that you're never truly alone – dealers and support staff are always there to help. Welcome to the Live casino community! 🎉</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

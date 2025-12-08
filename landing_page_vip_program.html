@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Casino Program - Exclusive Rewards & Benefits | High Roller</title>
+    <meta name="description" content="Join our exclusive VIP casino program. Personal account manager, faster withdrawals, higher limits, luxury gifts. 4 tiers from Bronze to Diamond. Invitation only top tier.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            background: #000;
+        }
+        
+        .hero {
+            background: linear-gradient(to bottom, #1a1a1a 0%, #000 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 8px solid #d4af37;
+        }
+        
+        .vip-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #000;
+            padding: 15px 50px;
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            border: 4px solid #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        
+        .hero h1 {
+            font-size: 58px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+        
+        .hero .tagline {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #000;
+            padding: 20px 60px;
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            margin: 30px 0;
+            border: 4px solid #fff;
+        }
+        
+        .cta-button:hover {
+            background: #c41e3a;
+            color: #fff;
+        }
+        
+        .benefits-section {
+            background: #1a1a1a;
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 900;
+            margin-bottom: 50px;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #d4af37;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .benefit-box {
+            background: #000;
+            border: 4px solid #d4af37;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .benefit-box .icon {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-box h3 {
+            color: #d4af37;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        
+        .benefit-box p {
+            color: #fff;
+            line-height: 1.8;
+        }
+        
+        .tiers-section {
+            background: #000;
+            padding: 80px 20px;
+        }
+        
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .tier-card {
+            background: #1a1a1a;
+            border: 4px solid;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .tier-bronze { border-color: #cd7f32; }
+        .tier-silver { border-color: #c0c0c0; }
+        .tier-gold { border-color: #d4af37; }
+        .tier-diamond { border-color: #b9f2ff; }
+        
+        .tier-card .tier-name {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .tier-bronze .tier-name { color: #cd7f32; }
+        .tier-silver .tier-name { color: #c0c0c0; }
+        .tier-gold .tier-name { color: #d4af37; }
+        .tier-diamond .tier-name { color: #b9f2ff; }
+        
+        .tier-requirement {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            margin: 20px 0;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .tier-benefits {
+            text-align: left;
+            margin: 25px 0;
+        }
+        
+        .tier-benefits li {
+            margin: 12px 0;
+            line-height: 1.6;
+            padding-left: 10px;
+        }
+        
+        .comparison-section {
+            background: #1a1a1a;
+            padding: 80px 20px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 50px 0;
+            border: 4px solid #d4af37;
+        }
+        
+        .comparison-table th {
+            background: #d4af37;
+            color: #000;
+            padding: 20px;
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #000;
+        }
+        
+        .comparison-table td {
+            background: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #333;
+            font-weight: 700;
+        }
+        
+        .comparison-table tr:nth-child(even) td {
+            background: #1a1a1a;
+        }
+        
+        .checkmark {
+            color: #16a34a;
+            font-size: 24px;
+            font-weight: 900;
+        }
+        
+        .perks-section {
+            background: #000;
+            padding: 80px 20px;
+        }
+        
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .perk-box {
+            background: #1a1a1a;
+            border-left: 8px solid #d4af37;
+            padding: 35px 30px;
+        }
+        
+        .perk-box h3 {
+            color: #d4af37;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        
+        .perk-box .highlight {
+            color: #c41e3a;
+            font-weight: 900;
+            font-size: 20px;
+        }
+        
+        .testimonials {
+            background: #1a1a1a;
+            padding: 80px 20px;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .testimonial {
+            background: #000;
+            border: 4px solid #d4af37;
+            padding: 35px;
+        }
+        
+        .testimonial .tier-badge {
+            background: #d4af37;
+            color: #000;
+            padding: 8px 20px;
+            display: inline-block;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial p {
+            color: #fff;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial .author {
+            color: #d4af37;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        
+        .apply-section {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .apply-section h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+            
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="vip-badge">👑 VIP</div>
+        <h1>EXCLUSIVE REWARDS PROGRAM</h1>
+        <p class="tagline">Luxury Treatment. Unmatched Benefits. VIP-Only Privileges.</p>
+        <p style="font-size: 20px; margin: 30px 0;">Join 5,000+ elite players in our invitation-only program</p>
+        <a href="#" class="cta-button">APPLY FOR VIP STATUS →</a>
+        <p style="font-size: 14px; margin-top: 20px; color: #d4af37;">Qualification based on play volume and account activity</p>
+    </div>
+    
+    <!-- BENEFITS OVERVIEW -->
+    <div class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">VIP BENEFITS</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-box">
+                    <span class="icon">💎</span>
+                    <h3>PERSONAL HOST</h3>
+                    <p>Dedicated VIP manager available 24/7 via phone, email, or WhatsApp. Your direct line to anything you need.</p>
+                </div>
+                
+                <div class="benefit-box">
+                    <span class="icon">⚡</span>
+                    <h3>PRIORITY WITHDRAWALS</h3>
+                    <p>Skip the queue. VIP withdrawals processed in 2-6 hours vs 24-48 hours for standard players.</p>
+                </div>
+                
+                <div class="benefit-box">
+                    <span class="icon">💰</span>
+                    <h3>HIGHER LIMITS</h3>
+                    <p>Bet more, win more. VIP table limits up to $25,000 per hand. Withdrawal limits up to $50K per week.</p>
+                </div>
+                
+                <div class="benefit-box">
+                    <span class="icon">🎁</span>
+                    <h3>EXCLUSIVE BONUSES</h3>
+                    <p>Custom promotions designed for your play style. Up to 200% match bonuses with lower wagering.</p>
+                </div>
+                
+                <div class="benefit-box">
+                    <span class="icon">🎂</span>
+                    <h3>BIRTHDAY REWARDS</h3>
+                    <p>Celebrate in style. Birthday bonuses worth $500-$5,000 depending on your tier.</p>
+                </div>
+                
+                <div class="benefit-box">
+                    <span class="icon">🏆</span>
+                    <h3>VIP TOURNAMENTS</h3>
+                    <p>Invitation-only tournaments with $100K+ prize pools. Compete against the best.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TIERS -->
+    <div class="tiers-section">
+        <div class="container">
+            <h2 class="section-title">4 ELITE TIERS</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 40px; color: #d4af37;">
+                Rise through the ranks and unlock increasingly exclusive benefits
+            </p>
+            
+            <div class="tiers-grid">
+                <div class="tier-card tier-bronze">
+                    <div class="tier-name">BRONZE</div>
+                    <div class="tier-requirement">$5,000 wagered per month</div>
+                    <ul class="tier-benefits">
+                        <li>✓ 5% weekly cashback</li>
+                        <li>✓ Email support</li>
+                        <li>✓ Monthly reload bonus</li>
+                        <li>✓ Exclusive slot access</li>
+                        <li>✓ Priority customer service</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">JOIN NOW</a>
+                </div>
+                
+                <div class="tier-card tier-silver">
+                    <div class="tier-name">SILVER</div>
+                    <div class="tier-requirement">$25,000 wagered per month</div>
+                    <ul class="tier-benefits">
+                        <li>✓ 8% weekly cashback</li>
+                        <li>✓ Dedicated host</li>
+                        <li>✓ 24-hour withdrawals</li>
+                        <li>✓ Higher table limits ($5K)</li>
+                        <li>✓ Birthday bonus ($500)</li>
+                        <li>✓ VIP-only tournaments</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">QUALIFY</a>
+                </div>
+                
+                <div class="tier-card tier-gold">
+                    <div class="tier-name">GOLD</div>
+                    <div class="tier-requirement">$100,000 wagered per month</div>
+                    <ul class="tier-benefits">
+                        <li>✓ 12% weekly cashback</li>
+                        <li>✓ Senior VIP host</li>
+                        <li>✓ 6-hour withdrawals</li>
+                        <li>✓ Higher limits ($10K)</li>
+                        <li>✓ Birthday bonus ($2,000)</li>
+                        <li>✓ Luxury gifts</li>
+                        <li>✓ Event invitations</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">QUALIFY</a>
+                </div>
+                
+                <div class="tier-card tier-diamond">
+                    <div class="tier-name">💎 DIAMOND</div>
+                    <div class="tier-requirement">INVITATION ONLY</div>
+                    <ul class="tier-benefits">
+                        <li>✓ 15% weekly cashback</li>
+                        <li>✓ Executive VIP host</li>
+                        <li>✓ 2-hour withdrawals</li>
+                        <li>✓ Unlimited limits</li>
+                        <li>✓ Birthday bonus ($5,000+)</li>
+                        <li>✓ Private jet trips</li>
+                        <li>✓ Luxury vacations</li>
+                        <li>✓ Super Bowl tickets</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px; background: #b9f2ff; color: #000;">BY INVITE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- COMPARISON TABLE -->
+    <div class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">TIER COMPARISON</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>BENEFIT</th>
+                        <th>BRONZE</th>
+                        <th>SILVER</th>
+                        <th>GOLD</th>
+                        <th>DIAMOND</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cashback Rate</strong></td>
+                        <td>5%</td>
+                        <td>8%</td>
+                        <td>12%</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Withdrawal Time</strong></td>
+                        <td>24-48 hrs</td>
+                        <td>12-24 hrs</td>
+                        <td>6-12 hrs</td>
+                        <td>2-6 hrs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Withdrawal Limit</strong></td>
+                        <td>$5K/week</td>
+                        <td>$10K/week</td>
+                        <td>$25K/week</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Table Limits</strong></td>
+                        <td>$2,500</td>
+                        <td>$5,000</td>
+                        <td>$10,000</td>
+                        <td>$25,000+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Personal Host</strong></td>
+                        <td>-</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Birthday Bonus</strong></td>
+                        <td>$100</td>
+                        <td>$500</td>
+                        <td>$2,000</td>
+                        <td>$5,000+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Luxury Gifts</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event Invitations</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- DETAILED PERKS -->
+    <div class="perks-section">
+        <div class="container">
+            <h2 class="section-title">WHAT VIP REALLY MEANS</h2>
+            
+            <div class="perks-grid">
+                <div class="perk-box">
+                    <h3>PERSONAL ACCOUNT MANAGER</h3>
+                    <p>
+                        Your dedicated VIP host is available 24/7 via phone, email, WhatsApp, or text. Need a withdrawal expedited? 
+                        Want a custom bonus? Planning a trip to Vegas? Your host handles everything.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <span class="highlight">Direct access.</span> No call centers. No ticket systems. Just you and your host.
+                    </p>
+                </div>
+                
+                <div class="perk-box">
+                    <h3>CUSTOM BONUSES</h3>
+                    <p>
+                        Forget generic promotions. Your bonuses are designed specifically for your play style. 
+                        Prefer slots? Get free spins. Love blackjack? Get lower wagering requirements.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <span class="highlight">Up to 200% match</span> with wagering as low as 15x instead of 35x.
+                    </p>
+                </div>
+                
+                <div class="perk-box">
+                    <h3>EXCLUSIVE TOURNAMENTS</h3>
+                    <p>
+                        VIP-only tournaments with guaranteed prize pools of $50K-$250K. Smaller player pools mean 
+                        better odds. Top prizes often $25K-$100K.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <span class="highlight">Invitation only.</span> You can't buy entry - you have to be invited.
+                    </p>
+                </div>
+                
+                <div class="perk-box">
+                    <h3>LUXURY REWARDS</h3>
+                    <p>
+                        Gold and Diamond members receive physical gifts worth $500-$10,000. Rolex watches, 
+                        designer handbags, latest iPhones, gaming consoles, vacation packages.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <span class="highlight">Real luxury.</span> Not gift cards - actual high-end products.
+                    </p>
+                </div>
+                
+                <div class="perk-box">
+                    <h3>EVENT ACCESS</h3>
+                    <p>
+                        Super Bowl suites. NBA Finals courtside. Formula 1 paddock passes. Exclusive concerts. 
+                        Diamond members get access to events money can't buy.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <span class="highlight">All-expenses-paid</span> including flights, hotels, and meals.
+                    </p>
+                </div>
+                
+                <div class="perk-box">
+                    <h3>VEGAS VIP TREATMENT</h3>
+                    <p>
+                        Coming to Vegas? We'll arrange everything. Comp suites at 5-star hotels. Restaurant reservations 
+                        at places with 6-month waitlists. Show tickets. Pool cabanas. Limo service.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <span class="highlight">Complete concierge</span> service from arrival to departure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TESTIMONIALS -->
+    <div class="testimonials">
+        <div class="container">
+            <h2 class="section-title">WHAT VIP MEMBERS SAY</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="tier-badge">DIAMOND MEMBER</div>
+                    <p>
+                        "I've been gambling for 20 years and this is the best VIP program I've ever been part of. 
+                        My host Emma responds within minutes any time of day. Last month she got my $50K withdrawal 
+                        processed in 3 hours. Unreal."
+                    </p>
+                    <div class="author">MICHAEL R. - NEW JERSEY</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="tier-badge">GOLD MEMBER</div>
+                    <p>
+                        "The Super Bowl experience was absolutely insane. Private jet, suite at the game, dinner at 
+                        a Michelin-star restaurant, VIP club access. All completely free. This program is legit."
+                    </p>
+                    <div class="author">SARAH K. - PENNSYLVANIA</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="tier-badge">SILVER MEMBER</div>
+                    <p>
+                        "Just hit Silver last month. The 8% cashback alone is worth $800/week for me. Plus my host 
+                        gave me a custom 150% bonus with only 20x wagering. Way better than the standard offers."
+                    </p>
+                    <div class="author">DAVID L. - MICHIGAN</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- APPLY -->
+    <div class="apply-section">
+        <h2>READY TO GO VIP?</h2>
+        <p style="font-size: 24px; margin: 30px 0;">Join thousands of elite players enjoying VIP treatment</p>
+        <a href="#" class="cta-button" style="background: #000; border-color: #d4af37;">APPLY NOW →</a>
+        <p style="font-size: 16px; margin-top: 30px;">
+            VIP status based on wagering volume. Bronze tier automatically granted at $5,000/month play.
+        </p>
+        <p style="font-size: 14px; margin-top: 20px;">
+            Must be 21+. Gambling Problem? Call 1-800-GAMBLER.
+        </p>
+    </div>
+</body>
+</html>

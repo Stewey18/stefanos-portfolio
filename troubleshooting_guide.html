@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Casino Troubleshooting Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #2a2a2a;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+        }
+        
+        .header {
+            background: #b91c1c;
+            color: #ffffff;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 4px solid #f59e0b;
+        }
+        
+        .header h1 {
+            font-size: 2.4em;
+            margin-bottom: 12px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px 35px;
+        }
+        
+        h2 {
+            color: #b91c1c;
+            font-size: 1.75em;
+            margin: 35px 0 20px 0;
+            border-left: 5px solid #f59e0b;
+            padding-left: 18px;
+            font-weight: 700;
+        }
+        
+        h3 {
+            color: #991b1b;
+            font-size: 1.35em;
+            margin: 25px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+        
+        .problem-card {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            border-radius: 4px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .problem-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .solution-steps {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .solution-steps h4 {
+            color: #16a34a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .solution-steps ol {
+            margin-left: 20px;
+        }
+        
+        .solution-steps li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+        
+        .flowchart {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 0;
+            margin: 30px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .flow-item {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .flow-item.problem {
+            border-color: #b91c1c;
+            background: #fef2f2;
+        }
+        
+        .flow-item.solution {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            color: #6c757d;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .icon-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-card:hover {
+            border-color: #b91c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(185, 28, 28, 0.15);
+        }
+        
+        .icon-card svg {
+            margin-bottom: 15px;
+        }
+        
+        .quick-fix {
+            background: #dbeafe;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 0;
+            margin: 20px 0;
+        }
+        
+        .quick-fix strong {
+            color: #1e40af;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 0;
+            margin: 20px 0;
+        }
+        
+        .warning-box h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .diagnostic-panel {
+            background: #1a202c;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .diagnostic-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #4a5568;
+        }
+        
+        .diagnostic-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-ok {
+            color: #68d391;
+        }
+        
+        .status-warning {
+            color: #f6ad55;
+        }
+        
+        .status-error {
+            color: #fc8181;
+        }
+        
+        .support-cta {
+            background: #1a1a1a;
+            color: white;
+            padding: 30px;
+            border-radius: 0;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 4px solid #f59e0b;
+        }
+        
+        .support-cta h2 {
+            color: #f59e0b;
+            border: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        
+        .support-cta ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .support-cta li {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .icon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛠️ Troubleshooting Guide</h1>
+            <p>Quick Solutions to Common Issues</p>
+        </div>
+        
+        <div class="content">
+            <p style="font-size: 1.1em; text-align: center; margin-bottom: 30px;">Having a smooth gaming experience is our priority. Here are solutions to the most common technical questions from our players.</p>
+            
+            <h2>Connection & Streaming Issues</h2>
+            
+            <div class="problem-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    Video is freezing or buffering
+                </h3>
+                
+                <div class="solution-steps">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Try these steps in order:
+                    </h4>
+                    <ol>
+                        <li><strong>Check your internet speed</strong> (we recommend at least 2 Mbps)</li>
+                        <li><strong>Close other apps</strong> or browser tabs using bandwidth</li>
+                        <li><strong>Switch to lower quality</strong> video in settings menu</li>
+                        <li><strong>Try Main View</strong> (uses less bandwidth than close-up views)</li>
+                        <li><strong>Restart the game</strong> if issues persist</li>
+                    </ol>
+                </div>
+                
+                <div class="diagnostic-panel">
+                    <div style="margin-bottom: 15px; font-weight: bold; color: #a0aec0;">Connection Diagnostics:</div>
+                    <div class="diagnostic-item">
+                        <span>Internet Speed</span>
+                        <span class="status-ok">✓ 5.2 Mbps</span>
+                    </div>
+                    <div class="diagnostic-item">
+                        <span>Video Quality</span>
+                        <span class="status-warning">⚠ HD (try Standard)</span>
+                    </div>
+                    <div class="diagnostic-item">
+                        <span>Camera View</span>
+                        <span class="status-ok">✓ Main View</span>
+                    </div>
+                    <div class="diagnostic-item">
+                        <span>Active Tabs</span>
+                        <span class="status-error">✗ 12 tabs open</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="problem-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    "Connection Lost" message appears
+                </h3>
+                
+                <div class="quick-fix">
+                    <strong>Don't worry – your bets are protected!</strong>
+                    Your active bets will automatically play out according to your last action. You can rejoin immediately to see the results.
+                </div>
+                
+                <div class="flowchart">
+                    <div class="flow-item problem">
+                        <strong>Connection Interrupted</strong>
+                        <p style="margin: 5px 0 0 0;">Your internet drops during a hand</p>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-item solution">
+                        <strong>Automatic Protection</strong>
+                        <p style="margin: 5px 0 0 0;">Your bet continues based on your last decision</p>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-item solution">
+                        <strong>Rejoin Anytime</strong>
+                        <p style="margin: 5px 0 0 0;">Click "Reconnect" to return to the table</p>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-item solution">
+                        <strong>View Results</strong>
+                        <p style="margin: 5px 0 0 0;">Balance updated automatically with hand outcome</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Betting Issues</h2>
+            
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <h4>Betting Time Expired</h4>
+                    <p>Watch the countdown timer. Bets must be placed before it reaches zero.</p>
+                </div>
+                
+                <div class="icon-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <h4>Insufficient Balance</h4>
+                    <p>Your account balance must cover the full bet amount.</p>
+                </div>
+                
+                <div class="icon-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <h4>Table Limits Reached</h4>
+                    <p>Each table has minimum and maximum bet limits.</p>
+                </div>
+            </div>
+            
+            <div class="problem-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Bet wasn't accepted
+                </h3>
+                
+                <p>If you placed a bet but it didn't register:</p>
+                
+                <div class="solution-steps">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Verification Steps:
+                    </h4>
+                    <ol>
+                        <li>Check for bet confirmation message on screen</li>
+                        <li>Look at your balance – if unchanged, bet wasn't placed</li>
+                        <li>Wait for confirmation before placing another bet</li>
+                        <li>Network delays can occur – patience is key</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Audio Problems</h2>
+            
+            <div class="flowchart">
+                <div class="flow-item problem">
+                    <strong>🔇 No Sound or Low Volume</strong>
+                </div>
+                <div class="flow-arrow">⬇️</div>
+                <div class="flow-item">
+                    <strong>Check device volume</strong>
+                    <p style="margin: 5px 0 0 0;">Ensure your device isn't muted</p>
+                </div>
+                <div class="flow-arrow">⬇️</div>
+                <div class="flow-item">
+                    <strong>Check game audio</strong>
+                    <p style="margin: 5px 0 0 0;">Look for speaker icon in game interface</p>
+                </div>
+                <div class="flow-arrow">⬇️</div>
+                <div class="flow-item">
+                    <strong>Browser permissions</strong>
+                    <p style="margin: 5px 0 0 0;">Some browsers require audio permission</p>
+                </div>
+                <div class="flow-arrow">⬇️</div>
+                <div class="flow-item solution">
+                    <strong>Restart game</strong>
+                    <p style="margin: 5px 0 0 0;">Close and reopen if issues persist</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h4>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400e" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Sound Out of Sync?
+                </h4>
+                <p>This is usually a bandwidth issue:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Switch to lower video quality</li>
+                    <li>Refresh your browser</li>
+                    <li>Close other applications</li>
+                </ul>
+            </div>
+            
+            <h2>Game Display Issues</h2>
+            
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    <h4>Screen Cut Off</h4>
+                    <p>Try full-screen mode or adjust browser zoom to 100%</p>
+                </div>
+                
+                <div class="icon-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                        <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                    <h4>Mobile Display</h4>
+                    <p>Rotate to landscape mode for best experience</p>
+                </div>
+                
+                <div class="icon-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <h4>Cards Not Showing</h4>
+                    <p>Refresh page and clear browser cache</p>
+                </div>
+            </div>
+            
+            <h2>Payment & Balance Questions</h2>
+            
+            <div class="problem-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    Balance not updating after a win
+                </h3>
+                
+                <p>Balances typically update within seconds, but occasionally may take a moment:</p>
+                
+                <div class="flowchart">
+                    <div class="flow-item">
+                        <strong>Check game history</strong>
+                        <p style="margin: 5px 0 0 0;">Confirm the outcome of your last hand</p>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-item">
+                        <strong>Refresh the page</strong>
+                        <p style="margin: 5px 0 0 0;">Sync your balance with the server</p>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-item">
+                        <strong>Wait 5 minutes</strong>
+                        <p style="margin: 5px 0 0 0;">Processing may take a brief moment</p>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-item solution">
+                        <strong>Contact support if needed</strong>
+                        <p style="margin: 5px 0 0 0;">Have your Game Round ID ready</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="support-cta">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-bottom: 20px;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <h2>Still Need Help?</h2>
+                <p style="font-size: 1.1em;">If these solutions don't resolve your issue, our support team is here for you:</p>
+                <ul>
+                    <li>📞 <strong>24/7 Live Chat Support</strong></li>
+                    <li>📧 <strong>Email Support</strong> – <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6615131616091412260507150f08094805090b">[email&#160;protected]</a></li>
+                    <li>📝 <strong>Have your Game Round ID ready</strong> (found in game history)</li>
+                    <li>📱 <strong>Include device type and browser</strong> for faster resolution</li>
+                </ul>
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <strong>💡 Pro Tip:</strong> Taking a screenshot of error messages 

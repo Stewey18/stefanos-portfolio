@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Guide to Online Slot Games</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fff5e1;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.2);
+            border: 3px solid #ff6b6b;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #ff6b6b 0%, #ffd93d 50%, #6bcf7f 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🎰';
+            position: absolute;
+            font-size: 180px;
+            opacity: 0.1;
+            top: -40px;
+            left: -30px;
+            animation: spin 20s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 1.25em;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 45px 35px;
+        }
+        
+        h2 {
+            color: #ff6b6b;
+            font-size: 2em;
+            margin: 35px 0 20px 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 4px solid #ffd93d;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #d63447;
+            font-size: 1.5em;
+            margin: 28px 0 15px 0;
+            font-weight: 700;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 1.08em;
+            line-height: 1.8;
+        }
+        
+        .slot-machine {
+            background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            border: 8px solid #ffd93d;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 35px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .reels {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .reel {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: 4px solid #ffd93d;
+            border-radius: 12px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5em;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.2);
+            animation: reelSpin 3s ease-in-out infinite;
+        }
+        
+        @keyframes reelSpin {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .reel:nth-child(1) { animation-delay: 0s; }
+        .reel:nth-child(2) { animation-delay: 0.2s; }
+        .reel:nth-child(3) { animation-delay: 0.4s; }
+        .reel:nth-child(4) { animation-delay: 0.6s; }
+        .reel:nth-child(5) { animation-delay: 0.8s; }
+        
+        .paylines {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 3px solid #ff6b6b;
+        }
+        
+        .payline-visual {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        
+        .payline-cell {
+            height: 50px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .payline-cell.active {
+            background: #ffd93d;
+            border-color: #ff6b6b;
+            transform: scale(1.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-box {
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            border: 3px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.3);
+            border-color: #ffd93d;
+        }
+        
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-box h3 {
+            color: #ff6b6b;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .symbol-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .symbol-card {
+            background: #fff;
+            border: 3px solid #6bcf7f;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .symbol-icon {
+            font-size: 3.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .symbol-name {
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .symbol-value {
+            color: #6bcf7f;
+            font-weight: 600;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #6bcf7f 0%, #4ecdc4 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #26de81;
+            box-shadow: 0 8px 20px rgba(107, 207, 127, 0.3);
+        }
+        
+        .tip-box h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+        
+        .tip-box ul {
+            margin-left: 25px;
+            line-height: 2;
+        }
+        
+        .tip-box li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .betting-panel {
+            background: #2d3436;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 4px solid #ffd93d;
+        }
+        
+        .bet-controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .bet-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #d63447 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1em;
+            border: 3px solid #ffd93d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .bet-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+        }
+        
+        .bet-button.spin {
+            background: linear-gradient(135deg, #6bcf7f 0%, #26de81 100%);
+            font-size: 1.4em;
+            padding: 20px 50px;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: #fff;
+            border: 3px solid #4ecdc4;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .info-card h4 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .warning-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #d63447 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 3px solid #ffd93d;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .progressive-display {
+            background: linear-gradient(135deg, #2d3436 0%, #000 100%);
+            color: #ffd93d;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 4px solid #ffd93d;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(255, 217, 61, 0.3);
+        }
+        
+        .progressive-amount {
+            font-size: 3.5em;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 217, 61, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .cta-section {
+            background: linear-gradient(to right, #ff6b6b 0%, #ffd93d 50%, #6bcf7f 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            border: none;
+            padding: 0;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .reels {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎰 Complete Guide to Slot Games</h1>
+            <p>Spin, Win, and Master the Reels!</p>
+        </div>
+        
+        <div class="content">
+            <h2>Welcome to the World of Slots!</h2>
+            <p>Slot games are the most popular attraction in any casino, offering excitement, variety, and the chance for big wins with every spin. Whether you're a complete beginner or looking to improve your understanding, this guide will teach you everything you need to know about playing slots.</p>
+            
+            <div class="slot-machine">
+                <h3 style="color: #ffd93d; text-align: center; margin-bottom: 20px;">Classic Slot Machine</h3>
+                <div class="reels">
+                    <div class="reel">🍒</div>
+                    <div class="reel">🍋</div>
+                    <div class="reel">⭐</div>
+                    <div class="reel">💎</div>
+                    <div class="reel">7️⃣</div>
+                </div>
+                <p style="color: #ffd93d; text-align: center; font-size: 1.1em; margin-top: 20px;">Watch the symbols align across the reels!</p>
+            </div>
+            
+            <h2>How Slot Games Work</h2>
+            <p>Slot games use a Random Number Generator (RNG) to ensure every spin is completely random and fair. When you press spin, the RNG determines which symbols appear on the reels. Your goal is to match symbols across paylines to win prizes.</p>
+            
+            <h3>Understanding Reels and Rows</h3>
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>📊 Reels</h4>
+                    <p>The vertical columns that spin. Most modern slots have 5 reels, though classic slots may have 3.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>➡️ Rows</h4>
+                    <p>The horizontal lines of symbols. Common configurations are 3 rows, 4 rows, or 5 rows.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>💰 Paylines</h4>
+                    <p>The patterns across the reels where matching symbols create wins. Can range from 10 to over 100,000!</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>🎯 Ways to Win</h4>
+                    <p>Some slots use "ways to win" instead of paylines—any adjacent matching symbols create a win.</p>
+                </div>
+            </div>
+            
+            <h3>Paylines Explained</h3>
+            <div class="paylines">
+                <p><strong>Paylines are the winning patterns on the reels.</strong> Traditional slots had simple horizontal lines, but modern slots feature zigzags, diagonals, and V-shapes.</p>
+                
+                <div style="margin: 25px 0;">
+                    <p style="font-weight: 600; color: #ff6b6b;">Example: Horizontal Payline (Most Common)</p>
+                    <div class="payline-visual">
+                        <div class="payline-cell">🍒</div>
+                        <div class="payline-cell active">💎</div>
+                        <div class="payline-cell active">💎</div>
+                        <div class="payline-cell active">💎</div>
+                        <div class="payline-cell">🍋</div>
+                    </div>
+                    <p style="text-align: center; color: #6bcf7f; font-weight: 600;">Three matching diamonds = WIN!</p>
+                </div>
+                
+                <div style="margin: 25px 0;">
+                    <p style="font-weight: 600; color: #ff6b6b;">Example: Zigzag Payline</p>
+                    <div class="payline-visual">
+                        <div class="payline-cell active">⭐</div>
+                        <div class="payline-cell">🍒</div>
+                        <div class="payline-cell active">⭐</div>
+                        <div class="payline-cell">7️⃣</div>
+                        <div class="payline-cell active">⭐</div>
+                    </div>
+                    <p style="text-align: center; color: #6bcf7f; font-weight: 600;">Stars following the zigzag pattern = WIN!</p>
+                </div>
+            </div>
+            
+            <h2>Types of Slot Symbols</h2>
+            <p>Different symbols have different values and functions. Here are the main types you'll encounter:</p>
+            
+            <div class="symbol-guide">
+                <div class="symbol-card">
+                    <span class="symbol-icon">🍒🍋🍊</span>
+                    <div class="symbol-name">Standard Symbols</div>
+                    <div class="symbol-value">Low-paying symbols that appear frequently</div>
+                </div>
+                
+                <div class="symbol-card">
+                    <span class="symbol-icon">💎💰👑</span>
+                    <div class="symbol-name">Premium Symbols</div>
+                    <div class="symbol-value">High-paying symbols with bigger rewards</div>
+                </div>
+                
+                <div class="symbol-card">
+                    <span class="symbol-icon">🌟</span>
+                    <div class="symbol-name">Wild Symbol</div>
+                    <div class="symbol-value">Substitutes for other symbols to create wins</div>
+                </div>
+                
+                <div class="symbol-card">
+                    <span class="symbol-icon">⚡</span>
+                    <div class="symbol-name">Scatter Symbol</div>
+                    <div class="symbol-value">Triggers bonus features, pays anywhere on reels</div>
+                </div>
+                
+                <div class="symbol-card">
+                    <span class="symbol-icon">🎁</span>
+                    <div class="symbol-name">Bonus Symbol</div>
+                    <div class="symbol-value">Activates special bonus rounds or features</div>
+                </div>
+                
+                <div class="symbol-card">
+                    <span class="symbol-icon">✖️</span>
+                    <div class="symbol-name">Multiplier</div>
+                    <div class="symbol-value">Increases your winnings by 2x, 3x, or more!</div>
+                </div>
+            </div>
+            
+            <h2>Special Features</h2>
+            <p>Modern slots come packed with exciting features that enhance gameplay and increase winning potential:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">🎰</span>
+                    <h3>Free Spins</h3>
+                    <p>Land scatter symbols to trigger free spins rounds where you spin without using your balance. Often comes with multipliers!</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">🎮</span>
+                    <h3>Bonus Games</h3>
+                    <p>Interactive mini-games that let you pick prizes, spin wheels, or complete challenges for extra rewards.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">📈</span>
+                    <h3>Cascading Reels</h3>
+                    <p>Winning symbols disappear and new ones fall into place, giving you multiple chances to win from a single spin.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">🔥</span>
+                    <h3>Expanding Wilds</h3>
+                    <p>Wild symbols that expand to cover entire reels, dramatically increasing your chances of forming winning combinations.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">🎲</span>
+                    <h3>Random Features</h3>
+                    <p>Surprise features that trigger randomly during base gameplay, adding extra wilds, multipliers, or instant prizes.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">💰</span>
+                    <h3>Gamble Feature</h3>
+                    <p>After a win, you can choose to gamble it for a chance to double or quadruple your prize (risky!).</p>
+                </div>
+            </div>
+            
+            <h2>Progressive Jackpots</h2>
+            <p>Progressive jackpot slots offer life-changing prizes that grow with every bet placed across the network. A small portion of each bet contributes to the jackpot pool until one lucky player wins it all!</p>
+            
+            <div class="progressive-display">
+                <p style="font-size: 1.3em; margin-bottom: 10px; color: #fff;">MEGA PROGRESSIVE JACKPOT</p>
+                <div class="progressive-amount">$2,547,891</div>
+                <p style="margin-top: 15px; font-size: 1.1em; color: #fff;">Growing with every spin!</p>
+            </div>
+            
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>🏆 Standalone Progressive</h4>
+                    <p>Jackpot grows only from bets on that specific machine.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>🌐 Local Progressive</h4>
+                    <p>Jackpot grows from all machines in one casino.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>💫 Wide Area Progressive</h4>
+                    <p>Jackpot grows from machines across multiple casinos—the biggest prizes!</p>
+                </div>
+            </div>
+            
+            <h2>How to Play Slots</h2>
+            
+            <div class="betting-panel">
+                <h3 style="color: #ffd93d; text-align: center; margin-bottom: 20px;">Betting Controls</h3>
+                <div class="bet-controls">
+                    <div class="bet-button">-</div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.8;">BET PER LINE</div>
+                        <div style="font-size: 2em; font-weight: 900; color: #ffd93d;">$1.00</div>
+                    </div>
+                    <div class="bet-button">+</div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-around; margin-top: 25px; flex-wrap: wrap; gap: 15px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.8;">TOTAL BET</div>
+                        <div style="font-size: 1.5em; font-weight: 700; color: #ffd93d;">$20.00</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.9em; opacity: 0.8;">BALANCE</div>
+                        <div style="font-size: 1.5em; font-weight: 700; color: #6bcf7f;">$500.00</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <div class="bet-button spin">🎰 SPIN 🎰</div>
+                </div>
+            </div>
+            
+            <h3>Step-by-Step Playing Guide</h3>
+            
+            <div style="background: #f8f8f8; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #ff6b6b;">
+                <ol style="margin-left: 20px; line-height: 2;">
+                    <li><strong style="color: #ff6b6b;">Choose Your Slot:</strong> Pick a game that appeals to you based on theme, features, and bet limits.</li>
+                    <li><strong style="color: #ff6b6b;">Set Your Bet:</strong> Use + and - buttons to adjust your bet per line. Your total bet = bet per line × number of paylines.</li>
+                    <li><strong style="color: #ff6b6b;">Check the Paytable:</strong> Click the info button to see symbol values and how bonus features work.</li>
+                    <li><strong style="color: #ff6b6b;">Spin the Reels:</strong> Hit the spin button or use auto-play to spin multiple times automatically.</li>
+                    <li><strong style="color: #ff6b6b;">Watch for Wins:</strong> Winning combinations light up and your prize is added to your balance.</li>
+                    <li><strong style="color: #ff6b6b;">Trigger Bonuses:</strong> Land scatter or bonus symbols to activate special features.</li>
+                </ol>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🌟 Pro Tips for Slot Players</h3>
+                <ul>
+                    <li><strong>Start with Lower Bets:</strong> Test the game with smaller bets to understand its features and volatility.</li>
+                    <li><strong>Read the Paytable:</strong> Understanding symbol values and features helps you know what to look for.</li>
+                    <li><strong>Set a Budget:</strong> Decide how much you're willing to spend before you start playing and stick to it.</li>
+                    <li><strong>Try Different Games:</strong> Each slot has unique features and themes—experiment to find your favorites.</li>
+                    <li><strong>Use Auto-Play Wisely:</strong> Set loss limits and win limits when using auto-play features.</li>
+                    <li><strong>Check the RTP:</strong> Higher RTP (Return to Player) percentages mean better long-term returns.</li>
+                    <li><strong>Take Breaks:</strong> Slots are fast-paced—step away regularly to stay refreshed and in control.</li>
+                </ul>
+            </div>
+            
+            <h2>Common Slot Terms</h2>
+            
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>RTP (Return to Player)</h4>
+                    <p>The percentage of all wagered money a slot pays back over time. 96% RTP means it returns $96 for every $100 bet (on average).</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Volatility (Variance)</h4>
+                    <p>How often and how much a slot pays. High volatility = rare but big wins. Low volatility = frequent but smaller wins.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Hit Frequency</h4>
+                    <p>How often a slot produces a winning combination. A higher percentage means more frequent wins.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Max Win</h4>
+                    <p>The largest possible prize you can win on a single spin, usually expressed as a multiplier (e.g., 10,000x your bet).</p>
+                </div>
+            </div>
+            
+            <div class="warning-banner">
+                ⚠️ Remember: Slots are games of chance. Play responsibly and never bet more than you can afford to lose. If gambling stops being fun, it's time to stop playing.
+            </div>
+            
+            <h2>Slot Game Strategies</h2>
+            <p>While slots are games of pure chance, there are smart approaches to maximize your enjoyment and playing time:</p>
+            
+            <div style="background: #fff; border: 3px solid #6bcf7f; border-radius: 15px; padding: 25px; margin: 25px 0;">
+                <h3 style="color: #6bcf7f;">Bankroll Management</h3>
+                <p><strong>Divide your budget:</strong> If you have $100 to play with and want to make 100 spins, bet $1 per spin. This helps your session last longer.</p>
+                <p><strong>The 1% rule:</strong> Never bet more than 1-2% of your total bankroll on a single spin.</p>
+                <p><strong>Win goals and loss limits:</strong> Decide before playing when you'll stop if you're winning (e.g., double your money) or losing (e.g., lose 50% of bankroll).</p>
+            </div>
+            
+            <div style="background: #fff; border: 3px solid #4ecdc4; border-radius: 15px; padding: 25px; margin: 25px 0;">
+                <h3 style="color: #4ecdc4;">Choosing the Right Slot</h3>
+                <p><strong>Match volatility to your style:</strong> Want big wins and can handle dry spells? Try high volatility. Prefer steady action? Choose low volatility.</p>
+                <p><strong>Consider RTP:</strong> Look for slots with RTP of 96% or higher for better long-term value.</p>
+                <p><strong>Bonus features matter:</strong> More features usually mean more excitement and winning opportunities.</p>
+            </div>
+            
+            <h2>Types of Slot Games</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">🎰</span>
+                    <h3>Classic Slots</h3>
+                    <p>3 reels, simple gameplay, traditional symbols like fruits and 7s. Perfect for beginners!</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">🎬</span>
+                    <h3>Video Slots</h3>
+                    <p>5+ reels with advanced graphics, animations, and multiple bonus features. The most popular type.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">📚</span>
+                    <h3>Branded Slots</h3>
+                    <p>Based on movies, TV shows, or celebrities. Features authentic characters and soundtracks.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">🎪</span>
+                    <h3>Megaways Slots</h3>
+                    <p>Dynamic reels with changing symbols offering up to 117,649 ways to win per spin!</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">🌌</span>
+                    <h3>3D Slots</h3>
+                    <p>Stunning 3D graphics and cinematic animations for an immersive experience.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <span class="feature-icon">💎</span>
+                    <h3>Progressive Slots</h3>
+                    <p>Linked jackpots that grow to massive amounts. Lower RTP but life-changing potential!</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="cta-section">
+            <h2>Ready to Spin?</h2>
+            <p style="font-size: 1.2em; margin-bottom: 0;">Now you know everything about slot games! Choose your game, set your bet, and let the reels spin. Good luck and have fun! 🎰🍀</p>
+        </div>
+    </div>
+</body>
+</html>

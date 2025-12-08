@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Roulette Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Garamond', 'Georgia', serif;
+            line-height: 1.7;
+            color: #2a2a2a;
+            background: #1c1c1c;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #f8f5f0;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            border: 4px solid #b8860b;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            color: #ffd700;
+            padding: 50px 35px;
+            text-align: center;
+            border-bottom: 5px solid #b8860b;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 20px solid rgba(184, 134, 11, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 15px solid rgba(184, 134, 11, 0.1);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            color: #f0e68c;
+        }
+        
+        .content {
+            padding: 45px 40px;
+        }
+        
+        h2 {
+            color: #8b0000;
+            font-size: 2.2em;
+            margin: 40px 0 22px 0;
+            font-weight: 400;
+            text-align: center;
+            border-bottom: 3px solid #b8860b;
+            padding-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        h3 {
+            color: #4a0000;
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+            font-weight: 400;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 1.08em;
+            line-height: 1.9;
+            color: #3a3a3a;
+        }
+        
+        .roulette-wheel {
+            width: 400px;
+            height: 400px;
+            margin: 40px auto;
+            position: relative;
+            background: radial-gradient(circle, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 50%;
+            border: 15px solid #b8860b;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6), inset 0 0 50px rgba(184, 134, 11, 0.3);
+        }
+        
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #b8860b 0%, #8b6914 100%);
+            border-radius: 50%;
+            border: 5px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #1a1a1a;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .wheel-numbers {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            height: 280px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        
+        .betting-layout {
+            background: linear-gradient(135deg, #0d5c2f 0%, #0a4725 100%);
+            border: 8px solid #b8860b;
+            padding: 30px;
+            margin: 35px 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        
+        .layout-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr) 50px;
+            gap: 2px;
+            margin: 25px 0;
+        }
+        
+        .number-box {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 2px solid #b8860b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .number-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(184, 134, 11, 0.5);
+            z-index: 10;
+        }
+        
+        .red-number {
+            background: #c41e3a;
+            color: white;
+        }
+        
+        .black-number {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .green-number {
+            background: #0d5c2f;
+            color: #ffd700;
+            font-size: 1.3em;
+        }
+        
+        .bet-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .bet-card {
+            background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+            border: 3px solid #b8860b;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .bet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.3);
+            border-color: #8b0000;
+        }
+        
+        .bet-card h4 {
+            color: #8b0000;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+        
+        .payout {
+            background: #8b0000;
+            color: #ffd700;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        
+        .variations-compare {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .variation-box {
+            background: #fff;
+            border: 4px solid #b8860b;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .variation-box h3 {
+            color: #8b0000;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+        
+        .wheel-type {
+            font-size: 5em;
+            margin: 20px 0;
+            display: block;
+        }
+        
+        .house-edge {
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            color: #ffd700;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .strategy-panel {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 4px solid #b8860b;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 35px 0;
+            color: #f0f0f0;
+        }
+        
+        .strategy-panel h3 {
+            color: #ffd700;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+        
+        .strategy-panel ul {
+            margin-left: 30px;
+            line-height: 2.2;
+        }
+        
+        .strategy-panel li {
+            margin-bottom: 12px;
+            color: #e0e0e0;
+        }
+        
+        .odds-table {
+            background: #fff;
+            border: 3px solid #b8860b;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .odds-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .odds-table th {
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            color: #ffd700;
+            padding: 15px;
+            text-align: left;
+            font-weight: 400;
+            font-size: 1.1em;
+        }
+        
+        .odds-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #3a3a3a;
+        }
+        
+        .odds-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .tip-elegant {
+            background: linear-gradient(135deg, #fff9e6 0%, #fef5d4 100%);
+            border: 3px solid #b8860b;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.2);
+        }
+        
+        .tip-elegant h3 {
+            color: #8b0000;
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.8em;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 6px solid #8b0000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box strong {
+            color: #8b0000;
+            font-size: 1.1em;
+        }
+        
+        .number-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+        }
+        
+        .legend-color.red {
+            background: #c41e3a;
+        }
+        
+        .legend-color.black {
+            background: #1a1a1a;
+        }
+        
+        .legend-color.green {
+            background: #0d5c2f;
+        }
+        
+        .cta-footer {
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            color: #ffd700;
+            padding: 40px;
+            text-align: center;
+            border-top: 5px solid #b8860b;
+        }
+        
+        .cta-footer h2 {
+            color: #ffd700;
+            border: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        
+        .cta-footer p {
+            color: #f0e68c;
+            font-size: 1.15em;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .roulette-wheel {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .betting-layout {
+                padding: 20px 15px;
+            }
+            
+            .number-box {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>LIVE ROULETTE</h1>
+            <p>The Queen of Casino Games</p>
+        </div>
+        
+        <div class="content">
+            <h2>Welcome to Roulette</h2>
+            <p>Roulette, French for "little wheel," is one of the most iconic and elegant casino games in the world. The game combines simplicity with sophistication, offering players a wide range of betting options and the thrill of watching the ball dance around the spinning wheel before settling on a winning number.</p>
+            
+            <div class="roulette-wheel">
+                <div class="wheel-center">0</div>
+                <div class="wheel-numbers"></div>
+            </div>
+            
+            <h2>How Roulette Works</h2>
+            <p>The game is beautifully simple: a croupier spins the roulette wheel in one direction and releases a small ball in the opposite direction. As the wheel slows, the ball eventually settles into one of the numbered pockets. If you've placed a bet on that number, color, or range of numbers, you win!</p>
+            
+            <h3>The Roulette Wheel Numbers</h3>
+            <div class="number-legend">
+                <div class="legend-item">
+                    <div class="legend-color red"></div>
+                    <span><strong>Red Numbers:</strong> 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color black"></div>
+                    <span><strong>Black Numbers:</strong> 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color green"></div>
+                    <span><strong>Green (Zero):</strong> 0 (and 00 in American Roulette)</span>
+                </div>
+            </div>
+            
+            <h2>The Betting Layout</h2>
+            <p>The betting table features all 36 numbers plus zero (and double zero in American roulette), arranged in a grid. You can place chips on individual numbers or combinations, each with different payout odds.</p>
+            
+            <div class="betting-layout">
+                <h3 style="color: #ffd700; text-align: center; margin-bottom: 30px; font-size: 2em;">Classic European Layout</h3>
+                <p style="color: #ffd700; text-align: center; margin-bottom: 20px; font-style: italic;">The roulette table layout shows all 37 numbers (0-36) arranged in a grid</p>
+                
+                <div style="display: grid; grid-template-columns: auto 1fr; gap: 15px; max-width: 800px; margin: 0 auto;">
+                    <!-- Zero column -->
+                    <div style="display: flex; flex-direction: column; justify-content: center;">
+                        <div class="number-box green-number" style="width: 60px; height: 180px; writing-mode: vertical-rl; text-orientation: mixed; font-size: 2em;">0</div>
+                    </div>
+                    
+                    <!-- Main grid -->
+                    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;">
+                        <!-- Row 3 (top) -->
+                        <div class="number-box red-number">3</div>
+                        <div class="number-box black-number">6</div>
+                        <div class="number-box red-number">9</div>
+                        <div class="number-box red-number">12</div>
+                        <div class="number-box black-number">15</div>
+                        <div class="number-box red-number">18</div>
+                        <div class="number-box red-number">21</div>
+                        <div class="number-box black-number">24</div>
+                        <div class="number-box red-number">27</div>
+                        <div class="number-box red-number">30</div>
+                        <div class="number-box black-number">33</div>
+                        <div class="number-box red-number">36</div>
+                        
+                        <!-- Row 2 (middle) -->
+                        <div class="number-box black-number">2</div>
+                        <div class="number-box red-number">5</div>
+                        <div class="number-box black-number">8</div>
+                        <div class="number-box black-number">11</div>
+                        <div class="number-box black-number">14</div>
+                        <div class="number-box red-number">17</div>
+                        <div class="number-box black-number">20</div>
+                        <div class="number-box red-number">23</div>
+                        <div class="number-box black-number">26</div>
+                        <div class="number-box black-number">29</div>
+                        <div class="number-box red-number">32</div>
+                        <div class="number-box black-number">35</div>
+                        
+                        <!-- Row 1 (bottom) -->
+                        <div class="number-box red-number">1</div>
+                        <div class="number-box black-number">4</div>
+                        <div class="number-box red-number">7</div>
+                        <div class="number-box black-number">10</div>
+                        <div class="number-box red-number">13</div>
+                        <div class="number-box black-number">16</div>
+                        <div class="number-box red-number">19</div>
+                        <div class="number-box black-number">22</div>
+                        <div class="number-box red-number">25</div>
+                        <div class="number-box black-number">28</div>
+                        <div class="number-box black-number">31</div>
+                        <div class="number-box red-number">34</div>
+                    </div>
+                </div>
+                
+                <!-- Outside bets area -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">1st 12</div>
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">2nd 12</div>
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">3rd 12</div>
+                    
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">1-18</div>
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">EVEN</div>
+                    <div style="background: #c41e3a; color: white; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">RED</div>
+                    
+                    <div style="background: #1a1a1a; color: white; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">BLACK</div>
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">ODD</div>
+                    <div style="background: #ffd700; color: #8b0000; border: 2px solid #b8860b; padding: 12px; text-align: center; font-weight: bold; font-size: 1em; height: 50px; display: flex; align-items: center; justify-content: center;">19-36</div>
+                </div>
+                
+                <p style="color: #ffd700; text-align: center; margin-top: 25px; font-style: italic; font-size: 1.1em;">Place chips on numbers, lines, corners, or outside betting areas</p>
+            </div>
+            
+            <h2>Types of Bets</h2>
+            <p>Roulette offers a wide variety of betting options, divided into two main categories:</p>
+            
+            <h3>Inside Bets (Higher Risk, Higher Reward)</h3>
+            <div class="bet-types">
+                <div class="bet-card">
+                    <h4>Straight Up</h4>
+                    <p>Bet on a single number. The riskiest but most rewarding bet.</p>
+                    <p><strong>Coverage:</strong> 1 number</p>
+                    <div class="payout">Pays 35:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Split Bet</h4>
+                    <p>Bet on two adjacent numbers by placing chips on the line between them.</p>
+                    <p><strong>Coverage:</strong> 2 numbers</p>
+                    <div class="payout">Pays 17:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Street Bet</h4>
+                    <p>Bet on three numbers in a horizontal row.</p>
+                    <p><strong>Coverage:</strong> 3 numbers</p>
+                    <div class="payout">Pays 11:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Corner Bet</h4>
+                    <p>Bet on four numbers that meet at one corner by placing chips at the intersection.</p>
+                    <p><strong>Coverage:</strong> 4 numbers</p>
+                    <div class="payout">Pays 8:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Line Bet</h4>
+                    <p>Bet on six numbers from two adjacent rows.</p>
+                    <p><strong>Coverage:</strong> 6 numbers</p>
+                    <div class="payout">Pays 5:1</div>
+                </div>
+            </div>
+            
+            <h3>Outside Bets (Lower Risk, More Frequent Wins)</h3>
+            <div class="bet-types">
+                <div class="bet-card">
+                    <h4>Red or Black</h4>
+                    <p>Bet on all red or all black numbers. One of the most popular bets.</p>
+                    <p><strong>Coverage:</strong> 18 numbers</p>
+                    <div class="payout">Pays 1:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Odd or Even</h4>
+                    <p>Bet on all odd or all even numbers.</p>
+                    <p><strong>Coverage:</strong> 18 numbers</p>
+                    <div class="payout">Pays 1:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>High or Low</h4>
+                    <p>Bet on low numbers (1-18) or high numbers (19-36).</p>
+                    <p><strong>Coverage:</strong> 18 numbers</p>
+                    <div class="payout">Pays 1:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Dozens</h4>
+                    <p>Bet on first dozen (1-12), second dozen (13-24), or third dozen (25-36).</p>
+                    <p><strong>Coverage:</strong> 12 numbers</p>
+                    <div class="payout">Pays 2:1</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Columns</h4>
+                    <p>Bet on one of three vertical columns of 12 numbers each.</p>
+                    <p><strong>Coverage:</strong> 12 numbers</p>
+                    <div class="payout">Pays 2:1</div>
+                </div>
+            </div>
+            
+            <h2>Roulette Variations</h2>
+            <p>There are three main variants of roulette, each with subtle but important differences:</p>
+            
+            <div class="variations-compare">
+                <div class="variation-box">
+                    <h3>European Roulette</h3>
+                    <span class="wheel-type">🎡</span>
+                    <p><strong>Numbers:</strong> 0-36 (37 total)</p>
+                    <p><strong>Zeros:</strong> Single zero (0)</p>
+                    <div class="house-edge">House Edge: 2.70%</div>
+                    <p style="margin-top: 15px; color: #2f855a; font-weight: 600;">Best odds for players</p>
+                </div>
+                
+                <div class="variation-box">
+                    <h3>American Roulette</h3>
+                    <span class="wheel-type">🎰</span>
+                    <p><strong>Numbers:</strong> 0-36 + 00 (38 total)</p>
+                    <p><strong>Zeros:</strong> Double zero (0 & 00)</p>
+                    <div class="house-edge">House Edge: 5.26%</div>
+                    <p style="margin-top: 15px; color: #c53030; font-weight: 600;">Higher house edge</p>
+                </div>
+                
+                <div class="variation-box">
+                    <h3>French Roulette</h3>
+                    <span class="wheel-type">🎲</span>
+                    <p><strong>Numbers:</strong> 0-36 (37 total)</p>
+                    <p><strong>Special Rules:</strong> La Partage or En Prison</p>
+                    <div class="house-edge">House Edge: 1.35%*</div>
+                    <p style="margin-top: 15px; color: #2f855a; font-weight: 600;">*On even-money bets</p>
+                </div>
+            </div>
+            
+            <div class="tip-elegant">
+                <h3>💡 Always Choose European or French Roulette</h3>
+                <p style="text-align: center; font-size: 1.1em; color: #3a3a3a;">The extra double zero in American Roulette nearly doubles the house edge. If you have a choice, always play European or French roulette for better odds!</p>
+            </div>
+            
+            <h2>Complete Odds & Payouts Table</h2>
+            <div class="odds-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bet Type</th>
+                            <th>Numbers Covered</th>
+                            <th>Payout</th>
+                            <th>European Win %</th>
+                            <th>American Win %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Straight Up</strong></td>
+                            <td>1</td>
+                            <td>35:1</td>
+                            <td>2.70%</td>
+                            <td>2.63%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Split</strong></td>
+                            <td>2</td>
+                            <td>17:1</td>
+                            <td>5.41%</td>
+                            <td>5.26%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Street</strong></td>
+                            <td>3</td>
+                            <td>11:1</td>
+                            <td>8.11%</td>
+                            <td>7.89%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Corner</strong></td>
+                            <td>4</td>
+                            <td>8:1</td>
+                            <td>10.81%</td>
+                            <td>10.53%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Line</strong></td>
+                            <td>6</td>
+                            <td>5:1</td>
+                            <td>16.22%</td>
+                            <td>15.79%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Column/Dozen</strong></td>
+                            <td>12</td>
+                            <td>2:1</td>
+                            <td>32.43%</td>
+                            <td>31.58%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Red/Black, Odd/Even, High/Low</strong></td>
+                            <td>18</td>
+                            <td>1:1</td>
+                            <td>48.65%</td>
+                            <td>47.37%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>How to Play: Step by Step</h2>
+            <div style="background: #fff; padding: 30px; border-radius: 10px; border: 3px solid #b8860b; margin: 30px 0;">
+                <ol style="margin-left: 25px; line-height: 2.2; color: #3a3a3a; font-size: 1.05em;">
+                    <li><strong style="color: #8b0000;">Join a Table:</strong> Select a Live Roulette table with stakes that match your budget.</li>
+                    <li><strong style="color: #8b0000;">Wait for Betting to Open:</strong> The dealer will announce "Place your bets" and a timer appears.</li>
+                    <li><strong style="color: #8b0000;">Place Your Chips:</strong> Click on numbers, colors, or sections to place bets. You can make multiple bets.</li>
+                    <li><strong style="color: #8b0000;">Betting Closes:</strong> The dealer will say "No more bets" when the timer expires.</li>
+                    <li><strong style="color: #8b0000;">The Spin:</strong> Watch as the dealer spins the wheel and releases the ball.</li>
+                    <li><strong style="color: #8b0000;">Winning Number:</strong> The ball settles into a pocket and the dealer announces the winning number and color.</li>
+                    <li><strong style="color: #8b0000;">Payouts:</strong> Winning bets are paid automatically and added to your balance.</li>
+                    <li><strong style="color: #8b0000;">Next Round:</strong> A new betting round begins immediately.</li>
+                </ol>
+            </div>
+            
+            <h2>Roulette Strategy Tips</h2>
+            <div class="strategy-panel">
+                <h3>🎯 Smart Playing Guidelines</h3>
+                <ul>
+                    <li><strong>Understand the House Edge:</strong> No betting system can overcome the mathematical house advantage. Roulette is a game of pure chance.</li>
+                    <li><strong>Stick to European or French Roulette:</strong> The single zero gives you much better odds than American roulette's double zero.</li>
+                    <li><strong>Outside Bets for Consistency:</strong> Red/Black, Odd/Even, High/Low offer nearly 50% win rate and steady action.</li>
+                    <li><strong>Manage Your Bankroll:</strong> Decide on a session budget and stick to it. Never chase losses.</li>
+                    <li><strong>Avoid Betting Systems:</strong> Martingale, Fibonacci, and other systems don't change the house edge—they just vary your bet size.</li>
+                    <li><strong>Combine Bets Wisely:</strong> Mix inside and outside bets for balanced risk and excitement.</li>
+                    <li><strong>Know When to Stop:</strong> Set win and loss limits before you start playing.</li>
+                    <li><strong>Take Advantage of Table History:</strong> While past spins don't predict future outcomes, trends can inform your betting choices for entertainment.</li>
+                </ul>
+            </div>
+            
+            <h2>Common Roulette Terms</h2>
+            <div class="odds-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Definition</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Croupier/Dealer</strong></td>
+                            <td>The casino employee who spins the wheel and manages the game</td>
+                        </tr>
+                        <tr>
+                            <td><strong>En Prison</strong></td>
+                            <td>French roulette rule: even-money bets "imprisoned" when zero hits, giving another chance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>La Partage</strong></td>
+                            <td>French rule: get half your even-money bet back if zero hits</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Neighbors</strong></td>
+                            <td>Numbers adjacent to each other on the wheel (not the table)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orphans</strong></td>
+                            <td>Numbers not covered by Voisins du Zéro or Tiers du Cylindre</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Announced Bets</strong></td>
+                            <td>Special betting patterns based on wheel position (French roulette)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Special Betting Patterns</h2>
+            <p>French Roulette offers special "announced bets" based on the wheel's physical layout:</p>
+            
+            <div class="bet-types">
+                <div class="bet-card">
+                    <h4>Voisins du Zéro</h4>
+                    <p><em>"Neighbors of Zero"</em> - Covers 17 numbers around zero on the wheel.</p>
+                    <p><strong>Numbers:</strong> 22-25 (including zero)</p>
+                    <div class="payout">Requires 9 chips</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Tiers du Cylindre</h4>
+                    <p><em>"Third of the Wheel"</em> - Covers 12 numbers opposite zero.</p>
+                    <p><strong>Numbers:</strong> 27-33 section</p>
+                    <div class="payout">Requires 6 chips</div>
+                </div>
+                
+                <div class="bet-card">
+                    <h4>Orphelins</h4>
+                    <p><em>"Orphans"</em> - Covers the 8 numbers not included in Voisins or Tiers.</p>
+                    <p><strong>Numbers:</strong> 1, 6-9, 14-17, 17-20, 31-34</p>
+                    <div class="payout">Requires 5 chips</div>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <strong>⚠️ Important Reminder:</strong> Roulette is a game of pure chance. Every spin is independent, and past results don't influence future outcomes. The ball has no memory, and no betting system can overcome the house edge. Play for entertainment and never bet more than you can afford to lose.
+            </div>
+            
+            <h2>Why Players Love Roulette</h2>
+            <div style="background: #fff; border: 3px solid #b8860b; border-radius: 10px; padding: 30px; margin: 30px 0;">
+                <ul style="margin-left: 25px; line-height: 2.2; color: #3a3a3a;">
+                    <li><strong>Simple to Learn:</strong> No complex rules or strategies needed—just pick your numbers and watch the wheel</li>
+                    <li><strong>Flexible Betting:</strong> Play it safe with outside bets or go for big wins with straight-up numbers</li>
+                    <li><strong>Social Experience:</strong> Live roulette brings the communal excitement of a real casino table</li>
+                    <li><strong>Fast-Paced Action:</strong> Quick rounds mean constant excitement and entertainment</li>
+                    <li><strong>Classic Elegance:</strong> The iconic wheel and sophisticated atmosphere appeal to traditional casino fans</li>
+                    <li><strong>Multiple Betting Options:</strong> Hundreds of ways to bet on each spin</li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="cta-footer">
+            <h2>Ready to Spin the Wheel?</h2>
+            <p>You now understand the elegance and excitement of Live Roulette. Choose European roulette for the best odds, start with outside bets to learn the game, and remember that roulette is pure entertainment. Place your bets and let fortune decide! Bonne chance! 🎰</p>
+        </div>
+    </div>
+</body>
+</html>

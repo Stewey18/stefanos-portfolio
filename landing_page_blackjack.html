@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Blackjack Online - Real Money 21 | Best Odds 99.5% RTP</title>
+    <meta name="description" content="Play blackjack online for real money. 15+ variants including Classic, European, and Live Dealer. Best odds in the casino - 99.5% RTP with basic strategy.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            background: #0d5c2d;
+        }
+        
+        .hero {
+            background: #000;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 8px solid #d4af37;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+        
+        .hero .subhead {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #fff;
+        }
+        
+        .hero .rtp-badge {
+            background: #16a34a;
+            color: #fff;
+            padding: 15px 30px;
+            display: inline-block;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 20px 0;
+            border: 4px solid #fff;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #c41e3a;
+            color: #fff;
+            padding: 20px 60px;
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            margin: 20px 0;
+            border: 4px solid #fff;
+        }
+        
+        .cta-button:hover {
+            background: #d4af37;
+            color: #000;
+            border-color: #000;
+        }
+        
+        .quick-stats {
+            background: #1a1a1a;
+            padding: 40px 20px;
+            border-bottom: 4px solid #d4af37;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            color: #d4af37;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            background: #fff;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 38px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 6px solid #d4af37;
+        }
+        
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .variant-card {
+            background: #f8f8f8;
+            border: 4px solid #000;
+            padding: 30px;
+        }
+        
+        .variant-card h3 {
+            font-size: 24px;
+            color: #000;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        
+        .variant-card .rtp {
+            background: #16a34a;
+            color: #fff;
+            padding: 8px 15px;
+            display: inline-block;
+            font-weight: 900;
+            margin: 10px 0;
+        }
+        
+        .variant-card .limits {
+            color: #666;
+            font-size: 14px;
+            margin: 10px 0;
+            font-weight: 700;
+        }
+        
+        .variant-card ul {
+            margin: 15px 0;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .promo-banner {
+            background: #c41e3a;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            margin: 60px 0;
+            border: 6px solid #000;
+        }
+        
+        .promo-banner h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+        
+        .promo-banner .amount {
+            font-size: 64px;
+            color: #d4af37;
+            text-shadow: 4px 4px 0 #000;
+            font-weight: 900;
+            display: block;
+            margin: 20px 0;
+        }
+        
+        .strategy-box {
+            background: #0d5c2d;
+            color: #fff;
+            padding: 40px;
+            margin: 40px 0;
+            border: 6px solid #d4af37;
+        }
+        
+        .strategy-box h3 {
+            font-size: 28px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+        
+        .strategy-box ul {
+            font-size: 18px;
+            line-height: 2.2;
+            padding-left: 30px;
+        }
+        
+        .strategy-box li {
+            margin: 10px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            border: 4px solid #000;
+        }
+        
+        .comparison-table th {
+            background: #000;
+            color: #d4af37;
+            padding: 20px;
+            text-align: left;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #333;
+        }
+        
+        .comparison-table td {
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #ddd;
+            font-weight: 700;
+        }
+        
+        .comparison-table tr:nth-child(even) td {
+            background: #f8f8f8;
+        }
+        
+        .features-section {
+            background: #1a1a1a;
+            padding: 60px 20px;
+            color: #fff;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .feature-box {
+            background: #000;
+            border-left: 6px solid #d4af37;
+            padding: 30px;
+        }
+        
+        .feature-box h3 {
+            color: #d4af37;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        
+        .faq-section {
+            background: #fff;
+            padding: 60px 20px;
+        }
+        
+        .faq-item {
+            background: #f8f8f8;
+            border-left: 6px solid #d4af37;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .faq-item h3 {
+            color: #000;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+        
+        .faq-item p {
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .cta-footer {
+            background: #c41e3a;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 6px solid #000;
+        }
+        
+        .cta-footer h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .variants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <div class="hero">
+        <h1>PLAY BLACKJACK ONLINE</h1>
+        <p class="subhead">America's Favorite Card Game - Now Online for Real Money</p>
+        <div class="rtp-badge">99.5% RTP</div>
+        <p style="font-size: 18px; margin: 20px 0;">Best odds in the casino. Master basic strategy and the house edge drops to just 0.5%.</p>
+        <a href="#" class="cta-button">PLAY NOW →</a>
+        <p style="font-size: 14px; margin-top: 20px; color: #d4af37;">$10 minimum bet | Instant play | No download</p>
+    </div>
+    
+    <!-- QUICK STATS -->
+    <div class="quick-stats">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Blackjack Variants</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">99.5%</span>
+                <span class="stat-label">RTP With Basic Strategy</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">$5-$5K</span>
+                <span class="stat-label">Table Limits</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Live Dealer Tables</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- VARIANTS -->
+        <div class="section">
+            <h2 class="section-title">15+ BLACKJACK GAMES</h2>
+            <p style="font-size: 18px; margin-bottom: 40px;">
+                From classic Vegas-style blackjack to exclusive variants you won't find anywhere else. 
+                Every game uses certified random number generators and is independently audited for fairness.
+            </p>
+            
+            <div class="variants-grid">
+                <div class="variant-card">
+                    <h3>CLASSIC BLACKJACK</h3>
+                    <div class="rtp">RTP: 99.5%</div>
+                    <div class="limits">Limits: $5 - $2,500</div>
+                    <p style="margin: 15px 0;">Traditional Vegas rules. The purest form of the game.</p>
+                    <ul>
+                        <li>8 decks</li>
+                        <li>Dealer stands on soft 17</li>
+                        <li>Double after split allowed</li>
+                        <li>Split up to 3 times</li>
+                        <li>Surrender available</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">PLAY NOW</a>
+                </div>
+                
+                <div class="variant-card">
+                    <h3>EUROPEAN BLACKJACK</h3>
+                    <div class="rtp">RTP: 99.4%</div>
+                    <div class="limits">Limits: $5 - $1,000</div>
+                    <p style="margin: 15px 0;">Popular European rules with no hole card.</p>
+                    <ul>
+                        <li>2 decks only</li>
+                        <li>Dealer draws second card after player</li>
+                        <li>Double on 9, 10, 11 only</li>
+                        <li>Split once only</li>
+                        <li>No surrender</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">PLAY NOW</a>
+                </div>
+                
+                <div class="variant-card">
+                    <h3>LIVE DEALER BLACKJACK</h3>
+                    <div class="rtp">RTP: 99.3%</div>
+                    <div class="limits">Limits: $10 - $5,000</div>
+                    <p style="margin: 15px 0;">Real dealers streaming 24/7 from professional studios.</p>
+                    <ul>
+                        <li>HD video streaming</li>
+                        <li>Chat with dealer</li>
+                        <li>Multiple camera angles</li>
+                        <li>Bet behind feature</li>
+                        <li>Private tables available</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">PLAY NOW</a>
+                </div>
+                
+                <div class="variant-card">
+                    <h3>PERFECT PAIRS</h3>
+                    <div class="rtp">RTP: 99.1% (main) / 95.9% (side bet)</div>
+                    <div class="limits">Limits: $5 - $1,000</div>
+                    <p style="margin: 15px 0;">Classic blackjack with optional Perfect Pairs side bet.</p>
+                    <ul>
+                        <li>Win if first 2 cards are a pair</li>
+                        <li>Perfect Pair: 30:1 payout</li>
+                        <li>Colored Pair: 10:1 payout</li>
+                        <li>Mixed Pair: 5:1 payout</li>
+                        <li>Side bet optional</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">PLAY NOW</a>
+                </div>
+                
+                <div class="variant-card">
+                    <h3>BLACKJACK SWITCH</h3>
+                    <div class="rtp">RTP: 99.9%</div>
+                    <div class="limits">Limits: $10 - $500</div>
+                    <p style="margin: 15px 0;">Play two hands and switch your second cards. Unique twist!</p>
+                    <ul>
+                        <li>Play 2 hands simultaneously</li>
+                        <li>Switch cards between hands</li>
+                        <li>Dealer hits soft 17</li>
+                        <li>Push on dealer 22</li>
+                        <li>Natural blackjack pays 1:1</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">PLAY NOW</a>
+                </div>
+                
+                <div class="variant-card">
+                    <h3>DOUBLE EXPOSURE</h3>
+                    <div class="rtp">RTP: 99.3%</div>
+                    <div class="limits">Limits: $5 - $1,000</div>
+                    <p style="margin: 15px 0;">Both dealer cards face up. Play with perfect information!</p>
+                    <ul>
+                        <li>See dealer's hole card</li>
+                        <li>Make informed decisions</li>
+                        <li>Blackjack pays even money</li>
+                        <li>Dealer wins ties</li>
+                        <li>Strategic advantage</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="padding: 12px 30px; font-size: 16px; margin-top: 20px;">PLAY NOW</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PROMO -->
+        <div class="promo-banner">
+            <h2>NEW PLAYER SPECIAL</h2>
+            <div class="amount">$500</div>
+            <p style="font-size: 20px; margin: 20px 0;"><strong>Blackjack Welcome Bonus</strong></p>
+            <p style="font-size: 18px; margin: 20px 0;">100% match on first deposit + 20% cashback on blackjack losses your first week</p>
+            <a href="#" class="cta-button" style="background: #000; border-color: #d4af37;">CLAIM BONUS →</a>
+        </div>
+        
+        <!-- BASIC STRATEGY -->
+        <div class="section">
+            <h2 class="section-title">WIN MORE WITH BASIC STRATEGY</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">
+                Blackjack isn't pure luck. Mathematical analysis proves that following basic strategy reduces 
+                the house edge to just 0.5% - the best odds in any casino game.
+            </p>
+            
+            <div class="strategy-box">
+                <h3>CORE STRATEGY RULES</h3>
+                <ul>
+                    <li><strong>Always split Aces and 8s</strong> - This is the golden rule. No exceptions.</li>
+                    <li><strong>Never split 10s</strong> - You already have 20, don't break it up.</li>
+                    <li><strong>Double down on 11</strong> - Unless dealer shows an Ace.</li>
+                    <li><strong>Stand on hard 17 or higher</strong> - Risk of busting is too high.</li>
+                    <li><strong>Hit soft 17</strong> - You can't bust, might as well try to improve.</li>
+                    <li><strong>Stand on 12-16 vs dealer 2-6</strong> - Let the dealer bust themselves.</li>
+                    <li><strong>Never take insurance</strong> - It's a sucker bet with 7% house edge.</li>
+                </ul>
+            </div>
+            
+            <p style="font-size: 18px; margin: 30px 0; text-align: center;">
+                <strong>Download our free basic strategy chart →</strong>
+            </p>
+        </div>
+        
+        <!-- COMPARISON TABLE -->
+        <div class="section">
+            <h2 class="section-title">RULE VARIATIONS & RTP</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">
+                Not all blackjack games are created equal. Here's how different rules affect your odds:
+            </p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Rule Variation</th>
+                        <th>Effect on House Edge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Blackjack pays 3:2 (standard)</td>
+                        <td style="color: #16a34a;">0% (baseline)</td>
+                    </tr>
+                    <tr>
+                        <td>Blackjack pays 6:5</td>
+                        <td style="color: #dc2626;">+1.4% (AVOID!)</td>
+                    </tr>
+                    <tr>
+                        <td>Dealer stands on soft 17</td>
+                        <td style="color: #16a34a;">-0.2% (good for player)</td>
+                    </tr>
+                    <tr>
+                        <td>Dealer hits soft 17</td>
+                        <td style="color: #dc2626;">+0.2% (bad for player)</td>
+                    </tr>
+                    <tr>
+                        <td>Double after split allowed</td>
+                        <td style="color: #16a34a;">-0.14% (good for player)</td>
+                    </tr>
+                    <tr>
+                        <td>Surrender allowed</td>
+                        <td style="color: #16a34a;">-0.07% (good for player)</td>
+                    </tr>
+                    <tr>
+                        <td>Single deck</td>
+                        <td style="color: #16a34a;">-0.48% (good for player)</td>
+                    </tr>
+                    <tr>
+                        <td>8 decks</td>
+                        <td style="color: #dc2626;">+0.54% (bad for player)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- FEATURES -->
+    <div class="features-section">
+        <h2 class="section-title" style="color: #d4af37; border-color: #d4af37;">WHY PLAY HERE</h2>
+        
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>🎮 PRACTICE MODE</h3>
+                <p>Play for free with unlimited virtual credits. Perfect for learning basic strategy before risking real money.</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>📊 STRATEGY TRAINER</h3>
+                <p>Built-in trainer shows you the mathematically correct move for every hand. Learn while you play.</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>💰 BEST PAYOUTS</h3>
+                <p>We guarantee 3:2 payouts on blackjack. Many casinos only pay 6:5 - that's a huge difference in your winnings.</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>⚡ INSTANT PLAY</h3>
+                <p>No download required. Play instantly in your browser on any device - desktop, mobile, or tablet.</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>🏆 BLACKJACK TOURNAMENTS</h3>
+                <p>Weekly tournaments with guaranteed prize pools. Compete against other players for extra cash.</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>📱 MOBILE PERFECTED</h3>
+                <p>Our mobile blackjack plays flawlessly on iPhone and Android. Same great odds, same fast payouts.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ -->
+    <div class="faq-section">
+        <h2 class="section-title">BLACKJACK FAQ</h2>
+        
+        <div class="faq-item">
+            <h3>Is online blackjack rigged?</h3>
+            <p>
+                No. All our blackjack games use certified Random Number Generators (RNGs) that are independently 
+                audited by eCOGRA and iTech Labs. The RNG is tested monthly to ensure complete fairness. 
+                We're licensed by the New Jersey Division of Gaming Enforcement, which requires strict fairness standards.
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What's the minimum bet?</h3>
+            <p>
+                Most of our blackjack tables start at $5 per hand. We also have some $10 and $25 minimum tables 
+                for higher limit players. VIP players can access private tables with $100-$5,000 limits.
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Can I count cards online?</h3>
+            <p>
+                Card counting doesn't work in online blackjack because the deck is shuffled after every hand. 
+                In live dealer blackjack, the shuffle happens more frequently than in land casinos (usually after 
+                50% penetration), making counting ineffective. Your best bet is learning perfect basic strategy.
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>How fast can I withdraw my winnings?</h3>
+            <p>
+                Most withdrawals are processed within 2-6 hours. PayPal and e-wallet withdrawals are often same-day. 
+                For your first withdrawal, you'll need to verify your identity (usually takes 24 hours). 
+                After that, withdrawals are fast and easy.
+            </p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What's the house edge in blackjack?</h3>
+            <p>
+                With perfect basic strategy, the house edge in our Classic Blackjack is just 0.5%. That means 
+                for every $100 you wager, you can expect to lose only 50 cents on average. This is the best 
+                odds of any casino game. Without strategy, the house edge jumps to 2-4%.
+            </p>
+        </div>
+    </div>
+    
+    <!-- FINAL CTA -->
+    <div class="cta-footer">
+        <h2>READY TO PLAY?</h2>
+        <p style="font-size: 20px; margin: 20px 0;">Join 500,000+ players winning real money at America's #1 blackjack casino</p>
+        <a href="#" class="cta-button" style="background: #000; border-color: #d4af37;">START PLAYING NOW →</a>
+        <p style="font-size: 14px; margin-top: 30px;">Must be 21+. Gambling Problem? Call 1-800-GAMBLER.</p>
+    </div>
+</body>
+</html>
