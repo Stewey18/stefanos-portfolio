@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Layer Features Explained: Auto-Position Sizing, Max Exposure, and Capital Allocation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+        }
+
+        .article-header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 4px solid #10b981;
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+        .article-meta span {
+            margin: 0 15px;
+        }
+
+        .article-content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #0891b2;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(8, 145, 178, 0.3);
+        }
+
+        h3 {
+            color: #10b981;
+            font-size: 1.5rem;
+            margin: 30px 0 20px 0;
+        }
+
+        h4 {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+        }
+
+        strong {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .alert-info {
+            border-color: #0891b2;
+            background: rgba(8, 145, 178, 0.15);
+        }
+
+        .alert-success {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .alert-warning {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+        }
+
+        .alert-danger {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        .alert-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Formula Boxes */
+        .formula-box {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border: 2px solid #0891b2;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula {
+            font-size: 1.3rem;
+            color: #0891b2;
+            margin: 15px 0;
+            line-height: 2;
+        }
+
+        /* Visual Components */
+        .visual-component {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 35px;
+            margin: 40px 0;
+            border: 2px solid rgba(8, 145, 178, 0.3);
+        }
+
+        .visual-title {
+            color: #0891b2;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Three-Layer Shield */
+        .risk-shield {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .shield-layer {
+            width: 100%;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .shield-layer:hover {
+            transform: scale(1.02);
+        }
+
+        .shield-layer-1 {
+            max-width: 450px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .shield-layer-2 {
+            max-width: 550px;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        }
+
+        .shield-layer-3 {
+            max-width: 650px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 2px solid #0891b2;
+        }
+
+        .shield-layer h4 {
+            color: white;
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .shield-layer p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Calculator */
+        .calculator {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #0891b2;
+        }
+
+        .calc-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 15px;
+            margin-bottom: 18px;
+            align-items: center;
+        }
+
+        .calc-label {
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .calc-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(8, 145, 178, 0.5);
+            border-radius: 6px;
+            padding: 12px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: #0891b2;
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.2);
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+        }
+
+        .calc-result {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .calc-result-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin: 10px 0;
+        }
+
+        .calc-result-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        /* Comparison Cards */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid;
+        }
+
+        .comparison-card.bad {
+            border-color: #ef4444;
+        }
+
+        .comparison-card.good {
+            border-color: #10b981;
+        }
+
+        .comparison-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .comparison-icon {
+            font-size: 2rem;
+        }
+
+        .comparison-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .comparison-card.bad .comparison-title {
+            color: #ef4444;
+        }
+
+        .comparison-card.good .comparison-title {
+            color: #10b981;
+        }
+
+        .comparison-metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            font-size: 0.95rem;
+        }
+
+        .comparison-result {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .comparison-card.bad .comparison-result {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .comparison-card.good .comparison-result {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #0891b2;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: rgba(8, 145, 178, 0.2);
+            color: #0891b2;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 2px solid #0891b2;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background: rgba(8, 145, 178, 0.1);
+        }
+
+        .code-block {
+            background: rgba(15, 23, 42, 0.8);
+            border-left: 4px solid #0891b2;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-header {
+                padding: 40px 25px;
+            }
+
+            .article-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .article-content {
+                padding: 30px 25px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .calc-row {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-component {
+                padding: 25px 20px;
+            }
+        }
+
+        /* TOC */
+        .toc {
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 4px solid #0891b2;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #0891b2;
+        }
+
+        .toc ul {
+            margin-left: 20px;
+        }
+
+        .toc a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #0891b2;
+        }
+    </style>
+</head>
+<body>
+    <div class="article-container">
+        <!-- Header -->
+        <div class="article-header">
+            <h1>Risk Layer Features Explained: Auto-Position Sizing, Max Exposure, and Capital Allocation</h1>
+            <div class="article-meta">
+                <span>📖 Reading time: 15 minutes</span>
+                <span>•</span>
+                <span>📊 Level: Beginner to Advanced</span>
+                <span>•</span>
+                <span>📅 December 2024</span>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="article-content">
+            
+            <!-- Overview -->
+            <div class="section">
+                <h2>Overview</h2>
+                <p>Automating trading with AI and bots offers speed and efficiency—but it demands robust risk management to protect your capital.</p>
+                
+                <p><strong>The challenge:</strong> A bot can execute dozens of trades in seconds. Without proper safeguards, errors compound rapidly.</p>
+                
+                <p><strong>The solution:</strong> Three essential risk layer features that work together to keep your trading safe:</p>
+                
+                <ul>
+                    <li><strong>Auto-Position Sizing</strong> - Right-sizes every trade automatically</li>
+                    <li><strong>Max Exposure</strong> - Caps total portfolio risk</li>
+                    <li><strong>Capital Allocation</strong> - Distributes capital wisely across strategies</li>
+                </ul>
+
+                <p>This guide explains each feature with clear examples, formulas, real-world scenarios, and best practices for traders at every level.</p>
+
+                <div class="alert alert-info">
+                    <div class="alert-title">💡 See also</div>
+                    Strategy Builder Walkthrough for integrating these tools into automated strategies
+                </div>
+            </div>
+
+            <!-- Why Risk Layers Matter -->
+            <div class="section">
+                <h2>Why Risk Layers Matter in Automated Trading</h2>
+                
+                <h3>The Safety Net Concept</h3>
+                <p>Think of risk layers as multiple shields protecting your capital. Each layer addresses risk from a different angle:</p>
+                
+                <ul>
+                    <li><strong>Per-trade level:</strong> How much you risk on each individual position</li>
+                    <li><strong>Portfolio level:</strong> How much total exposure across all positions</li>
+                    <li><strong>Strategic level:</strong> How capital is distributed across strategies and markets</li>
+                </ul>
+
+                <p><strong>Used together:</strong> These layers create a comprehensive safety net that can mean the difference between long-term success and a blown account.</p>
+
+                <!-- Visual: Three-Layer Shield -->
+                <div class="visual-component">
+                    <div class="visual-title">Three-Layer Risk Protection System</div>
+                    <div class="risk-shield">
+                        <div class="shield-layer shield-layer-3">
+                            <h4>Layer 3: Capital Allocation</h4>
+                            <p>Strategic distribution across strategies and asset classes</p>
+                        </div>
+                        <div class="shield-layer shield-layer-2">
+                            <h4>Layer 2: Max Exposure</h4>
+                            <p>Portfolio-wide limits across all positions</p>
+                        </div>
+                        <div class="shield-layer shield-layer-1">
+                            <h4>Layer 1: Auto-Position Sizing</h4>
+                            <p>Individual trade risk management</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Why Automation Needs Extra Protection</h3>
+                <p><strong>Human traders</strong> can pause when uncertain or sensing danger.</p>
+                <p><strong>Bots</strong> follow their program relentlessly—they don't feel fear, doubt, or caution.</p>
+                
+                <div class="alert alert-danger">
+                    <div class="alert-title">⚠️ The Risk</div>
+                    Without automated guardrails, a bot can turn a small mistake into catastrophic losses before you even notice.
+                </div>
+
+                <div class="alert alert-success">
+                    <div class="alert-title">✓ The Solution</div>
+                    Risk layer features enforce discipline automatically, ensuring bots operate within your tolerance at all times.
+                </div>
+
+                <div class="alert alert-info">
+                    <div class="alert-title">💡 Key Insight</div>
+                    "Position sizing is the glue that holds together a sound trading system. It ensures you don't over-leverage or under-commit in any single trade."
+                </div>
+            </div>
+
+            <!-- Feature 1: Auto-Position Sizing -->
+            <div class="section" id="auto-position-sizing">
+                <h2>Feature 1: Auto-Position Sizing</h2>
+                
+                <h3>What It Does</h3>
+                <p>Auto-Position Sizing calculates how large each position should be based on your predefined risk parameters—automatically, for every trade.</p>
+                
+                <p><strong>Instead of:</strong> Manually deciding "How much Bitcoin should I buy?"</p>
+                <p><strong>You get:</strong> System determines optimal size that fits your risk tolerance</p>
+
+                <h3>How It Works</h3>
+                <p><strong>You set:</strong> Risk limit per trade (e.g., 1% of account)</p>
+                <p><strong>System calculates:</strong> Position size based on stop-loss distance</p>
+
+                <!-- Formula -->
+                <div class="formula-box">
+                    <div class="formula">
+                        Position Size (units) = Risk per Trade ($) ÷ Stop Loss ($ per unit)
+                    </div>
+                </div>
+
+                <p><strong>The magic:</strong> If your stop-loss is farther away, position size automatically shrinks. If stop-loss is tight, position size increases. Either way, your dollar risk stays constant.</p>
+
+                <h3>Real-World Example</h3>
+                <p>Let's walk through an actual calculation:</p>
+                
+                <ul>
+                    <li><strong>Your account:</strong> $25,000</li>
+                    <li><strong>Risk rule:</strong> 2% per trade</li>
+                    <li><strong>Risk amount:</strong> $500 (2% of $25,000)</li>
+                </ul>
+
+                <p><strong>Trade setup:</strong></p>
+                <ul>
+                    <li>Entry price: $225</li>
+                    <li>Stop-loss: $195</li>
+                    <li>Stop distance: $30 per unit</li>
+                </ul>
+
+                <div class="code-block">
+                    Calculation:<br>
+                    Position Size = $500 ÷ $30 = 16.7 units<br>
+                    <br>
+                    Round down to: 16 units<br>
+                    Total cost: $3,600 (16 × $225)<br>
+                    If stopped out: Loss ≈ $480 (within $500 limit)<br>
+                    Account impact: 1.92% (close to target 2%)
+                </div>
+
+                <!-- Interactive Calculator -->
+                <div class="visual-component">
+                    <div class="visual-title">Try It Yourself: Position Sizing Calculator</div>
+                    <div class="calculator">
+                        <div class="calc-row">
+                            <label class="calc-label">Account Size ($)</label>
+                            <input type="number" class="calc-input" id="accountSize" value="25000">
+                        </div>
+                        <div class="calc-row">
+                            <label class="calc-label">Risk Percentage (%)</label>
+                            <input type="number" class="calc-input" id="riskPercent" value="2" step="0.1">
+                        </div>
+                        <div class="calc-row">
+                            <label class="calc-label">Entry Price ($)</label>
+                            <input type="number" class="calc-input" id="entryPrice" value="225">
+                        </div>
+                        <div class="calc-row">
+                            <label class="calc-label">Stop-Loss Price ($)</label>
+                            <input type="number" class="calc-input" id="stopLoss" value="195">
+                        </div>
+                        <button class="calculate-btn" onclick="calculatePosition()">Calculate Position Size</button>
+                        <div class="calc-result" id="calcResult" style="display: none;">
+                            <p class="calc-result-label">Position Size</p>
+                            <div class="calc-result-value" id="positionSize">0</div>
+                            <p class="calc-result-label">units</p>
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                                <p style="color: rgba(255,255,255,0.9); margin: 5px 0;">Total Investment: $<span id="totalInvestment">0</span></p>
+                                <p style="color: rgba(255,255,255,0.9); margin: 5px 0;">Max Loss: $<span id="maxLoss">0</span></p>
+                                <p style="color: rgba(255,255,255,0.9); margin: 5px 0;">Risk: <span id="actualRisk">0</span>%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Key Benefits</h3>
+                
+                <h4>1. Enforces Discipline</h4>
+                <ul>
+                    <li>Removes impulsive decisions during volatility</li>
+                    <li>Prevents ego-driven oversizing after wins</li>
+                    <li>Maintains consistent approach</li>
+                </ul>
+
+                <h4>2. Enables Survival</h4>
+                <ul>
+                    <li>Risking 2% per trade = ~50 consecutive losses before total loss</li>
+                    <li>Extremely unlikely scenario gives breathing room</li>
+                    <li>Account survives long enough for strategy to work</li>
+                </ul>
+
+                <h4>3. Removes Emotion</h4>
+                <ul>
+                    <li>No more "This one feels really good, I'll go bigger"</li>
+                    <li>System doesn't care about your confidence level</li>
+                    <li>Mathematical, not emotional decisions</li>
+                </ul>
+
+                <h3>Common Mistakes to Avoid</h3>
+                
+                <div class="alert alert-danger">
+                    <div class="alert-title">❌ Setting Risk Too High</div>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>10% per trade is far too much</li>
+                        <li>Most professionals: 1-2% maximum</li>
+                        <li>Volatile markets: 0.5% or less</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-danger">
+                    <div class="alert-title">❌ Not Using Stop-Losses</div>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Auto-sizing requires defined exit</li>
+                        <li>Without stop, loss can exceed calculated risk</li>
+                        <li>Always define exit price upfront</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-danger">
+                    <div class="alert-title">❌ Manual Overrides</div>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>"I'm extra confident about this one" = danger</li>
+                        <li>Increasing size on gut feeling breaks framework</li>
+                        <li>Stick to the plan, always</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 2: Max Exposure -->
+            <div class="section" id="max-exposure">
+                <h2>Feature 2: Max Exposure</h2>
+                
+                <h3>What It Does</h3>
+                <p>While auto-position sizing limits risk per trade, <strong>Max Exposure limits total risk across all trades.</strong></p>
+                
+                <p><strong>The problem it solves:</strong> You can have many "small" risks that add up to one catastrophic risk.</p>
+
+                <div class="alert alert-warning">
+                    <div class="alert-title">⚠️ Example</div>
+                    <strong>Without Max Exposure:</strong><br>
+                    10 trades × 2% each = 20% total exposure<br>
+                    If all correlated → 20% loss in one move!<br><br>
+                    <strong>With Max Exposure (6% cap):</strong><br>
+                    Maximum 3 trades allowed (3 × 2% = 6%)<br>
+                    Worst case: 6% loss (manageable)
+                </div>
+
+                <h3>Real-World Scenario</h3>
+                
+                <!-- Comparison Cards -->
+                <div class="visual-component">
+                    <div class="visual-title">Scenario Comparison: With vs Without Max Exposure</div>
+                    <div class="comparison-grid">
+                        <div class="comparison-card bad">
+                            <div class="comparison-header">
+                                <div class="comparison-icon">❌</div>
+                                <div class="comparison-title">WITHOUT Max Exposure</div>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Positions:</span>
+                                <span style="font-weight: 700; color: #ef4444;">10</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Risk Each:</span>
+                                <span style="font-weight: 700; color: #ef4444;">2%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Total Exposure:</span>
+                                <span style="font-weight: 700; color: #ef4444;">20%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Market Event:</span>
+                                <span style="font-weight: 700; color: #ef4444;">Flash Crash</span>
+                            </div>
+                            <div class="comparison-result">
+                                LOSS: -$2,000 (20%)
+                            </div>
+                            <div style="margin-top: 15px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 8px;">
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;">Remaining: <span style="color: #ef4444; font-weight: 700;">$8,000</span></p>
+                                <p style="font-size: 0.9rem;">Recovery: <span style="color: #ef4444; font-weight: 700;">+25%</span></p>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card good">
+                            <div class="comparison-header">
+                                <div class="comparison-icon">✅</div>
+                                <div class="comparison-title">WITH 6% Max Exposure</div>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Positions:</span>
+                                <span style="font-weight: 700; color: #10b981;">3</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Risk Each:</span>
+                                <span style="font-weight: 700; color: #10b981;">2%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Total Exposure:</span>
+                                <span style="font-weight: 700; color: #10b981;">6%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span>Market Event:</span>
+                                <span style="font-weight: 700; color: #10b981;">Same Crash</span>
+                            </div>
+                            <div class="comparison-result">
+                                LOSS: -$600 (6%)
+                            </div>
+                            <div style="margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;">Remaining: <span style="color: #10b981; font-weight: 700;">$9,400</span></p>
+                                <p style="font-size: 0.9rem;">Recovery: <span style="color: #10b981; font-weight: 700;">+6.4%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Common Exposure Formulas</h3>
+                
+                <div class="formula-box">
+                    <div style="margin-bottom: 20px;">
+                        <div class="formula">Total Exposure % = (Sum of all position values / Account equity) × 100%</div>
+                        <p style="color: #94a3b8; margin-top: 10px; font-size: 0.95rem;">Example: $5,000 positions / $10,000 equity = 50%</p>
+                    </div>
+                    <div>
+                        <div class="formula">Total Risk % = Sum of each trade's risk percentage</div>
+                        <p style="color: #94a3b8; margin-top: 10px; font-size: 0.95rem;">Example: 1% + 2% + 1.5% = 4.5% total risk</p>
+                    </div>
+                </div>
+
+                <h3>Psychological Benefits</h3>
+                
+                <h4>Prevents FOMO Trading</h4>
+                <p>"Everything looks good, let me add another position!" Exposure cap forces selectivity. Can't catch every move = acceptance.</p>
+
+                <h4>Stops Revenge Trading</h4>
+                <p>After losses, temptation to open many trades. System blocks excessive positions. Forced cooling-off period.</p>
+
+                <h4>Reduces Anxiety</h4>
+                <p>Know your maximum possible loss. Sleep better with capped downside. Less stress from juggling too many trades.</p>
+
+                <div class="alert alert-info">
+                    <div class="alert-title">💡 Pro Tip</div>
+                    Max exposure is like a circuit breaker for your emotions. When you hit it, step back and reassess.
+                </div>
+            </div>
+
+            <!-- Feature 3: Capital Allocation -->
+            <div class="section" id="capital-allocation">
+                <h2>Feature 3: Capital Allocation</h2>
+                
+                <h3>What It Does</h3>
+                <p>Capital Allocation is your high-level game plan for distributing trading capital across strategies, markets, and asset classes.</p>
+                
+                <p><strong>Think of it as:</strong> Portfolio architecture—where your money goes and why.</p>
+
+                <h3>The Three Allocation Dimensions</h3>
+                
+                <h4>1. By Strategy or Bot</h4>
+                <p>Distribute capital across different trading approaches:</p>
+                <ul>
+                    <li>50% → Crypto trend-following bot</li>
+                    <li>30% → FX mean-reversion bot</li>
+                    <li>20% → Manual discretionary trading</li>
+                </ul>
+
+                <h4>2. By Asset Class</h4>
+                <p>Spread across different markets:</p>
+                <ul>
+                    <li>40% → Cryptocurrency</li>
+                    <li>35% → Forex (major pairs)</li>
+                    <li>25% → Stocks/ETFs</li>
+                </ul>
+
+                <h4>3. By Risk Level</h4>
+                <p>Balance conservative and aggressive:</p>
+                <ul>
+                    <li>60% → Conservative strategies</li>
+                    <li>30% → Moderate strategies</li>
+                    <li>10% → Aggressive strategies</li>
+                </ul>
+
+                <h3>Detailed Allocation Example</h3>
+                <p><strong>Total Capital:</strong> $100,000</p>
+                
+                <div class="code-block">
+                    <strong>Strategy 1: Long-Term Investment Bot</strong><br>
+                    • Allocation: $50,000 (50%)<br>
+                    • Profile: Conservative<br>
+                    • Risk per trade: 0.5%<br>
+                    • Max exposure: 20% of allocated capital<br>
+                    <br>
+                    <strong>Strategy 2: High-Frequency FX Bot</strong><br>
+                    • Allocation: $30,000 (30%)<br>
+                    • Profile: Moderate-Aggressive<br>
+                    • Risk per trade: 1%<br>
+                    • Max exposure: 30% of allocated capital<br>
+                    <br>
+                    <strong>Strategy 3: Manual Discretionary</strong><br>
+                    • Allocation: $20,000 (20%)<br>
+                    • Profile: Varies<br>
+                    • Risk per trade: 1-2%<br>
+                    • Max exposure: 40% of allocated capital
+                </div>
+
+                <div class="alert alert-success">
+                    <div class="alert-title">✓ Key Benefit</div>
+                    Each strategy can only lose its allocated portion. A $30k loss in Strategy 2 doesn't affect your other $70k. Risk is ring-fenced.
+                </div>
+            </div>
+
+            <!-- Risk Level Comparison -->
+            <div class="section">
+                <h2>Best Practices by Risk Level</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th style="color: #10b981;">Conservative</th>
+                                <th style="color: #f59e0b;">Moderate</th>
+                                <th style="color: #ef4444;">Aggressive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Risk/Trade</strong></td>
+                                <td style="color: #10b981;">0.5-1%</td>
+                                <td style="color: #f59e0b;">1-2%</td>
+                                <td style="color: #ef4444;">2-3%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Max Exposure</strong></td>
+                                <td style="color: #10b981;">3-5%</td>
+                                <td style="color: #f59e0b;">5-10%</td>
+                                <td style="color: #ef4444;">10-15%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Max Positions</strong></td>
+                                <td style="color: #10b981;">2-3</td>
+                                <td style="color: #f59e0b;">3-5</td>
+                                <td style="color: #ef4444;">5-10</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Daily Stop</strong></td>
+                                <td style="color: #10b981;">2%</td>
+                                <td style="color: #f59e0b;">3-5%</td>
+                                <td style="color: #ef4444;">5-7%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Max Drawdown</strong></td>
+                                <td style="color: #10b981;">10-15%</td>
+                                <td style="color: #f59e0b;">15-20%</td>
+                                <td style="color: #ef4444;">20-25%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Account Size</strong></td>
+                                <td style="color: #10b981;">Any</td>
+                                <td style="color: #f59e0b;">$5k+</td>
+                                <td style="color: #ef4444;">$25k+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Experience</strong></td>
+                                <td style="color: #10b981;">Beginner</td>
+                                <td style="color: #f59e0b;">Intermediate</td>
+                                <td style="color: #ef4444;">Advanced</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-success">
+                    <div class="alert-title">Recommendation</div>
+                    Start Conservative, earn your way to Moderate. Only move to Aggressive with proven consistency and sufficient capital.
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>Conclusion</h2>
+                
+                <p>Risk management isn't glamorous, but it's the foundation of long-term trading success.</p>
+
+                <h3>The Three-Layer Protection System</h3>
+                
+                <div class="alert alert-info" style="background: rgba(8, 145, 178, 0.15);">
+                    <h4 style="color: #0891b2; margin-bottom: 15px;">Layer 1: Auto-Position Sizing</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Right-sizes every trade automatically</li>
+                        <li>Removes emotion from sizing decisions</li>
+                        <li>Ensures consistent risk exposure</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-info" style="background: rgba(8, 145, 178, 0.15);">
+                    <h4 style="color: #0891b2; margin-bottom: 15px;">Layer 2: Max Exposure</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Caps total portfolio risk</li>
+                        <li>Prevents over-trading</li>
+                        <li>Acts as circuit breaker</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-info" style="background: rgba(8, 145, 178, 0.15);">
+                    <h4 style="color: #0891b2; margin-bottom: 15px;">Layer 3: Capital Allocation</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Distributes capital wisely</li>
+                        <li>Diversifies across strategies</li>
+                        <li>Provides structural balance</li>
+                    </ul>
+                </div>
+
+                <h3>Key Principles to Remember</h3>
+                
+                <ol>
+                    <li><strong>Control What You Can Control</strong> - Can't control markets. Can control your risk. Focus on the controllable.</li>
+                    <li><strong>Survive First, Profit Second</strong> - Stay in the game. Avoid catastrophic losses. Let compounding work over time.</li>
+                    <li><strong>Discipline Beats Emotion</strong> - Follow the rules. Trust the system. Don't override based on feelings.</li>
+                    <li><strong>Review and Adapt</strong> - Markets change. Your account changes. Rules should evolve (systematically).</li>
+                </ol>
+
+                <div class="alert alert-success">
+                    <div class="alert-title">Final Thought</div>
+                    "In trading, we can't control the markets, but we can control our risk. Embracing these risk layer features demonstrates expertise, maintains accuracy in execution, and earns trust—from investors, clients, or just your future self."
+                </div>
+
+                <p><strong>The goal of trading:</strong> Not winning every trade—it's staying in the game.</p>
+
+                <p>With strong risk management layers, you equip yourself to survive and thrive through any market storm, allowing your strategies and the power of compounding to work for you over time.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function calculatePosition() {
+            const accountSize = parseFloat(document.getElementById('accountSize').value) || 0;
+            const riskPercent = parseFloat(document.getElementById('riskPercent').value) || 0;
+            const entryPrice = parseFloat(document.getElementById('entryPrice').value) || 0;
+            const stopLoss = parseFloat(document.getElementById('stopLoss').value) || 0;
+
+            if (accountSize <= 0 || riskPercent <= 0 || entryPrice <= 0 || stopLoss <= 0) {
+                alert('Please enter valid positive numbers');
+                return;
+            }
+
+            if (stopLoss >= entryPrice) {
+                alert('Stop-loss must be below entry price');
+                return;
+            }
+
+            const riskAmount = accountSize * (riskPercent / 100);
+            const riskPerUnit = entryPrice - stopLoss;
+            const positionSize = Math.floor(riskAmount / riskPerUnit);
+            const totalInvestment = positionSize * entryPrice;
+            const maxLoss = positionSize * riskPerUnit;
+            const actualRisk = (maxLoss / accountSize) * 100;
+
+            document.getElementById('positionSize').textContent = positionSize;
+            document.getElementById('totalInvestment').textContent = totalInvestment.toFixed(2);
+            document.getElementById('maxLoss').textContent = maxLoss.toFixed(2);
+            document.getElementById('actualRisk').textContent = actualRisk.toFixed(2);
+            document.getElementById('calcResult').style.display = 'block';
+            document.getElementById('calcResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        document.querySelectorAll('.calc-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') calculatePosition();
+            });
+        });
+    </script>
+</body>
+</html>

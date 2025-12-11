@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Sizing Strategy Guide | Fintech Documentation Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: #f7fafc;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #0e7490 50%, #10b981 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .meta-info {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .meta-info h3 {
+            color: #0f172a;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .meta-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .meta-info li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .meta-info li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .reading-info {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .reading-info div {
+            background: #d1fae5;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #047857;
+        }
+
+        .reading-info strong {
+            color: #0f172a;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #0f172a;
+            font-size: 32px;
+            margin: 50px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #10b981;
+        }
+
+        h3 {
+            color: #065f46;
+            font-size: 24px;
+            margin: 35px 0 20px 0;
+        }
+
+        h4 {
+            color: #047857;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .alert {
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border-color: #3b82f6;
+            color: #1e3a8a;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+
+        .alert-purple {
+            background: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+
+        .alert h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .formula-box {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box .formula-title {
+            font-weight: bold;
+            color: #0f172a;
+            margin-bottom: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .formula-box .formula {
+            font-size: 18px;
+            color: #0f172a;
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .example-box {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-box h4 {
+            color: #065f46;
+            margin-top: 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #0f172a 0%, #10b981 100%);
+            color: white;
+        }
+
+        .comparison-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 15px;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .highlight-success {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .highlight-danger {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .highlight-purple {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 35px;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .key-takeaway {
+            background: linear-gradient(135deg, #0f172a 0%, #10b981 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .key-takeaway h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .key-takeaway ul {
+            margin: 0;
+        }
+
+        .key-takeaway li {
+            margin: 12px 0;
+        }
+
+        .calculation-steps {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .calculation-steps .step {
+            margin: 15px 0;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .calculation-steps .step-label {
+            position: absolute;
+            left: 0;
+            background: #10b981;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .poker-parallel {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .poker-parallel h4 {
+            color: #92400e;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .poker-parallel h4:before {
+            content: "♠";
+            font-size: 24px;
+        }
+
+        .visual-diagram {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .visual-diagram h4 {
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .diagram-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .diagram-box {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 150px;
+            margin: 10px;
+        }
+
+        .diagram-arrow {
+            font-size: 24px;
+            color: #10b981;
+            margin: 0 10px;
+        }
+
+        .risk-meter {
+            background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
+            height: 30px;
+            border-radius: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .risk-marker {
+            position: absolute;
+            top: -10px;
+            width: 3px;
+            height: 50px;
+            background: #1a202c;
+        }
+
+        .risk-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 10px;
+        }
+
+        .calculator-box {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .calculator-box h4 {
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .calculator-input {
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calculator-input label {
+            font-weight: 600;
+            color: #065f46;
+        }
+
+        .calculator-input .value {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            font-family: 'Courier New', monospace;
+        }
+
+        .calculator-result {
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .method-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .method-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .method-card h4 {
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .method-card .pros {
+            color: #10b981;
+            margin: 10px 0;
+        }
+
+        .method-card .cons {
+            color: #ef4444;
+            margin: 10px 0;
+        }
+
+        .related-content {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .related-content h3 {
+            color: #0f172a;
+            margin-top: 0;
+        }
+
+        .related-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-content li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .related-content li:last-child {
+            border-bottom: none;
+        }
+
+        .related-content a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .related-content a:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            .comparison-table {
+                font-size: 13px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+
+            .reading-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .diagram-row {
+                flex-direction: column;
+            }
+
+            .method-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Position Sizing Strategy Guide</h1>
+        <p class="subtitle">Master the mathematics of risk: Calculate exactly how much to risk on every trade</p>
+    </div>
+
+    <div class="meta-info">
+        <h3>What You'll Learn</h3>
+        <ul>
+            <li>The fundamental position sizing formula every trader must know</li>
+            <li>How to calculate position size based on your risk tolerance</li>
+            <li>Fixed dollar vs. percentage risk methods (and when to use each)</li>
+            <li>The Kelly Criterion for optimal position sizing</li>
+            <li>Portfolio heat management for multiple positions</li>
+            <li>Common position sizing mistakes that destroy accounts</li>
+        </ul>
+        
+        <div class="reading-info">
+            <div><strong>Reading time:</strong> 10 minutes</div>
+            <div><strong>Skill level:</strong> Intermediate</div>
+            <div><strong>Prerequisites:</strong> Understanding of stop-losses and basic risk management</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Why Position Sizing Matters More Than Your Strategy</h2>
+        
+        <p>You can have the best trading strategy in the world, but if your position sizing is wrong, you'll still lose money. Position sizing determines how much capital you risk on each trade—and it's the difference between steady growth and account destruction.</p>
+
+        <div class="alert alert-danger">
+            <h4>⚠️ The Harsh Truth</h4>
+            <p>Most traders focus 90% of their energy on finding perfect entry points and only 10% on position sizing. Professional traders do the opposite. They know that <strong>how much</strong> you trade matters more than <strong>what</strong> you trade.</p>
+        </div>
+
+        <div class="poker-parallel">
+            <h4>The Bankroll Management Parallel</h4>
+            <p>In poker, your bet size relative to your stack determines your tournament survival. Bet too much on one hand, and you're out regardless of how good your cards were. In trading, position sizing is your bet size—and just like poker, sizing incorrectly on a single trade can eliminate you from the game entirely.</p>
+        </div>
+
+        <h3>What Position Sizing Controls</h3>
+
+        <ul class="checklist">
+            <li><strong>Maximum loss per trade</strong> - How much you can lose if your stop-loss hits</li>
+            <li><strong>Account drawdown risk</strong> - How quickly you can recover from losing streaks</li>
+            <li><strong>Emotional stability</strong> - Properly sized positions keep emotions in check</li>
+            <li><strong>Long-term survival</strong> - The only stat that matters is staying in the game</li>
+        </ul>
+
+        <h2>The Core Position Sizing Formula</h2>
+
+        <p>Every position sizing method starts with this fundamental formula:</p>
+
+        <div class="formula-box">
+            <div class="formula-title">Universal Position Sizing Formula</div>
+            <div class="formula">Position Size = Total Risk ÷ Risk Per Unit</div>
+            <p style="margin-top: 15px; font-family: -apple-system, sans-serif;">Where:</p>
+            <ul style="font-family: -apple-system, sans-serif; margin-left: 20px;">
+                <li><strong>Total Risk</strong> = Amount you're willing to lose on this trade</li>
+                <li><strong>Risk Per Unit</strong> = Distance from entry to stop-loss</li>
+            </ul>
+        </div>
+
+        <h3>Breaking Down the Formula</h3>
+
+        <div class="visual-diagram">
+            <h4>How Position Size is Calculated</h4>
+            <div class="diagram-row">
+                <div class="diagram-box">
+                    <strong>Account Size</strong><br>
+                    $10,000
+                </div>
+                <span class="diagram-arrow">×</span>
+                <div class="diagram-box">
+                    <strong>Risk %</strong><br>
+                    1% (0.01)
+                </div>
+                <span class="diagram-arrow">=</span>
+                <div class="diagram-box">
+                    <strong>Total Risk</strong><br>
+                    $100
+                </div>
+            </div>
+            <div style="margin: 20px 0; font-size: 24px; color: #7c3aed;">÷</div>
+            <div class="diagram-row">
+                <div class="diagram-box">
+                    <strong>Entry Price</strong><br>
+                    $50,000
+                </div>
+                <span class="diagram-arrow">−</span>
+                <div class="diagram-box">
+                    <strong>Stop-Loss</strong><br>
+                    $48,000
+                </div>
+                <span class="diagram-arrow">=</span>
+                <div class="diagram-box">
+                    <strong>Risk Per Unit</strong><br>
+                    $2,000
+                </div>
+            </div>
+            <div style="margin: 20px 0; font-size: 24px; color: #7c3aed;">=</div>
+            <div class="diagram-row">
+                <div class="diagram-box" style="background: #d1fae5; border-color: #10b981;">
+                    <strong>Position Size</strong><br>
+                    $100 ÷ $2,000 = <strong>0.05 BTC</strong>
+                </div>
+            </div>
+        </div>
+
+        <h3>Step-by-Step Calculation Example</h3>
+
+        <div class="example-box">
+            <h4>Trading Scenario:</h4>
+            <ul>
+                <li>Account balance: $10,000</li>
+                <li>Risk tolerance: 1% per trade</li>
+                <li>Asset: Bitcoin (BTC)</li>
+                <li>Entry price: $50,000</li>
+                <li>Stop-loss price: $48,000</li>
+            </ul>
+        </div>
+
+        <div class="calculation-steps">
+            <div class="step">
+                <span class="step-label">Step 1</span>
+                Calculate total risk amount: $10,000 × 1% = <strong>$100</strong>
+            </div>
+            <div class="step">
+                <span class="step-label">Step 2</span>
+                Calculate risk per unit: $50,000 - $48,000 = <strong>$2,000 per BTC</strong>
+            </div>
+            <div class="step">
+                <span class="step-label">Step 3</span>
+                Calculate position size: $100 ÷ $2,000 = <strong>0.05 BTC</strong>
+            </div>
+            <div class="step">
+                <span class="step-label">Verify</span>
+                If stop-loss hits: 0.05 BTC × $2,000 loss per BTC = $100 loss ✓
+            </div>
+        </div>
+
+        <div class="alert alert-success">
+            <h4>✓ Why This Works</h4>
+            <p>No matter how far your stop-loss is from your entry, this formula ensures you only risk your predetermined amount ($100 in this case). Wider stop = smaller position. Tighter stop = larger position. Your risk stays constant.</p>
+        </div>
+
+        <h2>Method 1: Fixed Percentage Risk</h2>
+
+        <p>The most popular and professional approach—risk the same percentage of your account on every trade.</p>
+
+        <h3>How It Works</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">Fixed Percentage Risk Formula</div>
+            <div class="formula">Risk Amount = Account Balance × Risk %</div>
+            <div class="formula">Position Size = Risk Amount ÷ Risk Per Unit</div>
+        </div>
+
+        <div class="alert alert-purple">
+            <h4>Recommended Risk Percentages</h4>
+            <ul>
+                <li><strong>Conservative:</strong> 0.5-1% per trade</li>
+                <li><strong>Moderate:</strong> 1-2% per trade</li>
+                <li><strong>Aggressive:</strong> 2-3% per trade</li>
+                <li><strong>Dangerous:</strong> 5%+ per trade (not recommended)</li>
+            </ul>
+        </div>
+
+        <h3>Fixed Percentage Examples</h3>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Account Size</th>
+                    <th>Risk %</th>
+                    <th>Risk Per Trade</th>
+                    <th>Consecutive Losses to Lose 50%</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>$10,000</td>
+                    <td><span class="highlight-success">0.5%</span></td>
+                    <td>$50</td>
+                    <td>138 trades</td>
+                </tr>
+                <tr>
+                    <td>$10,000</td>
+                    <td><span class="highlight-success">1%</span></td>
+                    <td>$100</td>
+                    <td>69 trades</td>
+                </tr>
+                <tr>
+                    <td>$10,000</td>
+                    <td><span class="highlight">2%</span></td>
+                    <td>$200</td>
+                    <td>34 trades</td>
+                </tr>
+                <tr>
+                    <td>$10,000</td>
+                    <td><span class="highlight-danger">5%</span></td>
+                    <td>$500</td>
+                    <td>13 trades</td>
+                </tr>
+                <tr>
+                    <td>$10,000</td>
+                    <td><span class="highlight-danger">10%</span></td>
+                    <td>$1,000</td>
+                    <td>6 trades</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-warning">
+            <h4>💡 Key Insight</h4>
+            <p>At 1% risk, you can survive 69 consecutive losses before losing half your account. At 10% risk, just 6 consecutive losses cuts your account in half. The math is brutal—and losing streaks are inevitable.</p>
+        </div>
+
+        <h3>Advantages of Fixed Percentage Risk</h3>
+
+        <ul class="checklist">
+            <li>Automatically scales with account size (win: risk more, lose: risk less)</li>
+            <li>Prevents catastrophic losses during drawdowns</li>
+            <li>Emotionally easier to follow (no arbitrary decisions)</li>
+            <li>Professional standard across hedge funds and prop firms</li>
+        </ul>
+
+        <div class="poker-parallel">
+            <h4>The Tournament Buy-In Parallel</h4>
+            <p>Fixed percentage risk is like never buying into a poker tournament for more than 2% of your bankroll. As your bankroll grows, you can afford bigger buy-ins. When it shrinks, you drop down in stakes. This ensures you never risk your entire poker career on a single tournament—same principle applies to trading.</p>
+        </div>
+
+        <h2>Method 2: Fixed Dollar Risk</h2>
+
+        <p>Risk the same dollar amount on every trade, regardless of account size.</p>
+
+        <h3>How It Works</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">Fixed Dollar Risk Formula</div>
+            <div class="formula">Risk Amount = Fixed Dollar Amount (e.g., $100)</div>
+            <div class="formula">Position Size = Risk Amount ÷ Risk Per Unit</div>
+        </div>
+
+        <div class="example-box">
+            <h4>Example:</h4>
+            <p>You always risk $100 per trade, whether your account is $10,000 or $15,000.</p>
+            
+            <ul>
+                <li>Trade 1: Account = $10,000, Risk = $100 (1%)</li>
+                <li>Trade 2: Account = $11,000, Risk = $100 (0.91%)</li>
+                <li>Trade 3: Account = $9,000, Risk = $100 (1.11%)</li>
+            </ul>
+        </div>
+
+        <h3>When to Use Fixed Dollar Risk</h3>
+
+        <ul class="checklist">
+            <li>Starting with a very small account ($500-$2,000)</li>
+            <li>Testing a new strategy with minimal capital</li>
+            <li>Learning to trade without percentage calculations</li>
+            <li>When psychological comfort with dollar amounts matters more</li>
+        </ul>
+
+        <div class="alert alert-warning">
+            <h4>⚠️ The Problem with Fixed Dollar Risk</h4>
+            <p>This method doesn't scale. If your account grows to $50,000 but you're still risking $100, you're only risking 0.2%—too conservative. If your account drops to $5,000 and you're still risking $100, you're now risking 2%—too aggressive.</p>
+        </div>
+
+        <h2>Method 3: The Kelly Criterion (Advanced)</h2>
+
+        <p>A mathematical formula that calculates the optimal position size to maximize long-term growth based on your win rate and win/loss ratio.</p>
+
+        <h3>The Kelly Formula</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">Kelly Criterion Formula</div>
+            <div class="formula">Kelly % = (Win Rate × Avg Win ÷ Avg Loss) - (1 - Win Rate) ÷ (Avg Win ÷ Avg Loss)</div>
+            <p style="margin-top: 15px; font-family: -apple-system, sans-serif;"><strong>Simplified version:</strong></p>
+            <div class="formula">Kelly % = W - [(1 - W) ÷ R]</div>
+            <p style="margin-top: 10px; font-family: -apple-system, sans-serif;">Where:</p>
+            <ul style="font-family: -apple-system, sans-serif; margin-left: 20px;">
+                <li><strong>W</strong> = Win rate (e.g., 0.60 for 60% win rate)</li>
+                <li><strong>R</strong> = Avg Win ÷ Avg Loss (e.g., 2 if you make $200 on wins and lose $100 on losses)</li>
+            </ul>
+        </div>
+
+        <h3>Kelly Criterion Example</h3>
+
+        <div class="calculator-box">
+            <h4>Kelly Calculator Example</h4>
+            
+            <div class="calculator-input">
+                <label>Win Rate:</label>
+                <span class="value">60% (0.60)</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>Average Win:</label>
+                <span class="value">$300</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>Average Loss:</label>
+                <span class="value">$150</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>Win/Loss Ratio (R):</label>
+                <span class="value">2.0</span>
+            </div>
+
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Step 1</span>
+                    Kelly % = 0.60 - [(1 - 0.60) ÷ 2.0]
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 2</span>
+                    Kelly % = 0.60 - [0.40 ÷ 2.0]
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 3</span>
+                    Kelly % = 0.60 - 0.20
+                </div>
+                <div class="step">
+                    <span class="step-label">Result</span>
+                    Kelly % = <strong>0.40 or 40%</strong>
+                </div>
+            </div>
+
+            <div class="calculator-result">
+                Kelly says risk 40% of your account on this trade
+            </div>
+        </div>
+
+        <div class="alert alert-danger">
+            <h4>⚠️ Why You Should NEVER Use Full Kelly</h4>
+            <p>Full Kelly sizing is mathematically optimal for long-term growth but psychologically impossible to execute. A 40% position means if your stop-loss hits, you lose 40% of your account. One bad losing streak and you're down 80%. Nobody can handle that emotionally.</p>
+        </div>
+
+        <h3>Half Kelly: The Practical Solution</h3>
+
+        <p>Professional traders use <strong>half Kelly</strong> or <strong>quarter Kelly</strong> to balance growth with risk management.</p>
+
+        <div class="formula-box">
+            <div class="formula-title">Half Kelly Formula</div>
+            <div class="formula">Position Size = Kelly % ÷ 2</div>
+            <p style="margin-top: 15px; font-family: -apple-system, sans-serif;">From previous example:</p>
+            <div class="formula">Half Kelly = 40% ÷ 2 = 20%</div>
+            <div class="formula">Quarter Kelly = 40% ÷ 4 = 10%</div>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Kelly Variant</th>
+                    <th>Position Size</th>
+                    <th>Max Drawdown Risk</th>
+                    <th>Emotional Tolerance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Full Kelly</strong></td>
+                    <td>40%</td>
+                    <td><span class="highlight-danger">Very High</span></td>
+                    <td><span class="highlight-danger">Impossible</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Half Kelly</strong></td>
+                    <td>20%</td>
+                    <td><span class="highlight-warning">High</span></td>
+                    <td><span class="highlight-warning">Difficult</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Quarter Kelly</strong></td>
+                    <td>10%</td>
+                    <td><span class="highlight">Moderate</span></td>
+                    <td><span class="highlight-success">Manageable</span></td>
+                </tr>
+                <tr>
+                    <td><strong>1/10 Kelly</strong></td>
+                    <td>4%</td>
+                    <td><span class="highlight-success">Low</span></td>
+                    <td><span class="highlight-success">Comfortable</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-info">
+            <h4>💡 Pro Tip</h4>
+            <p>Most professional traders use 1/4 Kelly to 1/10 Kelly. This gives 70-90% of Kelly's growth with dramatically lower drawdowns. The math says go big, but experience says go smaller.</p>
+        </div>
+
+        <h2>Method 4: Volatility-Based Position Sizing</h2>
+
+        <p>Adjust your position size based on market volatility—smaller positions in volatile markets, larger positions in stable markets.</p>
+
+        <h3>The ATR Method (Average True Range)</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">ATR-Based Position Sizing</div>
+            <div class="formula">Position Size = Risk Amount ÷ (ATR × ATR Multiplier)</div>
+            <p style="margin-top: 15px; font-family: -apple-system, sans-serif;">Where:</p>
+            <ul style="font-family: -apple-system, sans-serif; margin-left: 20px;">
+                <li><strong>ATR</strong> = Average True Range (14-period standard)</li>
+                <li><strong>ATR Multiplier</strong> = How many ATRs for your stop (typically 2-3x)</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <h4>Example with Bitcoin:</h4>
+            <ul>
+                <li>Account: $10,000</li>
+                <li>Risk: 1% ($100)</li>
+                <li>BTC price: $50,000</li>
+                <li>ATR (14): $1,200</li>
+                <li>ATR multiplier: 2x</li>
+            </ul>
+
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Step 1</span>
+                    Stop distance = ATR × Multiplier = $1,200 × 2 = $2,400
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 2</span>
+                    Position size = $100 ÷ $2,400 = 0.0417 BTC
+                </div>
+                <div class="step">
+                    <span class="step-label">Result</span>
+                    Your position automatically adjusts to current volatility
+                </div>
+            </div>
+        </div>
+
+        <h3>Why Volatility-Based Sizing Works</h3>
+
+        <ul class="checklist">
+            <li>Automatically reduces exposure during volatile periods (when risk is highest)</li>
+            <li>Increases exposure during stable periods (when stops are less likely to hit)</li>
+            <li>Prevents getting stopped out by normal market noise</li>
+            <li>Particularly useful for swing trading and position trading</li>
+        </ul>
+
+        <div class="alert alert-purple">
+            <h4>When to Use Volatility-Based Sizing</h4>
+            <ul>
+                <li>Swing trading (holding 2-7 days)</li>
+                <li>Position trading (holding weeks to months)</li>
+                <li>Trading highly volatile assets (crypto, small-cap stocks)</li>
+                <li>During earnings seasons or major news events</li>
+            </ul>
+        </div>
+
+        <h2>Portfolio Heat: Managing Multiple Positions</h2>
+
+        <p>Portfolio heat measures your total risk across all open positions—critical for avoiding correlated losses.</p>
+
+        <h3>What is Portfolio Heat?</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">Portfolio Heat Formula</div>
+            <div class="formula">Portfolio Heat = Sum of All Position Risks ÷ Total Account Value</div>
+        </div>
+
+        <div class="example-box">
+            <h4>Example with Multiple Positions:</h4>
+            <p><strong>Account: $10,000</strong></p>
+            <ul>
+                <li>Position 1 (BTC): Risk = $100 (1%)</li>
+                <li>Position 2 (ETH): Risk = $100 (1%)</li>
+                <li>Position 3 (SOL): Risk = $100 (1%)</li>
+            </ul>
+
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Calculate</span>
+                    Total Risk = $100 + $100 + $100 = $300
+                </div>
+                <div class="step">
+                    <span class="step-label">Portfolio Heat</span>
+                    $300 ÷ $10,000 = 3%
+                </div>
+                <div class="step">
+                    <span class="step-label">Meaning</span>
+                    If all 3 stop-losses hit simultaneously, you lose 3% of your account
+                </div>
+            </div>
+        </div>
+
+        <h3>Safe Portfolio Heat Levels</h3>
+
+        <div class="risk-meter"></div>
+        <div class="risk-labels">
+            <span>0-5% (Safe)</span>
+            <span>5-10% (Moderate)</span>
+            <span>10-15% (High)</span>
+            <span>15%+ (Dangerous)</span>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Portfolio Heat</th>
+                    <th>Risk Level</th>
+                    <th>Max Open Positions</th>
+                    <th>Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>0-5%</strong></td>
+                    <td><span class="highlight-success">Conservative</span></td>
+                    <td>3-5 positions</td>
+                    <td>Ideal for most traders</td>
+                </tr>
+                <tr>
+                    <td><strong>5-10%</strong></td>
+                    <td><span class="highlight">Moderate</span></td>
+                    <td>5-10 positions</td>
+                    <td>Acceptable with experience</td>
+                </tr>
+                <tr>
+                    <td><strong>10-15%</strong></td>
+                    <td><span class="highlight-warning">Aggressive</span></td>
+                    <td>10+ positions</td>
+                    <td>Only for professionals</td>
+                </tr>
+                <tr>
+                    <td><strong>15%+</strong></td>
+                    <td><span class="highlight-danger">Dangerous</span></td>
+                    <td>Too many</td>
+                    <td>Likely to blow up account</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-warning">
+            <h4>⚠️ The Correlation Problem</h4>
+            <p>If you're trading BTC, ETH, and SOL simultaneously with 1% risk each, your portfolio heat is 3%. But these assets are highly correlated—when BTC crashes, they often all crash together. Your actual risk might be closer to 3% on a single correlated bet, not three independent 1% bets.</p>
+        </div>
+
+        <h3>Portfolio Heat Management Rules</h3>
+
+        <ul class="checklist">
+            <li><strong>Never exceed 10% portfolio heat</strong> unless you're a professional trader</li>
+            <li><strong>Reduce position sizes when adding correlated positions</strong> (e.g., multiple crypto positions)</li>
+            <li><strong>Count sector exposure</strong> (5 tech stock positions = higher real risk than 5 positions across different sectors)</li>
+            <li><strong>Reserve capital for new opportunities</strong> (don't max out portfolio heat early)</li>
+        </ul>
+
+        <h2>Position Sizing Methods Compared</h2>
+
+        <div class="method-comparison">
+            <div class="method-card">
+                <h4>Fixed Percentage</h4>
+                <p><strong>Best for:</strong> Most traders, all experience levels</p>
+                <div class="pros">
+                    <strong>Pros:</strong>
+                    <ul>
+                        <li>Scales with account</li>
+                        <li>Professional standard</li>
+                        <li>Simple to calculate</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <strong>Cons:</strong>
+                    <ul>
+                        <li>Doesn't optimize for edge</li>
+                        <li>Same risk regardless of conviction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h4>Fixed Dollar</h4>
+                <p><strong>Best for:</strong> Small accounts, beginners</p>
+                <div class="pros">
+                    <strong>Pros:</strong>
+                    <ul>
+                        <li>Psychologically simple</li>
+                        <li>No math required</li>
+                        <li>Easy to understand losses</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <strong>Cons:</strong>
+                    <ul>
+                        <li>Doesn't scale</li>
+                        <li>Risk % changes with account size</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h4>Kelly Criterion</h4>
+                <p><strong>Best for:</strong> Experienced traders with proven edge</p>
+                <div class="pros">
+                    <strong>Pros:</strong>
+                    <ul>
+                        <li>Mathematically optimal</li>
+                        <li>Maximizes long-term growth</li>
+                        <li>Adjusts to your edge</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <strong>Cons:</strong>
+                    <ul>
+                        <li>High volatility</li>
+                        <li>Requires extensive data</li>
+                        <li>Psychologically difficult</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h4>Volatility-Based</h4>
+                <p><strong>Best for:</strong> Swing traders, volatile markets</p>
+                <div class="pros">
+                    <strong>Pros:</strong>
+                    <ul>
+                        <li>Adapts to market conditions</li>
+                        <li>Reduces risk in volatility</li>
+                        <li>Better stop placement</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <strong>Cons:</strong>
+                    <ul>
+                        <li>More complex calculation</li>
+                        <li>Requires ATR data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2>Common Position Sizing Mistakes</h2>
+
+        <h3>Mistake 1: "I'll Risk 10% to Make It Back Faster"</h3>
+
+        <div class="alert alert-danger">
+            <p><strong>The trap:</strong> After losing money, increasing position size to recover quickly.</p>
+            <p><strong>The reality:</strong> This is revenge trading and almost always leads to bigger losses.</p>
+            <p><strong>The math:</strong> If you lose 50% of your account, you need a 100% return just to break even. Risking more when you're down makes this harder, not easier.</p>
+            <p><strong>Fix:</strong> Stick to your risk percentage no matter what. If anything, reduce risk when you're losing.</p>
+        </div>
+
+        <h3>Mistake 2: Position Sizing Based on Leverage, Not Risk</h3>
+
+        <div class="alert alert-danger">
+            <p><strong>The trap:</strong> "I have 10x leverage, so I'll use my full margin to control a huge position."</p>
+            <p><strong>The reality:</strong> Leverage determines your buying power, not your position size. Your stop-loss distance determines position size.</p>
+            <p><strong>Fix:</strong> Calculate position size based on: Account × Risk % ÷ Stop Distance. Use leverage only to meet margin requirements, not to determine position size.</p>
+        </div>
+
+        <h3>Mistake 3: Not Adjusting for Correlation</h3>
+
+        <div class="alert alert-warning">
+            <p><strong>The trap:</strong> Opening 5 crypto positions with 1% risk each, thinking total risk is 5%.</p>
+            <p><strong>The reality:</strong> Crypto assets are highly correlated. When BTC drops 10%, altcoins often drop 15-20%. Your 5 positions might all hit stops simultaneously.</p>
+            <p><strong>Fix:</strong> Reduce individual position sizes when trading correlated assets. If trading 5 correlated assets, consider 0.5% risk each instead of 1%.</p>
+        </div>
+
+        <h3>Mistake 4: Ignoring Account Drawdown</h3>
+
+        <div class="alert alert-warning">
+            <p><strong>The trap:</strong> Continuing to risk 2% per trade even after losing 30% of your account.</p>
+            <p><strong>The reality:</strong> 2% of $10,000 is $200. But 2% of $7,000 is only $140. Your dollar risk decreases naturally, but your percentage risk stays the same.</p>
+            <p><strong>Fix:</strong> Some traders reduce risk percentage during drawdowns (e.g., drop from 2% to 1% after a 20% drawdown). This preserves capital during losing streaks.</p>
+        </div>
+
+        <h3>Mistake 5: Position Sizing Based on Gut Feel</h3>
+
+        <div class="alert alert-danger">
+            <p><strong>The trap:</strong> "This trade looks really good, so I'll risk more."</p>
+            <p><strong>The reality:</strong> Every trade "looks good" before you enter it—that's why you entered. Your conviction is not predictive of outcome.</p>
+            <p><strong>Fix:</strong> Use the same position sizing formula for every trade. No exceptions. Ever. Your strategy's edge works over hundreds of trades, not individual ones.</p>
+        </div>
+
+        <div class="poker-parallel">
+            <h4>The Bad Beat Story Parallel</h4>
+            <p>In poker, every player has a "bad beat" story where they lost with a great hand. In trading, every trader has "high conviction" trades that failed spectacularly. The cards don't care about your conviction, and neither does the market. Stick to your system.</p>
+        </div>
+
+        <h2>Position Sizing for Automated Strategies</h2>
+
+        <p>When running automated trading strategies, position sizing becomes even more critical because you're not manually managing each trade.</p>
+
+        <h3>Key Considerations for Automated Position Sizing</h3>
+
+        <ul class="checklist">
+            <li><strong>Set maximum portfolio heat</strong> - Hard limit on total capital at risk across all automated strategies</li>
+            <li><strong>Per-strategy risk allocation</strong> - Each strategy gets a percentage of total capital (e.g., 20% each for 5 strategies)</li>
+            <li><strong>Dynamic position sizing</strong> - Positions automatically adjust based on account balance and volatility</li>
+            <li><strong>Correlation monitoring</strong> - Reduce position sizes if multiple strategies are entering correlated trades</li>
+        </ul>
+
+        <div class="example-box">
+            <h4>Automated Strategy Example:</h4>
+            <p><strong>Account: $50,000 | Max Portfolio Heat: 6%</strong></p>
+            
+            <table class="comparison-table" style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Capital Allocation</th>
+                        <th>Risk Per Trade</th>
+                        <th>Max Positions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Trend Following</td>
+                        <td>$15,000 (30%)</td>
+                        <td>1% of allocation</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Mean Reversion</td>
+                        <td>$15,000 (30%)</td>
+                        <td>1% of allocation</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Breakout Trading</td>
+                        <td>$10,000 (20%)</td>
+                        <td>1% of allocation</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Reserve Capital</td>
+                        <td>$10,000 (20%)</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 15px;"><strong>Maximum Exposure:</strong> If all positions hit stops: 3% + 3% + 2% = 8% total drawdown (within 10% limit)</p>
+        </div>
+
+        <h2>Putting It All Together: Your Position Sizing Checklist</h2>
+
+        <div class="key-takeaway">
+            <h3>Before Every Trade, Calculate:</h3>
+            <ol>
+                <li><strong>Account balance</strong> - Know exactly how much capital you're working with</li>
+                <li><strong>Risk percentage</strong> - Decide how much you'll risk (typically 0.5-2%)</li>
+                <li><strong>Risk amount in dollars</strong> - Account × Risk % = Dollar risk</li>
+                <li><strong>Entry price</strong> - Where you're buying/selling</li>
+                <li><strong>Stop-loss price</strong> - Where you'll exit if wrong</li>
+                <li><strong>Risk per unit</strong> - Entry price - Stop-loss price</li>
+                <li><strong>Position size</strong> - Dollar risk ÷ Risk per unit</li>
+                <li><strong>Current portfolio heat</strong> - Total risk across all open positions</li>
+            </ol>
+        </div>
+
+        <h3>The One-Minute Position Size Check</h3>
+
+        <div class="calculator-box">
+            <h4>Quick Position Sizing Formula</h4>
+            
+            <div class="calculator-input">
+                <label>1. Account Balance:</label>
+                <span class="value">$_______</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>2. Risk % (0.5-2%):</label>
+                <span class="value">_______% = $_______ risk</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>3. Entry Price:</label>
+                <span class="value">$_______</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>4. Stop-Loss Price:</label>
+                <span class="value">$_______</span>
+            </div>
+            
+            <div class="calculator-input">
+                <label>5. Risk Per Unit:</label>
+                <span class="value">$_______ - $_______ = $_______</span>
+            </div>
+
+            <div class="calculator-result">
+                Position Size = Step 2 ÷ Step 5 = _______ units
+            </div>
+        </div>
+
+        <h2>Conclusion: Position Sizing is Your Real Edge</h2>
+
+        <p>You can have a mediocre entry strategy with excellent position sizing and make money. You cannot have an excellent entry strategy with poor position sizing and survive.</p>
+
+        <div class="alert alert-success">
+            <h4>The Ultimate Truth About Position Sizing</h4>
+            <p>Professional traders spend 10% of their time finding trades and 90% managing risk. Amateurs do the opposite. Position sizing is risk management—and risk management is what keeps you in the game long enough for your edge to materialize.</p>
+        </div>
+
+        <div class="key-takeaway">
+            <h3>Essential Takeaways</h3>
+            <ul>
+                <li><strong>Position size based on risk, not leverage</strong> - Leverage determines margin requirements; your stop-loss determines position size</li>
+                <li><strong>Risk 0.5-2% per trade maximum</strong> - Anything higher and you can't survive normal losing streaks</li>
+                <li><strong>Fixed percentage risk scales with your account</strong> - As you grow, you risk more dollars but same percentage</li>
+                <li><strong>Monitor portfolio heat constantly</strong> - Total risk across all positions should stay under 10%</li>
+                <li><strong>Reduce position size for correlated trades</strong> - Multiple crypto positions = higher real risk than you think</li>
+                <li><strong>Use the formula every single time</strong> - No gut feel, no exceptions, no revenge sizing</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-purple">
+            <h4>Your Next Steps</h4>
+            <ol>
+                <li>Calculate your risk percentage (start with 1% if unsure)</li>
+                <li>Create a position sizing spreadsheet or use a calculator</li>
+                <li>Practice calculating position sizes on past trades</li>
+                <li>Never enter a trade without calculating position size first</li>
+                <li>Track your actual vs. intended position sizes in your trading journal</li>
+            </ol>
+        </div>
+
+        <div class="poker-parallel">
+            <h4>Final Poker Wisdom</h4>
+            <p>In poker, the best players know that preserving chips is more important than winning pots. They fold premium hands when the pot odds aren't there. They don't go all-in just because they have pocket aces. In trading, the best traders know that preserving capital is more important than catching big moves. They size positions for survival first, growth second. That's why they're still trading 10 years later.</p>
+        </div>
+
+        <div class="related-content">
+            <h3>Related Guides</h3>
+            <ul>
+                <li><a href="#">Understanding Margin Trading: Complete Guide</a></li>
+                <li><a href="#">Stop-Loss Strategy: Where to Place Your Exits</a></li>
+                <li><a href="#">Risk Management for Automated Trading</a></li>
+                <li><a href="#">Building a Trading Journal: What to Track</a></li>
+                <li><a href="#">Portfolio Heat Calculator Tool</a></li>
+            </ul>
+        </div>
+
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> This guide is for educational purposes only and does not constitute financial advice. Position sizing strategies should be tested and adjusted based on your individual risk tolerance, trading style, and account size. Past performance does not guarantee future results. Never trade with money you cannot afford to lose.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Margin Trading: A Complete Guide | Fintech Documentation Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: #f7fafc;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .meta-info {
+            background: white;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .meta-info h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .meta-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .meta-info li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .meta-info li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .reading-info {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .reading-info div {
+            background: #eff6ff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #1e40af;
+        }
+
+        .reading-info strong {
+            color: #1e3a8a;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #1e3a8a;
+            font-size: 32px;
+            margin: 50px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        h3 {
+            color: #1e40af;
+            font-size: 24px;
+            margin: 35px 0 20px 0;
+        }
+
+        h4 {
+            color: #2563eb;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .alert {
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border-color: #3b82f6;
+            color: #1e3a8a;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+
+        .alert h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .formula-box {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box .formula-title {
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .formula-box .formula {
+            font-size: 18px;
+            color: #0f172a;
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .example-box {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-box h4 {
+            color: #065f46;
+            margin-top: 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .comparison-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 15px;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .highlight-success {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .highlight-danger {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 35px;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .key-takeaway {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .key-takeaway h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .key-takeaway ul {
+            margin: 0;
+        }
+
+        .key-takeaway li {
+            margin: 12px 0;
+        }
+
+        .calculation-steps {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .calculation-steps .step {
+            margin: 15px 0;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .calculation-steps .step-label {
+            position: absolute;
+            left: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .poker-parallel {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .poker-parallel h4 {
+            color: #92400e;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .poker-parallel h4:before {
+            content: "♠";
+            font-size: 24px;
+        }
+
+        .next-steps {
+            background: #eff6ff;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .next-steps h3 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+
+        .related-content {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .related-content h3 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+
+        .related-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-content li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .related-content li:last-child {
+            border-bottom: none;
+        }
+
+        .related-content a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .related-content a:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            .comparison-table {
+                font-size: 13px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+
+            .reading-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Understanding Margin Trading: A Complete Guide</h1>
+        <p class="subtitle">Learn how margin amplifies both your buying power and risk—and how to manage both effectively</p>
+    </div>
+
+    <div class="meta-info">
+        <h3>What You'll Learn</h3>
+        <ul>
+            <li>How margin trading works and why traders use it</li>
+            <li>Margin requirements and calculations you need to know</li>
+            <li>The relationship between margin, leverage, and position size</li>
+            <li>How to avoid margin calls and liquidation</li>
+            <li>Risk management strategies for margin trading</li>
+            <li>When margin trading makes sense (and when it doesn't)</li>
+        </ul>
+        
+        <div class="reading-info">
+            <div><strong>Reading time:</strong> 12 minutes</div>
+            <div><strong>Skill level:</strong> Beginner to Intermediate</div>
+            <div><strong>Prerequisites:</strong> Basic understanding of buying/selling crypto or FX</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Introduction: Margin Trading Explained Simply</h2>
+        
+        <p>Margin trading allows you to control a larger position than your account balance would normally permit by borrowing funds from your exchange or broker. Think of it as trading with leverage—you put up a fraction of the total trade value (your margin), and your platform fronts the rest.</p>
+
+        <div class="poker-parallel">
+            <h4>The Poker Parallel</h4>
+            <p>Just as a poker player's effective stack determines the maximum they can win or lose in a single hand, your margin determines your exposure in a trade. The difference? In margin trading, you can lose more than you started with if you're not careful.</p>
+        </div>
+
+        <h3>Why Traders Use Margin</h3>
+        
+        <ul class="checklist">
+            <li><strong>Amplified returns</strong> - A 5% price move on a 10x leveraged position equals a 50% return on your margin</li>
+            <li><strong>Capital efficiency</strong> - Trade multiple positions without tying up all your capital</li>
+            <li><strong>Shorting ability</strong> - Profit from falling prices by borrowing and selling assets</li>
+            <li><strong>Strategic flexibility</strong> - Respond to opportunities without liquidating existing positions</li>
+        </ul>
+
+        <div class="alert alert-danger">
+            <h4>⚠️ The Critical Trade-Off</h4>
+            <p>Margin trading amplifies everything—both gains AND losses. A 5% move against you on 10x leverage means you lose 50% of your margin. This is why understanding margin mechanics isn't optional; it's survival.</p>
+        </div>
+
+        <h2>How Margin Trading Works: The Mechanics</h2>
+
+        <h3>Core Concepts</h3>
+
+        <div class="example-box">
+            <p><strong>Margin</strong> = The collateral you deposit to open and maintain a leveraged position</p>
+            <p><strong>Leverage</strong> = The multiplier of your buying power (2x, 5x, 10x, etc.)</p>
+            <p><strong>Position Size</strong> = The total value of your trade (Margin × Leverage)</p>
+        </div>
+
+        <h3>The Basic Formula</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">Position Size Calculation</div>
+            <div class="formula">Position Size = Margin × Leverage</div>
+        </div>
+
+        <div class="example-box">
+            <h4>Example:</h4>
+            <ul>
+                <li>Your margin: $1,000</li>
+                <li>Leverage: 10x</li>
+                <li>Position size: $10,000</li>
+            </ul>
+            <p><strong>Result:</strong> You now control $10,000 worth of Bitcoin, gold, EUR/USD, etc., but you only deposited $1,000.</p>
+        </div>
+
+        <h3>What This Means in Practice</h3>
+
+        <p>If Bitcoin is at $50,000 and you want to buy 0.2 BTC ($10,000 worth):</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Trading Type</th>
+                    <th>Capital Required</th>
+                    <th>Your Exposure</th>
+                    <th>Leverage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Without margin</strong></td>
+                    <td>$10,000</td>
+                    <td>$10,000</td>
+                    <td>1x</td>
+                </tr>
+                <tr>
+                    <td><strong>With 10x margin</strong></td>
+                    <td>$1,000 (10% margin requirement)</td>
+                    <td>$10,000</td>
+                    <td>10x</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="poker-parallel">
+            <h4>The Poker Equivalent</h4>
+            <p>This is like playing with a short stack but having action as if you had a full stack—your actual chips at risk are limited, but you're exposed to the same pot sizes. The key difference? In poker, you can't lose more than your stack. In margin trading, you can.</p>
+        </div>
+
+        <h2>Margin Requirements: How Much You Need</h2>
+
+        <p>Exchanges and brokers set <span class="highlight">margin requirements</span>—the minimum amount you must maintain to keep a position open.</p>
+
+        <h3>Two Types of Margin</h3>
+
+        <h4>1. Initial Margin</h4>
+        <p>The amount required to OPEN a position.</p>
+
+        <div class="formula-box">
+            <div class="formula-title">Initial Margin Formula</div>
+            <div class="formula">Initial Margin = Position Size ÷ Leverage</div>
+            
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Example</span>
+                    10x leverage on $10,000 position
+                </div>
+                <div class="step">
+                    <span class="step-label">Calculate</span>
+                    Initial Margin = $10,000 ÷ 10 = $1,000
+                </div>
+            </div>
+        </div>
+
+        <h4>2. Maintenance Margin</h4>
+        <p>The minimum amount required to KEEP a position open.</p>
+        
+        <p>Typically 50-75% of initial margin, but varies by platform.</p>
+
+        <div class="example-box">
+            <h4>Example:</h4>
+            <ul>
+                <li>Initial margin: $1,000</li>
+                <li>Maintenance margin: $500 (50%)</li>
+            </ul>
+            <p><strong>Critical point:</strong> If your account equity falls below $500, you face liquidation.</p>
+        </div>
+
+        <h3>Margin Requirement by Leverage Level</h3>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Leverage</th>
+                    <th>Initial Margin</th>
+                    <th>If Price Moves 5% Against You</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>2x</strong></td>
+                    <td>50% ($5,000)</td>
+                    <td><span class="highlight-success">-10% loss</span></td>
+                </tr>
+                <tr>
+                    <td><strong>5x</strong></td>
+                    <td>20% ($2,000)</td>
+                    <td><span class="highlight-warning">-25% loss</span></td>
+                </tr>
+                <tr>
+                    <td><strong>10x</strong></td>
+                    <td>10% ($1,000)</td>
+                    <td><span class="highlight-danger">-50% loss</span></td>
+                </tr>
+                <tr>
+                    <td><strong>20x</strong></td>
+                    <td>5% ($500)</td>
+                    <td><span class="highlight-danger">-100% loss (liquidation)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>50x</strong></td>
+                    <td>2% ($200)</td>
+                    <td><span class="highlight-danger">-100% loss (liquidation)</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-warning">
+            <h4>💡 Key Insight</h4>
+            <p>The higher your leverage, the smaller the price movement needed to wipe out your margin. At 20x leverage, just a 5% adverse move liquidates your position entirely.</p>
+        </div>
+
+        <h2>Account Equity and Margin Levels</h2>
+
+        <p>Your <strong>account equity</strong> constantly fluctuates as your positions gain or lose value.</p>
+
+        <h3>The Calculation</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">Account Equity</div>
+            <div class="formula">Account Equity = Account Balance + Unrealized P&L</div>
+        </div>
+
+        <div class="formula-box">
+            <div class="formula-title">Margin Level (Health Indicator)</div>
+            <div class="formula">Margin Level = (Account Equity ÷ Used Margin) × 100%</div>
+        </div>
+
+        <h3>What the Percentages Mean</h3>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Margin Level</th>
+                    <th>Status</th>
+                    <th>Action Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Above 200%</strong></td>
+                    <td><span class="highlight-success">Healthy</span></td>
+                    <td>Position with buffer</td>
+                </tr>
+                <tr>
+                    <td><strong>100-200%</strong></td>
+                    <td><span class="highlight">Adequate</span></td>
+                    <td>Watch closely</td>
+                </tr>
+                <tr>
+                    <td><strong>Below 100%</strong></td>
+                    <td><span class="highlight-danger">Danger zone</span></td>
+                    <td>Approaching liquidation</td>
+                </tr>
+                <tr>
+                    <td><strong>At maintenance level</strong></td>
+                    <td><span class="highlight-danger">Critical</span></td>
+                    <td>Imminent liquidation warning</td>
+                </tr>
+                <tr>
+                    <td><strong>Below maintenance</strong></td>
+                    <td><span class="highlight-danger">Liquidated</span></td>
+                    <td>Position automatically closed</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Real Example</h3>
+
+        <div class="example-box">
+            <h4>Starting Position:</h4>
+            <ul>
+                <li>Account balance: $1,000</li>
+                <li>Position size: $10,000 (10x leverage on BTC at $50,000)</li>
+                <li>Used margin: $1,000</li>
+                <li>Margin level: 100%</li>
+            </ul>
+
+            <h4>After BTC Drops 3% to $48,500:</h4>
+            <ul>
+                <li>Position value: $9,700</li>
+                <li>Loss: $300</li>
+                <li>Account equity: $700 ($1,000 - $300)</li>
+                <li>Margin level: <span class="highlight-danger">70%</span></li>
+            </ul>
+
+            <p><strong>Result:</strong> You're now dangerously close to liquidation.</p>
+        </div>
+
+        <div class="poker-parallel">
+            <h4>The Bankroll Parallel</h4>
+            <p>This is exactly like ICM pressure in a poker tournament. As your stack shrinks relative to the blinds (your "margin requirement"), each decision becomes more critical. The difference? In poker, you make decisions; in trading, the market makes them for you.</p>
+        </div>
+
+        <h2>The Margin Call: Your Warning System</h2>
+
+        <p>A <strong>margin call</strong> occurs when your account equity approaches the maintenance margin requirement.</p>
+
+        <h3>What Happens</h3>
+
+        <ol>
+            <li><strong>Warning issued</strong> - Platform alerts you that your margin level is critical</li>
+            <li><strong>Time to act</strong> - You have a window to either:
+                <ul>
+                    <li>Add more funds (increase margin)</li>
+                    <li>Close positions (reduce exposure)</li>
+                    <li>Do nothing (risk liquidation)</li>
+                </ul>
+            </li>
+            <li><strong>Automatic action</strong> - If equity drops below maintenance margin, liquidation begins</li>
+        </ol>
+
+        <h3>How to Respond</h3>
+
+        <div class="example-box">
+            <h4>Option 1: Add Margin (Deposit More Funds)</h4>
+            <p>✓ Increases your equity buffer<br>
+            ✗ Doesn't reduce exposure<br>
+            ✗ Buys time but doesn't fix a losing trade</p>
+        </div>
+
+        <div class="example-box">
+            <h4>Option 2: Reduce Position Size</h4>
+            <p>✓ Close part of your position<br>
+            ✓ Immediately lowers margin requirements<br>
+            ✗ Locks in partial loss but prevents total liquidation</p>
+        </div>
+
+        <div class="example-box">
+            <h4>Option 3: Close Entire Position</h4>
+            <p>✓ Accepts the loss<br>
+            ✓ Frees up all margin<br>
+            ✓ Prevents further damage</p>
+        </div>
+
+        <div class="alert alert-danger">
+            <h4>Option 4: Do Nothing</h4>
+            <p>✗ Gambles on price reversal<br>
+            ✗ Highest risk of liquidation<br>
+            ✗ Can lose more than your initial margin</p>
+        </div>
+
+        <div class="alert alert-info">
+            <h4>💡 Pro Tip</h4>
+            <p>Never ignore a margin call. The market doesn't care about your conviction; it only cares about your margin level.</p>
+        </div>
+
+        <h2>Liquidation: When Margin Runs Out</h2>
+
+        <p><strong>Liquidation</strong> is the automatic closing of your position when your equity falls below the maintenance margin level.</p>
+
+        <h3>How Liquidation Works</h3>
+
+        <ol>
+            <li><strong>Trigger point reached</strong> - Account equity hits maintenance margin</li>
+            <li><strong>Position forcibly closed</strong> - Platform sells your assets at market price</li>
+            <li><strong>Loss realized</strong> - Remaining equity (if any) returned to your account</li>
+            <li><strong>Liquidation fee</strong> - Platform typically charges 0.5-1% as penalty</li>
+        </ol>
+
+        <h3>The Liquidation Price</h3>
+
+        <p>Every leveraged position has a <strong>liquidation price</strong>—the price level at which your position will be automatically closed.</p>
+
+        <div class="formula-box">
+            <div class="formula-title">Liquidation Price (for long positions)</div>
+            <div class="formula">Liquidation Price = Entry Price × (1 - 1/Leverage × Maintenance Margin %)</div>
+            
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Example</span>
+                    Entry: $50,000 BTC | Leverage: 10x | Maintenance: 50%
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 1</span>
+                    Calculate: 1/10 × 0.5 = 0.05
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 2</span>
+                    1 - 0.05 = 0.95
+                </div>
+                <div class="step">
+                    <span class="step-label">Result</span>
+                    $50,000 × 0.95 = <span class="highlight-danger">$47,500</span>
+                </div>
+            </div>
+            
+            <p style="margin-top: 15px;"><strong>Your position liquidates if BTC drops to $47,500 (a 5% move).</strong></p>
+        </div>
+
+        <h3>Liquidation Scenarios</h3>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Leverage</th>
+                    <th>Buffer Before Liquidation</th>
+                    <th>Liquidation on 5% Move?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>2x</strong></td>
+                    <td>25% price move</td>
+                    <td><span class="highlight-success">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>5x</strong></td>
+                    <td>10% price move</td>
+                    <td><span class="highlight-success">No</span></td>
+                </tr>
+                <tr>
+                    <td><strong>10x</strong></td>
+                    <td>5% price move</td>
+                    <td><span class="highlight-danger">Yes</span></td>
+                </tr>
+                <tr>
+                    <td><strong>20x</strong></td>
+                    <td>2.5% price move</td>
+                    <td><span class="highlight-danger">Yes</span></td>
+                </tr>
+                <tr>
+                    <td><strong>50x</strong></td>
+                    <td>1% price move</td>
+                    <td><span class="highlight-danger">Yes</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-danger">
+            <h4>⚠️ Critical Warning</h4>
+            <p>At 50x leverage, normal market volatility can liquidate you in minutes.</p>
+        </div>
+
+        <h2>Position Sizing with Margin: Managing Risk</h2>
+
+        <p>The relationship between margin, leverage, and position size determines your risk exposure.</p>
+
+        <h3>The Position Sizing Framework</h3>
+
+        <div class="alert alert-success">
+            <h4>Three Essential Rules</h4>
+            <ul>
+                <li><strong>Rule 1:</strong> Don't risk more than 1-2% of your total capital per trade</li>
+                <li><strong>Rule 2:</strong> Your stop-loss distance determines your position size, not your leverage</li>
+                <li><strong>Rule 3:</strong> Higher leverage should mean SMALLER positions, not larger ones</li>
+            </ul>
+        </div>
+
+        <h3>Proper Position Sizing Example</h3>
+
+        <div class="example-box">
+            <h4>Account Details:</h4>
+            <ul>
+                <li>Total capital: $10,000</li>
+                <li>Risk per trade: 1% ($100)</li>
+                <li>Entry: $50,000 BTC</li>
+                <li>Stop-loss: $49,000 (2% below entry)</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-danger">
+            <h4>❌ Wrong Approach (leverage determines position size):</h4>
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Thinking</span>
+                    "I have 10x leverage, so I'll use $1,000 margin to control $10,000 worth"
+                </div>
+                <div class="step">
+                    <span class="step-label">Position</span>
+                    0.2 BTC
+                </div>
+                <div class="step">
+                    <span class="step-label">If stop hits</span>
+                    0.2 × $1,000 = <span class="highlight-danger">$200 loss (2% of capital)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success">
+            <h4>✓ Right Approach (risk determines position size):</h4>
+            <div class="calculation-steps">
+                <div class="step">
+                    <span class="step-label">Step 1</span>
+                    Calculate acceptable loss per unit: Risk per BTC = $50,000 - $49,000 = $1,000
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 2</span>
+                    Calculate position size: $100 ÷ $1,000 = 0.1 BTC
+                </div>
+                <div class="step">
+                    <span class="step-label">Step 3</span>
+                    Calculate required margin: Position Value = 0.1 × $50,000 = $5,000<br>
+                    Margin Needed (10x) = $5,000 ÷ 10 = $500
+                </div>
+                <div class="step">
+                    <span class="step-label">Result</span>
+                    If stop hits: 0.1 × $1,000 = <span class="highlight-success">$100 loss (1% of capital) ✓</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="poker-parallel">
+            <h4>The Stack-to-Pot Ratio Equivalent</h4>
+            <p>This is identical to calculating your effective odds in poker. Just as you wouldn't call a river bet without proper pot odds regardless of your stack size, you shouldn't size a trade based on available leverage alone—you size based on risk.</p>
+        </div>
+
+        <h2>Margin Trading Strategies</h2>
+
+        <h3>Strategy 1: Conservative Margin Use (2-3x Leverage)</h3>
+
+        <div class="example-box">
+            <h4>When to Use:</h4>
+            <ul>
+                <li>Long-term positions</li>
+                <li>High-conviction trades</li>
+                <li>Volatile assets</li>
+                <li>New to margin trading</li>
+            </ul>
+
+            <h4>Characteristics:</h4>
+            <ul>
+                <li>✓ Larger margin buffer</li>
+                <li>✓ Lower risk of liquidation</li>
+                <li>✗ Smaller returns</li>
+                <li>✓ More room for error</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <ul>
+                <li>Capital: $10,000</li>
+                <li>Leverage: 3x</li>
+                <li>Position: $30,000</li>
+                <li>Liquidation buffer: ~33% price move</li>
+            </ul>
+        </div>
+
+        <h3>Strategy 2: Moderate Margin (5-10x Leverage)</h3>
+
+        <div class="example-box">
+            <h4>When to Use:</h4>
+            <ul>
+                <li>Medium-term swing trades</li>
+                <li>Clear technical setups</li>
+                <li>Tight stop-loss planned</li>
+                <li>Experienced traders</li>
+            </ul>
+
+            <h4>Characteristics:</h4>
+            <ul>
+                <li>✓ Balance of risk/reward</li>
+                <li>⚠ Requires active monitoring</li>
+                <li>⚠ Stop-loss essential</li>
+                <li>⚠ Moderate liquidation risk</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <ul>
+                <li>Capital: $10,000</li>
+                <li>Leverage: 5x</li>
+                <li>Position: $50,000</li>
+                <li>Liquidation buffer: ~10% price move</li>
+            </ul>
+        </div>
+
+        <h3>Strategy 3: High Leverage (20x+ Leverage)</h3>
+
+        <div class="alert alert-danger">
+            <h4>When to Use:</h4>
+            <ul>
+                <li>Very short-term scalping</li>
+                <li>Extremely tight stops</li>
+                <li>Low-volatility periods</li>
+                <li>Professional traders only</li>
+            </ul>
+
+            <h4>Characteristics:</h4>
+            <ul>
+                <li>✓ Maximum capital efficiency</li>
+                <li>✗ Tiny margin for error</li>
+                <li>✗ High liquidation risk</li>
+                <li>✗ Requires constant monitoring</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <ul>
+                <li>Capital: $10,000</li>
+                <li>Leverage: 20x</li>
+                <li>Position: $200,000</li>
+                <li>Liquidation buffer: ~2.5% price move</li>
+            </ul>
+
+            <h4>⚠️ Warning:</h4>
+            <p>At 20x+ leverage, you're one bad news event away from liquidation. Even professional traders get liquidated at these levels.</p>
+        </div>
+
+        <h2>Risk Management for Margin Trading</h2>
+
+        <h3>Essential Rules</h3>
+
+        <div class="alert alert-success">
+            <h4><span class="step-number">1</span> Always Use Stop-Losses</h4>
+            <p>Set automatic stop-losses on EVERY margin trade. Never rely on manual monitoring.</p>
+            
+            <h4>Suggested stop-loss levels by leverage:</h4>
+            <ul>
+                <li>2-3x leverage: 10-15% stops</li>
+                <li>5-10x leverage: 5-8% stops</li>
+                <li>20x+ leverage: 2-3% stops</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-info">
+            <h4><span class="step-number">2</span> Know Your Liquidation Price Before Entering</h4>
+            <p>Calculate and write down your liquidation price. If it's too close to your entry, reduce leverage or position size.</p>
+        </div>
+
+        <div class="alert alert-info">
+            <h4><span class="step-number">3</span> Use Trailing Stops</h4>
+            <p>As a position moves in your favor, move your stop-loss up to lock in profits and reduce risk.</p>
+        </div>
+
+        <div class="alert alert-warning">
+            <h4><span class="step-number">4</span> Monitor Margin Level Constantly</h4>
+            <p>Check your margin level multiple times per day on active positions. Set alerts at:</p>
+            <ul>
+                <li>150% (warning)</li>
+                <li>120% (urgent)</li>
+                <li>100% (critical)</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-success">
+            <h4><span class="step-number">5</span> Have a Margin Call Plan</h4>
+            <p>Decide IN ADVANCE what you'll do if you get a margin call:</p>
+            <ul>
+                <li>At what margin level will you add funds?</li>
+                <li>At what level will you close positions?</li>
+                <li>Which positions get closed first?</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-danger">
+            <h4><span class="step-number">6</span> Never Margin Trade Without Stop-Losses</h4>
+            <p>This deserves repeating. A stop-loss is your automatic exit strategy. Without it, you're gambling that you'll be available and rational enough to manually exit when your position goes against you. That's a terrible bet.</p>
+        </div>
+
+        <h2>Common Margin Trading Mistakes</h2>
+
+        <h3>Mistake 1: Using Maximum Leverage</h3>
+
+        <div class="alert alert-danger">
+            <p><strong>The trap:</strong> "I can use 50x leverage, so I will!"</p>
+            <p><strong>The reality:</strong> Higher leverage doesn't mean higher profits; it means you'll hit your profit target OR get liquidated faster. Most professional traders use 2-5x leverage.</p>
+            <p><strong>Fix:</strong> Use the minimum leverage necessary for your strategy.</p>
+        </div>
+
+        <h3>Mistake 2: Adding Margin to Losing Positions</h3>
+
+        <div class="alert alert-danger">
+            <p><strong>The trap:</strong> "If I just add more margin, I can avoid liquidation and the price will bounce back."</p>
+            <p><strong>The reality:</strong> This is "averaging down" with borrowed money—a recipe for multiplying losses.</p>
+            <p><strong>Fix:</strong> Cut losing positions, don't feed them. If your thesis was wrong, additional margin won't make it right.</p>
+        </div>
+
+        <h3>Mistake 3: Not Understanding Funding Rates</h3>
+
+        <div class="alert alert-warning">
+            <p><strong>The trap:</strong> Ignoring the cost of keeping leveraged positions open overnight.</p>
+            <p><strong>The reality:</strong> In crypto, funding rates can eat 0.01-0.1% of your position every 8 hours. That's 1-3% monthly just to hold the position.</p>
+            <p><strong>Fix:</strong> Factor funding costs into your profit calculations, especially for longer-term margin trades.</p>
+        </div>
+
+        <h3>Mistake 4: Overleveraging Your Account</h3>
+
+        <div class="alert alert-danger">
+            <p><strong>The trap:</strong> Opening multiple high-leverage positions simultaneously.</p>
+            <p><strong>The reality:</strong> Your total margin usage determines your account's vulnerability. Five 10x positions = 50x total exposure.</p>
+            <p><strong>Fix:</strong> Limit total margin usage to 30-50% of account equity, regardless of position count.</p>
+        </div>
+
+        <h3>Mistake 5: Ignoring Volatility</h3>
+
+        <div class="alert alert-warning">
+            <p><strong>The trap:</strong> Using same leverage in all market conditions.</p>
+            <p><strong>The reality:</strong> High volatility periods require lower leverage because price swings are larger.</p>
+            <p><strong>Fix:</strong> Reduce leverage by 50% during high-volatility events (news, earnings, Fed announcements).</p>
+        </div>
+
+        <h2>Margin Trading vs. Spot Trading: When to Use Each</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Factor</th>
+                    <th>Spot Trading</th>
+                    <th>Margin Trading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Capital requirement</strong></td>
+                    <td>Full position value</td>
+                    <td>Fraction of position value</td>
+                </tr>
+                <tr>
+                    <td><strong>Maximum loss</strong></td>
+                    <td>100% of invested capital</td>
+                    <td>Can exceed invested capital</td>
+                </tr>
+                <tr>
+                    <td><strong>Holding period</strong></td>
+                    <td>Unlimited</td>
+                    <td>Limited by funding costs</td>
+                </tr>
+                <tr>
+                    <td><strong>Profit potential</strong></td>
+                    <td>1:1 with price movement</td>
+                    <td>Multiplied by leverage</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexity</strong></td>
+                    <td>Simple</td>
+                    <td>Complex</td>
+                </tr>
+                <tr>
+                    <td><strong>Risk level</strong></td>
+                    <td>Moderate</td>
+                    <td>High to Very High</td>
+                </tr>
+                <tr>
+                    <td><strong>Best for</strong></td>
+                    <td>Long-term investors, beginners</td>
+                    <td>Active traders, experienced users</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>When to Use Spot Trading</h3>
+
+        <ul class="checklist">
+            <li>You're building a long-term position</li>
+            <li>You're uncertain about short-term direction</li>
+            <li>You want to "set and forget"</li>
+            <li>You're new to trading</li>
+            <li>You don't want liquidation risk</li>
+        </ul>
+
+        <h3>When to Use Margin Trading</h3>
+
+        <ul class="checklist">
+            <li>You have a high-conviction short-term trade</li>
+            <li>You have a proven strategy with backtested results</li>
+            <li>You can actively monitor positions</li>
+            <li>You understand and accept the liquidation risk</li>
+            <li>You have strict risk management discipline</li>
+        </ul>
+
+        <h2>Getting Started with Margin Trading</h2>
+
+        <div class="next-steps">
+            <h3>Step-by-Step Launch Plan</h3>
+
+            <div style="margin: 20px 0;">
+                <h4><span class="step-number">1</span> Paper Trade First</h4>
+                <p>Practice margin trading with a demo account for at least 1-2 months. Learn how margin calls and liquidation feel without real money at risk.</p>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h4><span class="step-number">2</span> Start with Low Leverage</h4>
+                <p>Your first margin trades should use 2-3x leverage maximum. Master risk management at low leverage before increasing.</p>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h4><span class="step-number">3</span> Size Small</h4>
+                <p>Risk no more than 0.5% of your capital on your first 20 margin trades. Yes, returns will be small—that's the point. You're learning.</p>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h4><span class="step-number">4</span> Keep a Trading Journal</h4>
+                <p>Document every margin trade:</p>
+                <ul>
+                    <li>Entry/exit prices</li>
+                    <li>Leverage used</li>
+                    <li>Position size</li>
+                    <li>Margin level throughout trade</li>
+                    <li>Reason for entry/exit</li>
+                    <li>What you learned</li>
+                </ul>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h4><span class="step-number">5</span> Review and Adjust</h4>
+                <p>After 20 trades, analyze your results. Did you:</p>
+                <ul>
+                    <li>Follow your risk management rules?</li>
+                    <li>Use appropriate leverage?</li>
+                    <li>Get liquidated? (If yes, why?)</li>
+                    <li>Make emotional decisions?</li>
+                </ul>
+                <p><strong>Adjust your approach based on data, not feelings.</strong></p>
+            </div>
+        </div>
+
+        <h2>Conclusion: Margin is a Tool, Not a Strategy</h2>
+
+        <p>Margin trading amplifies your results—both good and bad. It's a tool for experienced traders with proven strategies and strict risk management, not a shortcut to wealth.</p>
+
+        <div class="key-takeaway">
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li><strong>Margin is borrowing</strong> - You're trading with borrowed funds and must pay them back</li>
+                <li><strong>Leverage multiplies everything</strong> - Profits, losses, and mistakes</li>
+                <li><strong>Liquidation is real</strong> - Plan for it, or it will happen unexpectedly</li>
+                <li><strong>Risk management is mandatory</strong> - Stop-losses, position sizing, and margin monitoring aren't optional</li>
+                <li><strong>Start small</strong> - Master 2-3x leverage before even considering higher levels</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-success">
+            <h4>The Difference Between Success and Failure</h4>
+            <p>The difference between successful margin traders and those who blow up their accounts comes down to one thing: <strong>discipline</strong>. Understanding margin mechanics is necessary, but not sufficient. You must also have the discipline to use that knowledge correctly, every single time.</p>
+        </div>
+
+        <div class="related-content">
+            <h3>Related Guides</h3>
+            <ul>
+                <li><a href="#">Position Sizing Strategy: How to Calculate Risk Per Trade</a></li>
+                <li><a href="#">Understanding Leverage in Crypto Trading</a></li>
+                <li><a href="#">Stop-Loss Orders: Complete Guide</a></li>
+                <li><a href="#">Automated Strategy Risk Parameters</a></li>
+                <li><a href="#">Backtesting for Margin Trades</a></li>
+            </ul>
+        </div>
+
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> This guide is for educational purposes only and does not constitute financial advice. Margin trading involves substantial risk of loss and is not suitable for all investors. Never trade with money you cannot afford to lose. Always conduct your own research and consider consulting with a qualified financial advisor before making trading decisions.
+        </div>
+    </div>
+</body>
+</html>
