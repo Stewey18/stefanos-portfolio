@@ -130,38 +130,238 @@
             color: #667eea;
         }
         
-        /* NAVIGATION */
+        /* NAVIGATION - IMPROVED */
         nav {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
         
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
             display: flex;
-            gap: 30px;
-            overflow-x: auto;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
         }
         
-        .nav-container a {
-            color: #747888;
+        .nav-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #697299;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-logo:hover {
+            color: #8596f7;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            color: #4a5568;
             text-decoration: none;
             font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
             white-space: nowrap;
-            transition: color 0.3s;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            border-radius: 8px;
         }
         
-        .nav-container a:hover {
-            color: #8596f7;
+        .nav-link:hover {
+            color: #697299;
+            background: rgba(105, 114, 153, 0.08);
+        }
+        
+        .nav-link.featured {
+            background: linear-gradient(135deg, #697299 0%, #8596f7 100%);
+            color: white;
+            padding: 12px 24px;
+        }
+        
+        .nav-link.featured:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(105, 114, 153, 0.3);
+        }
+        
+        .nav-link.has-dropdown::after {
+            content: '▾';
+            font-size: 11px;
+            opacity: 0.6;
+            transition: transform 0.3s;
+        }
+        
+        .nav-item:hover .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+        
+        /* Mega Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 320px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-10px);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .dropdown-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a0aec0;
+            padding: 8px 16px 4px;
+            margin-bottom: 4px;
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-radius: 8px;
+            margin-bottom: 2px;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(105, 114, 153, 0.08);
+            color: #697299;
+            transform: translateX(4px);
+        }
+        
+        .dropdown-item .emoji {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .dropdown-item-content {
+            flex: 1;
+        }
+        
+        .dropdown-item-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .dropdown-item-desc {
+            font-size: 12px;
+            color: #718096;
+            line-height: 1.4;
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 12px 8px;
+        }
+        
+        .dropdown-count {
+            display: inline-block;
+            background: #697299;
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .mobile-toggle:hover {
+            background: rgba(105, 114, 153, 0.08);
+        }
+        
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: #697299;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Stats Badge */
+        .nav-stats {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 12px;
+            color: #718096;
+            padding: 0 10px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .stat-number {
+            font-weight: 700;
+            color: #697299;
         }
         
         /* CONTAINER */
@@ -458,6 +658,88 @@
         }
         
         /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                max-width: 400px;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+                overflow-y: auto;
+                transition: left 0.3s ease;
+                padding: 20px 0 40px;
+                align-items: stretch;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .nav-stats {
+                display: none;
+            }
+            
+            .nav-item {
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .nav-link {
+                padding: 16px 24px;
+                border-radius: 0;
+            }
+            
+            .nav-link.featured {
+                margin: 10px 16px;
+                border-radius: 8px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                background: #f8f9fa;
+                border-radius: 0;
+                margin: 0;
+                padding: 8px 0;
+                min-width: 100%;
+                border: none;
+                border-top: 1px solid #e2e8f0;
+            }
+            
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+            
+            .nav-link.has-dropdown::after {
+                margin-left: auto;
+            }
+            
+            .dropdown-header {
+                padding: 12px 40px 8px;
+            }
+            
+            .dropdown-item {
+                padding: 12px 40px;
+                margin-bottom: 0;
+            }
+            
+            .dropdown-item:hover {
+                transform: translateX(0);
+            }
+        }
+        
         @media (max-width: 768px) {
             h1 { font-size: 32px; }
             .subtitle { font-size: 18px; }
@@ -465,7 +747,14 @@
             .header-stats { gap: 20px; }
             .stat-number { font-size: 36px; }
             .category-header { flex-direction: column; align-items: flex-start; }
-            .nav-container { justify-content: flex-start; }
+            
+            .nav-logo {
+                font-size: 18px;
+            }
+            
+            .dropdown-item-desc {
+                display: none;
+            }
         }
         
         /* SMOOTH SCROLL */
@@ -487,20 +776,20 @@
             
             <div class="header-stats">
                 <div class="stat">
-                    <span class="stat-number">238+</span>
+                    <span class="stat-number">255+</span>
                     <span class="stat-label">Total Pieces</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">28</span>
+                    <span class="stat-number">33</span>
                     <span class="stat-label">Fintech Docs</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">27</span>
-                    <span class="stat-label">Casino Guides</span>
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Landing Pages</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">5</span>
-                    <span class="stat-label">API/ML Docs</span>
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Platform Guides</span>
                 </div>
             </div>
             
@@ -514,18 +803,141 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
-            <a href="#fintech">🏦 Fintech & API</a>
-            <a href="#conversion">Conversion</a>
-            <a href="#seo-affiliate">SEO & Affiliate</a>
-            <a href="#marketing">Marketing</a>
-            <a href="#improved">Improved Articles</a>
-            <a href="#technical">Technical Articles</a>
-            <a href="#apps">Interactive Apps</a>
-            <a href="#b2b">B2B & Authority</a>
-            <a href="#guides">Guides & Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#portfolio" class="nav-logo">
+                <span>📝</span>
+                <span>Stefanos A.</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <!-- Featured Portfolio -->
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link featured">
+                        ⭐ Portfolio
+                    </a>
+                </li>
+                
+                <!-- Fintech & Technical -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link has-dropdown">
+                        🏦 Fintech & API
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Technical Documentation</div>
+                        <a href="#fintech" class="dropdown-item">
+                            <span class="emoji">📚</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">API Documentation <span class="dropdown-count">33</span></div>
+                                <div class="dropdown-item-desc">Monzo API guides, ML models, compliance</div>
+                            </div>
+                        </a>
+                        <a href="#landing-pages" class="dropdown-item">
+                            <span class="emoji">🎨</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Landing Pages <span class="dropdown-count">9</span></div>
+                                <div class="dropdown-item-desc">Innovative UX designs & conversion copy</div>
+                            </div>
+                        </a>
+                        <a href="#trading-docs" class="dropdown-item">
+                            <span class="emoji">📊</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Trading Platform Docs <span class="dropdown-count">8</span></div>
+                                <div class="dropdown-item-desc">Guides, glossary, help snippets, release notes</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                
+                <!-- Design & Conversion -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link has-dropdown">
+                        🎯 Conversion & UX
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Design & Optimization</div>
+                        <a href="#conversion" class="dropdown-item">
+                            <span class="emoji">📈</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">A/B Testing <span class="dropdown-count">55</span></div>
+                                <div class="dropdown-item-desc">Conversion optimization variants</div>
+                            </div>
+                        </a>
+                        <a href="#apps" class="dropdown-item">
+                            <span class="emoji">💻</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Interactive Apps <span class="dropdown-count">5</span></div>
+                                <div class="dropdown-item-desc">React applications & calculators</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                
+                <!-- Content Writing -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link has-dropdown">
+                        ✍️ Content
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Marketing & SEO</div>
+                        <a href="#seo-affiliate" class="dropdown-item">
+                            <span class="emoji">🔍</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">SEO & Affiliate</div>
+                                <div class="dropdown-item-desc">Revenue-focused content</div>
+                            </div>
+                        </a>
+                        <a href="#marketing" class="dropdown-item">
+                            <span class="emoji">📣</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Marketing Content</div>
+                                <div class="dropdown-item-desc">Emails, ads, social media</div>
+                            </div>
+                        </a>
+                        <a href="#b2b" class="dropdown-item">
+                            <span class="emoji">💼</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">B2B & Authority</div>
+                                <div class="dropdown-item-desc">Thought leadership, case studies</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#technical" class="dropdown-item">
+                            <span class="emoji">📖</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Technical Articles</div>
+                                <div class="dropdown-item-desc">In-depth guides & analysis</div>
+                            </div>
+                        </a>
+                        <a href="#guides" class="dropdown-item">
+                            <span class="emoji">🎓</span>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">How-To Guides</div>
+                                <div class="dropdown-item-desc">Educational tutorials</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                
+                <!-- Contact -->
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">
+                        📧 Contact
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Stats (Desktop Only) -->
+            <div class="nav-stats">
+                <div class="stat-item">
+                    <span class="stat-number">255+</span>
+                    <span>pieces</span>
+                </div>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
     
@@ -536,7 +948,7 @@
         <section id="portfolio">
             <h2>Portfolio Overview</h2>
             <p class="section-intro">
-                A comprehensive collection of 238+ professional content pieces demonstrating expertise across fintech API documentation, technical writing, conversion optimization, SEO, and B2B communications. <strong>NEW: 28 fintech documentation pieces (45,000+ words)</strong> including 5 enhanced API/ML technical guides for Monzo (webhook security, Python SDK, error handling, credit scoring ML model, KYC/AML compliance), 10 UK digital banking articles (Monzo, Starling Bank), 10 trading platform guides (3Commas, Binance, OKX, Bybit, Kraken, QuantConnect, TradingView), plus original fintech content portfolio (43,500 words), risk management analysis (10,500 words), and 9 interactive visualizations. Also includes 27 casino technical articles (60,000+ words), 5 React applications, 55 A/B testing variants, and extensive B2B/marketing content. Each piece showcases strategic thinking, data-driven decision-making, technical documentation expertise, and production-grade code examples.
+                A comprehensive collection of 255+ professional content pieces demonstrating expertise across fintech API documentation, landing page design, technical writing, conversion optimization, SEO, and B2B communications. <strong>NEW: 33 fintech documentation pieces + 9 innovative landing pages + 8 trading platform guides</strong> including enhanced API/ML technical guides for Monzo (webhook security, Python SDK, error handling, credit scoring ML model, fraud detection, AI bias, KYC/AML compliance, system architecture, payment integration, rate limiting, MFA, real-time monitoring), 10 UK digital banking articles (Monzo, Starling Bank), 10 trading platform guides (3Commas, Binance, OKX, Bybit, Kraken, QuantConnect, TradingView), 9 feature landing pages (traditional, glassmorphism, bento grid, horizontal scroll, split-screen, magazine-style), 8 trading platform docs (getting started, backtesting, glossary, help snippets, release notes, troubleshooting), plus original fintech content portfolio, risk management analysis, and 9 interactive visualizations. Also includes 27 casino technical articles (60,000+ words), 5 React applications, 55 A/B testing variants, and extensive B2B/marketing content. Each piece showcases strategic thinking, data-driven decision-making, technical documentation expertise, UX design innovation, and production-grade implementation.
             </p>
         </section>
         
@@ -544,15 +956,15 @@
         <section id="fintech">
             <h2>Fintech & API Technical Documentation</h2>
             <p class="section-intro">
-                Comprehensive technical documentation for fintech platforms, including API references, SDK integration guides, ML model documentation, and regulatory compliance. 28 professional documents totaling 45,000+ words demonstrating expertise in API documentation, AI/ML systems, and financial services compliance.
+                Comprehensive technical documentation for fintech platforms, including API references, SDK integration guides, ML model documentation, regulatory compliance, system architecture, and real-time systems. 33 professional documents (12 enhanced Monzo API docs, 10 UK banking articles, 10 trading platform guides, 1 original portfolio) totaling 50,000+ words demonstrating expertise in API documentation, AI/ML systems, financial services compliance, and fintech content creation.
             </p>
             
             <div class="category">
                 <div class="category-header">
                     <h3 class="category-title">Enhanced API Documentation (Monzo)</h3>
-                    <span class="category-count">5 Technical Guides</span>
+                    <span class="category-count">12 Technical Guides</span>
                 </div>
-                <p class="category-description">Production-grade technical documentation filling critical gaps in Monzo's API documentation. Includes security implementation, SDK development, error handling, ML model specifications, and regulatory compliance.</p>
+                <p class="category-description">Production-grade technical documentation filling critical gaps in Monzo's API documentation. Includes security, SDKs, error handling, ML models (credit scoring, fraud detection, AI bias), regulatory compliance (KYC/AML), system architecture, payment integration, rate limiting, MFA, and real-time monitoring.</p>
                 
                 <div class="work-items">
                     <div class="work-item">
@@ -612,6 +1024,90 @@
                         </div>
                         <p class="work-item-description">
                             Production implementation of UK Money Laundering Regulations 2017 requirements: KYC verification workflow (document + biometric + address), PEP/sanctions screening APIs, transaction monitoring rules engine (8 detection patterns), SAR submission process, and Enhanced Due Diligence patterns. Addresses Monzo's £21M FCA fine for AML control weaknesses.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">Fraud Detection ML Model Documentation</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">AI/ML Documentation</span>
+                            <span class="meta-badge">Ensemble Model</span>
+                            <span class="meta-badge">Real-Time</span>
+                        </div>
+                        <p class="work-item-description">
+                            Ensemble fraud detection system (Random Forest + XGBoost + Neural Network) processing 10M+ transactions daily. Documents 187 engineered features, 3-stage pipeline (5ms + 15ms + 30ms), 87% fraud catch rate, 1.3% false positive rate, real-time scoring API, and SHAP explainability.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">AI Bias Detection & Fairness Framework</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">AI Ethics</span>
+                            <span class="meta-badge">EU AI Act</span>
+                            <span class="meta-badge">Compliance</span>
+                        </div>
+                        <p class="work-item-description">
+                            EU AI Act compliance framework for high-risk fintech ML systems. Documents 4 fairness metrics (demographic parity, equalized odds, calibration, individual fairness), bias mitigation strategies, model cards, ongoing monitoring dashboards, and regulatory reporting requirements.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">System Architecture & Infrastructure</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">Architecture</span>
+                            <span class="meta-badge">Microservices</span>
+                            <span class="meta-badge">Scale</span>
+                        </div>
+                        <p class="work-item-description">
+                            Complete system architecture documentation: 2,800 microservices, 19 PB data warehouse, Kubernetes orchestration, Cassandra + BigQuery storage, event-driven architecture (Kafka 3B+ events/day), zero-trust security (mTLS, Istio), and multi-region deployment across 3 AWS availability zones.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">Payment Gateway Integration Tutorial</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">Integration Guide</span>
+                            <span class="meta-badge">OAuth 2.0</span>
+                            <span class="meta-badge">Webhooks</span>
+                        </div>
+                        <p class="work-item-description">
+                            5-step payment integration tutorial: OAuth setup, payment creation API, webhook configuration for transaction updates, error handling patterns, and testing in sandbox. Includes Node.js code examples and common troubleshooting scenarios.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">API Rate Limiting & Performance Optimization</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">Performance</span>
+                            <span class="meta-badge">Rate Limiting</span>
+                            <span class="meta-badge">Optimization</span>
+                        </div>
+                        <p class="work-item-description">
+                            Rate limit specifications (1,000-2,000 req/hour queries, 100 req/hour payments), HTTP 429 handling, client-side token bucket implementation, Redis caching (60s TTL), batch requests, webhook alternatives to polling (saves 2,880 API calls/day), and monitoring with 80% threshold warnings.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">Multi-Factor Authentication Implementation</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">Security</span>
+                            <span class="meta-badge">PSD2 SCA</span>
+                            <span class="meta-badge">MFA</span>
+                        </div>
+                        <p class="work-item-description">
+                            PSD2 Strong Customer Authentication compliance: TOTP (6-digit, 30s rotation), SMS OTP (5min expiry), push notifications (2min expiry), biometrics (Face ID, Touch ID), hardware tokens. Includes Python/Swift implementations, risk-based authentication (0-100 score), and AES-256 encryption.
+                        </p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-item-title">Real-Time Transaction Monitoring & Alerts</div>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">Real-Time Systems</span>
+                            <span class="meta-badge">Kafka + Flink</span>
+                            <span class="meta-badge">Monitoring</span>
+                        </div>
+                        <p class="work-item-description">
+                            Multi-stage real-time monitoring pipeline: Kafka (10M+ tx/day), Apache Flink stream processing, TensorFlow Serving ML inference, 80ms P50 latency. Documents 8 alert types, custom rules, fraud detection API, automatic actions (block/freeze), and spending analytics with 99.87% delivery success rate.
                         </p>
                     </div>
                 </div>
@@ -712,6 +1208,337 @@
                         <p class="work-item-description">
                             Interactive data visualization components for fintech concepts including portfolio optimization charts, risk-return matrices, Kelly Criterion calculators, and position sizing simulators.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- LANDING PAGES -->
+        <section id="landing-pages">
+            <h2>Feature Landing Pages</h2>
+            <p class="section-intro">
+                9 innovative landing pages demonstrating conversion copywriting and cutting-edge UX design. Includes traditional layouts, modern glassmorphism designs, and revolutionary interaction patterns (horizontal scrolling, split-screen, magazine-style). Each showcases fintech product features with benefit-driven copy, performance metrics, and multiple CTA strategies.
+            </p>
+            
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">Traditional Professional Layouts</h3>
+                    <span class="category-count">3 Pages</span>
+                </div>
+                <p class="category-description">Classic professional landing page designs with strong conversion focus, clear value propositions, and proven layout patterns.</p>
+                
+                <div class="work-items">
+                    <div class="work-item">
+                        <h4 class="work-item-title">AI-Powered Fraud Detection</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Conversion Copy</span>
+                            <span class="meta-badge">Purple Gradient</span>
+                        </div>
+                        <p class="work-item-description">
+                            Professional landing page for ML fraud detection: 87% detection rate, &lt;50ms latency. Features 3-stage pipeline visualization, performance metrics, testimonials, and technical integration details. Purple gradient design with feature cards and comparison tables.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-ai-fraud-detection.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Real-Time Payment Processing</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Performance</span>
+                            <span class="meta-badge">Teal Gradient</span>
+                        </div>
+                        <p class="work-item-description">
+                            Payment infrastructure landing page: 80ms P50 latency, 99.99% uptime, 3K+ TPS. Features pipeline breakdown, comparison table vs legacy processors, code examples, and use cases for e-commerce, subscriptions, and marketplaces.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-real-time-payment-processing.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Open Banking Integration</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">API Documentation</span>
+                            <span class="meta-badge">Green Gradient</span>
+                        </div>
+                        <p class="work-item-description">
+                            Open Banking platform page: 10K+ banks, 150+ countries, 99.8% success rate. Features bank logos grid, 4-step flow, PSD2 compliance badges, use cases (lending, personal finance, KYC), and security details.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-open-banking-integration.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">Cutting-Edge Modern Designs</h3>
+                    <span class="category-count">3 Pages</span>
+                </div>
+                <p class="category-description">Innovative design patterns using neo-brutalism, glassmorphism, and Apple-inspired bento grid layouts.</p>
+                
+                <div class="work-items">
+                    <div class="work-item">
+                        <h4 class="work-item-title">Neo-Brutalist Terminal (Fraud Detection)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Terminal UI</span>
+                            <span class="meta-badge">Matrix Green</span>
+                        </div>
+                        <p class="work-item-description">
+                            Hacker/terminal aesthetic with Matrix-style green-on-black, scanline effects, glitch animations, ASCII art, and command-line interface design. Features system status indicators, code execution blocks, and cyberpunk styling.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-fraud-neo-brutalist.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Glassmorphism Floating Cards (Payments)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Glassmorphism</span>
+                            <span class="meta-badge">Animated</span>
+                        </div>
+                        <p class="work-item-description">
+                            Modern glassmorphic design with frosted glass cards, animated gradient background, floating orbs, backdrop blur effects. Features floating stats with animations, pipeline stages, and premium feel with transparent overlays.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-payment-glassmorphism.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Bento Grid Apple-Style (Open Banking)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Bento Grid</span>
+                            <span class="meta-badge">Minimalist</span>
+                        </div>
+                        <p class="work-item-description">
+                            Apple-inspired modular card layout with asymmetric bento grid, large feature cards, icon cards, bank logos grid, 4-step process flow, compliance badges, and clean minimalist typography. SF Pro Display aesthetic.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-openbanking-bento-grid.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">Revolutionary UX Patterns</h3>
+                    <span class="category-count">3 Pages</span>
+                </div>
+                <p class="category-description">Experimental interaction patterns rarely seen in production: horizontal scrolling, split-screen live preview, and magazine-style vertical storytelling.</p>
+                
+                <div class="work-items">
+                    <div class="work-item">
+                        <h4 class="work-item-title">Horizontal Scroll Cinematic (Fraud)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Horizontal Scroll</span>
+                            <span class="meta-badge">Interactive</span>
+                        </div>
+                        <p class="work-item-description">
+                            Full-screen horizontal scrolling experience (Apple MacBook Pro style). 5 sections scroll sideways with mousewheel, arrow keys, or touch. Features navigation dots, floating particles, and cinematic transitions. Storytelling approach.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-fraud-horizontal-scroll.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Split-Screen Live Code Preview (Payments)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Split Screen</span>
+                            <span class="meta-badge">Developer</span>
+                        </div>
+                        <p class="work-item-description">
+                            50/50 split-screen layout: code on left, live output on right. IDE aesthetic with syntax highlighting, copy buttons, real-time metrics dashboard, API response simulation, and processing pipeline status. Developer-first design.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-payment-split-screen.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Magazine Editorial Scroll (Open Banking)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">HTML</span>
+                            <span class="meta-badge">Scroll Animations</span>
+                            <span class="meta-badge">Editorial</span>
+                        </div>
+                        <p class="work-item-description">
+                            Wired/Bloomberg editorial style with scroll-triggered animations, massive typography (96px+ headlines), asymmetric grids, masonry layout, vertical timeline, full-screen image sections. Magazine-quality storytelling design.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="landing-page-openbanking-magazine-scroll.html" target="_blank" class="view-link">View Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TRADING PLATFORM DOCUMENTATION -->
+        <section id="trading-docs">
+            <h2>Trading Platform Technical Documentation</h2>
+            <p class="section-intro">
+                8 comprehensive trading platform guides demonstrating ability to create structured learning paths, explain complex automation concepts, document platform features, and write clear release notes. Covers strategy building, backtesting, risk management, troubleshooting, in-app help, and glossary—exactly the content needed for AI-driven trading platforms.
+            </p>
+            
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">User Onboarding & Tutorials</h3>
+                    <span class="category-count">2 Guides</span>
+                </div>
+                <p class="category-description">Step-by-step tutorials that take users from zero to deployed strategy with comprehensive explanations and checkpoints.</p>
+                
+                <div class="work-items">
+                    <div class="work-item">
+                        <h4 class="work-item-title">Getting Started: Your First Automated Strategy</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">30-45 min</span>
+                            <span class="meta-badge">Beginner</span>
+                        </div>
+                        <p class="work-item-description">
+                            Complete beginner guide covering account setup, risk configuration, strategy selection, parameter configuration, backtesting, paper trading deployment, and monitoring. Includes checklists, troubleshooting, and 2-week validation process before live trading.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="getting_started_guide.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Backtesting Engine: Testing Before Going Live</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">8 min read</span>
+                            <span class="meta-badge">Intermediate</span>
+                        </div>
+                        <p class="work-item-description">
+                            Technical guide to backtesting: configuration parameters, understanding performance metrics (Sharpe ratio, profit factor, drawdown), avoiding overfitting, walk-forward analysis, and interpreting results. Includes examples of good vs concerning backtest results.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="backtesting_engine_guide.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">Reference Documentation</h3>
+                    <span class="category-count">3 Guides</span>
+                </div>
+                <p class="category-description">Quick reference materials for active users: glossary, help snippets, and troubleshooting guide.</p>
+                
+                <div class="work-items">
+                    <div class="work-item">
+                        <h4 class="work-item-title">Trading Platform Glossary (40 Terms)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">A-Z Reference</span>
+                            <span class="meta-badge">Quick Lookup</span>
+                        </div>
+                        <p class="work-item-description">
+                            Complete A-Z glossary of trading terms: API, backtest, leverage, margin, RSI, Sharpe ratio, slippage, stop-loss, etc. Each term includes definition, usage context, examples, and related concepts. Essential reference for platform users.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="trading_platform_glossary.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">In-App Help Snippets (20+ Tooltips)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">Microcopy</span>
+                            <span class="meta-badge">50-150 words</span>
+                        </div>
+                        <p class="work-item-description">
+                            Contextual help text for tooltips and info icons: stop-loss, take-profit, leverage, position sizing, backtesting, paper trading, win rate, Sharpe ratio, etc. Clear, friendly, actionable explanations with examples and recommendations.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="inapp_help_snippets.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Troubleshooting Guide</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">Problem-Solving</span>
+                            <span class="meta-badge">Support</span>
+                        </div>
+                        <p class="work-item-description">
+                            Common issues and solutions for trading platform users: no signals generated, backtest vs live performance discrepancies, API connection errors, strategy auto-pause, unexpected losses. Clear diagnostic steps and actionable fixes.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="troubleshooting_guide.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">Product Updates & Meta Documentation</h3>
+                    <span class="category-count">3 Documents</span>
+                </div>
+                <p class="category-description">Release notes, portfolio summaries, and industry article analysis demonstrating documentation best practices.</p>
+                
+                <div class="work-items">
+                    <div class="work-item">
+                        <h4 class="work-item-title">Release Notes Examples (5 Releases)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">Product Updates</span>
+                            <span class="meta-badge">Best Practices</span>
+                        </div>
+                        <p class="work-item-description">
+                            Multiple release note examples (major, minor, bugfix, mobile, performance) following best practices: user-focused language, benefit-driven, specific metrics, clear structure. Includes internal guide on format and what to include/exclude.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="release_notes_examples.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Master Portfolio Summary</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">Overview</span>
+                            <span class="meta-badge">Meta</span>
+                        </div>
+                        <p class="work-item-description">
+                            Comprehensive overview of trading platform documentation portfolio: content types covered, skills demonstrated, user journey mapping, and how each piece aligns with technical writer job requirements.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="master_portfolio_summary.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <h4 class="work-item-title">Trading Platform Articles Analysis (10 Articles)</h4>
+                        <div class="work-item-meta">
+                            <span class="meta-badge">PDF</span>
+                            <span class="meta-badge">Industry Research</span>
+                            <span class="meta-badge">7 Platforms</span>
+                        </div>
+                        <p class="work-item-description">
+                            Analysis of 10 professional articles from 3Commas, Binance, OKX, Bybit, Kraken, QuantConnect, TradingView. Demonstrates understanding of bot strategies, risk management, platform features, and technical documentation best practices in the industry.
+                        </p>
+                        <div class="work-item-actions">
+                            <a href="trading_platform_articles_summary.pdf" target="_blank" class="view-link">Download PDF →</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2468,6 +3295,84 @@
             <p>&copy; 2024 Stefanos Anastasiadis. All rights reserved.</p>
         </div>
     </footer>
+    
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Mobile dropdown toggle
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link.has-dropdown');
+            
+            if (link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 1024) {
+                        e.preventDefault();
+                        
+                        // Close other dropdowns
+                        navItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        item.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    navItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                    });
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1024) {
+                if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
     
 </body>
 </html>
