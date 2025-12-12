@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stop fraud before it happens. AI-powered fraud detection catches 87% of fraudulent transactions in under 50ms with industry-leading accuracy.">
+    <title>AI-Powered Fraud Detection | Monzo Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .hero .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        /* Section */
+        section {
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            text-align: center;
+            color: #718096;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: #f7fafc;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #2d3748;
+        }
+        
+        .step p {
+            color: #718096;
+            line-height: 1.7;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature {
+            padding: 30px;
+            border-left: 4px solid #667eea;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #2d3748;
+        }
+        
+        .feature p {
+            color: #718096;
+            line-height: 1.7;
+        }
+        
+        /* Metrics */
+        .metrics {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 60px 40px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .metric h4 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .metric p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Social Proof */
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-text {
+            font-size: 20px;
+            font-style: italic;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .author-info h4 {
+            font-size: 16px;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 12px;
+        }
+        
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero .subtitle { font-size: 18px; }
+            .section-title { font-size: 32px; }
+            .stat-number { font-size: 36px; }
+            .hero .stats-row { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Stop Fraud Before It Happens</h1>
+            <p class="subtitle">AI-powered fraud detection that catches 87% of fraudulent transactions in under 50ms—without blocking legitimate customers</p>
+            
+            <div class="stats-row">
+                <div class="stat">
+                    <span class="stat-number">87%</span>
+                    <span class="stat-label">Fraud Detection Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">&lt;50ms</span>
+                    <span class="stat-label">Decision Latency</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1.3%</span>
+                    <span class="stat-label">False Positive Rate</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#demo" class="btn btn-primary">See Live Demo</a>
+                <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Our AI Fraud Detection Works</h2>
+            <p class="section-subtitle">Every transaction flows through our three-stage machine learning pipeline in milliseconds</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Fast Rules Engine</h3>
+                    <p>Instant checks catch obvious fraud patterns: blocked merchants, geographic impossibility, and spending limit violations in just 5ms.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>ML Risk Scoring</h3>
+                    <p>Random Forest model analyzes 187 features including velocity patterns, merchant familiarity, and behavioral signals to generate risk score 0-1.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Ensemble Decision</h3>
+                    <p>XGBoost + Neural Network validate suspicious transactions, providing final decision with 87% fraud catch rate and 99.2% legitimate approval rate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features -->
+    <section class="container">
+        <h2 class="section-title">Built for Modern Payment Platforms</h2>
+        <p class="section-subtitle">Enterprise-grade fraud detection that scales with your business</p>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <h3>Real-Time ML Models</h3>
+                <p>Three-model ensemble (Random Forest + XGBoost + Neural Network) trained on 4.2 billion transactions provides industry-leading accuracy.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Sub-50ms Latency</h3>
+                <p>Lightning-fast inference doesn't slow down checkout. P99 latency under 50ms means customers never notice the protection.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>99.2% Legitimate Approval</h3>
+                <p>Advanced models minimize false positives. Your good customers complete transactions without friction while fraudsters get blocked.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🔄</div>
+                <h3>Continuous Learning</h3>
+                <p>Models retrain weekly on latest fraud patterns. Your protection automatically improves as new attack vectors emerge.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Explainable AI</h3>
+                <p>Every decision includes contributing factors via SHAP analysis. Understand why transactions were flagged for dispute resolution.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Coverage</h3>
+                <p>Trained on international transaction data across 150+ countries. Detects cross-border fraud patterns other systems miss.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Performance Metrics -->
+    <section class="container">
+        <div class="metrics">
+            <h2 class="section-title" style="color: white; margin-bottom: 50px;">Proven Performance at Scale</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric">
+                    <h4>10M+</h4>
+                    <p>Transactions Analyzed Daily</p>
+                </div>
+                <div class="metric">
+                    <h4>£2.8B</h4>
+                    <p>Fraud Prevented Annually</p>
+                </div>
+                <div class="metric">
+                    <h4>99.97%</h4>
+                    <p>System Uptime SLA</p>
+                </div>
+                <div class="metric">
+                    <h4>4.2B</h4>
+                    <p>Training Transactions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Proof -->
+    <section class="container">
+        <h2 class="section-title">Trusted by Leading Platforms</h2>
+        <p class="section-subtitle">See how fraud detection protects revenue and builds customer trust</p>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"After implementing Monzo's fraud detection, our chargeback rate dropped 73% while approval rates actually increased. The ML models catch sophisticated fraud patterns our old rules-based system completely missed."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">SJ</div>
+                <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>CTO, PaymentFlow</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"The sub-50ms latency is game-changing. We process 2 million transactions daily and fraud detection adds zero noticeable delay. Plus the explainable AI helps our support team resolve disputes 3x faster."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">MR</div>
+                <div class="author-info">
+                    <h4>Marcus Rodriguez</h4>
+                    <p>Head of Risk, ShopExpress</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Technical Details -->
+    <section class="container">
+        <h2 class="section-title">Production-Ready Integration</h2>
+        <p class="section-subtitle">Deploy fraud detection in minutes with our RESTful API</p>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <h3>Simple REST API</h3>
+                <p>Single endpoint returns fraud score, risk level, and contributing factors. Integrate with any tech stack in under 100 lines of code.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Real-Time Webhooks</h3>
+                <p>Receive instant notifications when high-risk transactions are detected. Configure automatic blocking rules or manual review workflows.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Custom Rule Engine</h3>
+                <p>Layer your business rules on top of ML models. Set velocity limits, geographic restrictions, and amount thresholds per customer segment.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section">
+            <h2>Stop Losing Revenue to Fraud</h2>
+            <p>Join 500+ platforms protecting billions in transaction volume</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Start Free Trial</a>
+                <a href="#" class="btn btn-secondary">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Monzo Platform. All rights reserved. | PCI-DSS Level 1 Certified</p>
+            <p style="margin-top: 10px; font-size: 14px;">For portfolio demonstration purposes</p>
+        </div>
+    </footer>
+</body>
+</html>

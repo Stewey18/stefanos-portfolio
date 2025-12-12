@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection - Cinematic Experience | Monzo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        
+        /* Horizontal Scroll Container */
+        .horizontal-scroll-wrapper {
+            display: flex;
+            height: 100vh;
+            width: 500vw;
+            transition: transform 0.3s ease-out;
+        }
+        
+        .scroll-section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        /* Section 1: Hero */
+        .hero-section {
+            background: radial-gradient(circle at 30% 50%, #667eea 0%, #764ba2 50%, #000 100%);
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 120px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 1;
+            letter-spacing: -4px;
+            background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-section .tagline {
+            font-size: 36px;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+        
+        .scroll-indicator::after {
+            content: '→';
+            display: block;
+            font-size: 30px;
+            margin-top: 10px;
+            animation: scrollHint 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+        
+        /* Section 2: Stats */
+        .stats-section {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 900px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            transition: all 0.5s ease;
+        }
+        
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.1);
+        }
+        
+        .stat-number {
+            font-size: 96px;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 24px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Section 3: Pipeline */
+        .pipeline-section {
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .pipeline-visual {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .pipeline-stage {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            min-width: 280px;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .pipeline-stage:hover {
+            transform: translateY(-30px);
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+        }
+        
+        .stage-number {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .stage-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .stage-latency {
+            font-size: 56px;
+            font-weight: 900;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        
+        .stage-description {
+            font-size: 16px;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        .arrow {
+            font-size: 40px;
+            color: #667eea;
+        }
+        
+        /* Section 4: Features */
+        .features-section {
+            background: radial-gradient(circle at 70% 50%, #764ba2 0%, #667eea 50%, #000 100%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            transition: all 0.5s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: 25px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+        
+        /* Section 5: CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .cta-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .cta-section h2 {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+        
+        .cta-section p {
+            font-size: 28px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 25px 60px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #fff;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid #fff;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.5);
+        }
+        
+        .nav-dot:hover {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+        
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float-particle 10s ease-in-out infinite;
+        }
+        
+        @keyframes float-particle {
+            0%, 100% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(100px, -500px); opacity: 0; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 60px; }
+            .hero-section .tagline { font-size: 24px; }
+            .stats-container { grid-template-columns: 1fr; gap: 30px; }
+            .stat-number { font-size: 60px; }
+            .pipeline-visual { flex-direction: column; }
+            .features-grid { grid-template-columns: 1fr; }
+            .cta-section h2 { font-size: 50px; }
+            .nav-dots { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-section="0"></div>
+        <div class="nav-dot" data-section="1"></div>
+        <div class="nav-dot" data-section="2"></div>
+        <div class="nav-dot" data-section="3"></div>
+        <div class="nav-dot" data-section="4"></div>
+    </div>
+    
+    <!-- Horizontal Scroll Container -->
+    <div class="horizontal-scroll-wrapper">
+        <!-- Section 1: Hero -->
+        <section class="scroll-section hero-section">
+            <div class="hero-content">
+                <h1>FRAUD<br>DETECTION</h1>
+                <p class="tagline">Stop fraud in real-time with AI</p>
+                <div class="scroll-indicator">Scroll to explore</div>
+            </div>
+            
+            <!-- Particles -->
+            <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 30%; top: 60%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 60%; top: 30%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 80%; top: 70%; animation-delay: 6s;"></div>
+        </section>
+        
+        <!-- Section 2: Stats -->
+        <section class="scroll-section stats-section">
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-number">87%</span>
+                    <span class="stat-label">Detection Rate</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">&lt;50ms</span>
+                    <span class="stat-label">Latency</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">1.3%</span>
+                    <span class="stat-label">False Positive</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">10M+</span>
+                    <span class="stat-label">Daily Transactions</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Pipeline -->
+        <section class="scroll-section pipeline-section">
+            <div class="pipeline-visual">
+                <div class="pipeline-stage">
+                    <div class="stage-number">Stage 1</div>
+                    <div class="stage-title">Fast Rules</div>
+                    <div class="stage-latency">5ms</div>
+                    <p class="stage-description">Instant checks for obvious fraud patterns</p>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="pipeline-stage">
+                    <div class="stage-number">Stage 2</div>
+                    <div class="stage-title">ML Scoring</div>
+                    <div class="stage-latency">15ms</div>
+                    <p class="stage-description">Random Forest analyzes 187 features</p>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="pipeline-stage">
+                    <div class="stage-number">Stage 3</div>
+                    <div class="stage-title">Ensemble</div>
+                    <div class="stage-latency">30ms</div>
+                    <p class="stage-description">XGBoost + NN final validation</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: Features -->
+        <section class="scroll-section features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3 class="feature-title">Real-Time ML</h3>
+                    <p class="feature-description">Three-model ensemble trained on 4.2B transactions</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Sub-50ms</h3>
+                    <p class="feature-description">Lightning-fast inference with P99 under 50ms</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">99.2% Approval</h3>
+                    <p class="feature-description">Minimize false positives, maximize revenue</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Explainable AI</h3>
+                    <p class="feature-description">SHAP analysis for every decision</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: CTA -->
+        <section class="scroll-section cta-section">
+            <div class="cta-content">
+                <h2>Ready to Stop Fraud?</h2>
+                <p>Join 500+ platforms protecting billions in transaction volume</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    <a href="#" class="btn btn-secondary">Schedule Demo</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Horizontal scroll with mousewheel
+        let currentSection = 0;
+        const sections = document.querySelectorAll('.scroll-section');
+        const wrapper = document.querySelector('.horizontal-scroll-wrapper');
+        const dots = document.querySelectorAll('.nav-dot');
+        
+        function updateScroll() {
+            wrapper.style.transform = `translateX(-${currentSection * 100}vw)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSection);
+            });
+        }
+        
+        window.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0 && currentSection < sections.length - 1) {
+                currentSection++;
+                updateScroll();
+            } else if (e.deltaY < 0 && currentSection > 0) {
+                currentSection--;
+                updateScroll();
+            }
+        });
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSection = index;
+                updateScroll();
+            });
+        });
+        
+        // Arrow keys
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSection < sections.length - 1) {
+                currentSection++;
+                updateScroll();
+            } else if (e.key === 'ArrowLeft' && currentSection > 0) {
+                currentSection--;
+                updateScroll();
+            }
+        });
+        
+        // Touch support
+        let touchStartX = 0;
+        wrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        wrapper.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            
+            if (diff > 50 && currentSection < sections.length - 1) {
+                currentSection++;
+                updateScroll();
+            } else if (diff < -50 && currentSection > 0) {
+                currentSection--;
+                updateScroll();
+            }
+        });
+    </script>
+    
+    <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 12px; opacity: 0.5; z-index: 1000;">
+        For portfolio demonstration | Use mouse wheel or arrow keys to navigate
+    </div>
+</body>
+</html>

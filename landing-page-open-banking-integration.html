@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect to 10,000+ banks with a single API. Instant bank verification, real-time balance checks, and transaction data—all PSD2 compliant.">
+    <title>Open Banking Integration | Monzo Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .hero .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #10b981;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        /* Section */
+        section {
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            text-align: center;
+            color: #718096;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Bank Grid */
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .bank-logo {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #2d3748;
+            transition: transform 0.3s ease;
+        }
+        
+        .bank-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature {
+            padding: 30px;
+            border-left: 4px solid #10b981;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #2d3748;
+        }
+        
+        .feature p {
+            color: #718096;
+            line-height: 1.7;
+        }
+        
+        /* Use Case Cards */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .use-case {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .use-case h3 {
+            font-size: 24px;
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+        
+        .use-case p {
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .use-case ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .use-case li {
+            padding: 8px 0;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .use-case li::before {
+            content: '✓ ';
+            color: #10b981;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        /* Flow Diagram */
+        .flow-diagram {
+            background: #f7fafc;
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .flow-step {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #10b981;
+            font-weight: 700;
+        }
+        
+        .flow-step:last-child::after {
+            content: '';
+        }
+        
+        .flow-step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            line-height: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .flow-step h4 {
+            font-size: 16px;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .flow-step p {
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+        
+        .code-block .comment {
+            color: #68d391;
+        }
+        
+        .code-block .string {
+            color: #9ae6b4;
+        }
+        
+        /* Compliance Badges */
+        .compliance-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .compliance-badge {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .compliance-badge-icon {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 36px;
+        }
+        
+        .compliance-badge h4 {
+            font-size: 16px;
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .benefit {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .benefit h4 {
+            font-size: 20px;
+            color: #10b981;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .benefit p {
+            color: #718096;
+            line-height: 1.7;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 12px;
+        }
+        
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero .subtitle { font-size: 18px; }
+            .section-title { font-size: 32px; }
+            .stat-number { font-size: 36px; }
+            .hero .stats-row { gap: 30px; }
+            .flow-steps { flex-direction: column; }
+            .flow-step::after { 
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -30px;
+            }
+            .flow-step:last-child::after { content: ''; }
+            .benefits-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>One API. 10,000+ Banks.</h1>
+            <p class="subtitle">Connect to any bank account in seconds with our PSD2-compliant Open Banking platform. Real-time balance checks, transaction history, and instant verification.</p>
+            
+            <div class="stats-row">
+                <div class="stat">
+                    <span class="stat-number">10,000+</span>
+                    <span class="stat-label">Banks Connected</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Countries Supported</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">99.8%</span>
+                    <span class="stat-label">Connection Success Rate</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#integration" class="btn btn-primary">View Integration Guide</a>
+                <a href="#banks" class="btn btn-secondary">Browse Supported Banks</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Supported Banks -->
+    <section class="container" id="banks">
+        <h2 class="section-title">Connect to Major Banks Instantly</h2>
+        <p class="section-subtitle">We integrate with all major UK banks and 10,000+ international institutions</p>
+        
+        <div class="bank-grid">
+            <div class="bank-logo">Barclays</div>
+            <div class="bank-logo">HSBC</div>
+            <div class="bank-logo">Lloyds</div>
+            <div class="bank-logo">NatWest</div>
+            <div class="bank-logo">Santander</div>
+            <div class="bank-logo">Nationwide</div>
+            <div class="bank-logo">Halifax</div>
+            <div class="bank-logo">TSB</div>
+            <div class="bank-logo">Metro Bank</div>
+            <div class="bank-logo">Revolut</div>
+            <div class="bank-logo">Starling</div>
+            <div class="bank-logo">Monzo</div>
+        </div>
+        
+        <p style="text-align: center; color: #718096; margin-top: 30px;">+ 10,000 more banks across Europe, North America, and APAC</p>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="container" id="integration">
+        <h2 class="section-title">How Open Banking Works</h2>
+        <p class="section-subtitle">Secure bank connections in 4 simple steps—all PSD2 SCA compliant</p>
+        
+        <div class="flow-diagram">
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="flow-step-number">1</div>
+                    <h4>User Consent</h4>
+                    <p>Customer authorizes bank connection via secure redirect</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-number">2</div>
+                    <h4>Bank Authentication</h4>
+                    <p>Customer authenticates with bank using SCA (MFA)</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-number">3</div>
+                    <h4>Data Access</h4>
+                    <p>Secure API retrieves account data via OAuth 2.0</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-number">4</div>
+                    <h4>Real-Time Updates</h4>
+                    <p>Webhooks deliver transaction updates instantly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features -->
+    <section class="container">
+        <h2 class="section-title">Everything You Need for Financial Data</h2>
+        <p class="section-subtitle">Access comprehensive banking data through a single, unified API</p>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">💳</div>
+                <h3>Account Information</h3>
+                <p>Real-time balance checks, account details, and owner verification. Access multiple accounts per customer with consent.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Transaction History</h3>
+                <p>Retrieve up to 24 months of transaction data with rich metadata: merchant names, categories, locations, and more.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Verification</h3>
+                <p>Verify bank accounts in seconds—no micro-deposits required. Perfect for faster onboarding and reduced fraud.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🔔</div>
+                <h3>Real-Time Webhooks</h3>
+                <p>Receive instant notifications when new transactions occur. Build reactive financial applications with live data.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>PSD2 Compliant</h3>
+                <p>Fully compliant with Strong Customer Authentication. FCA-authorized Account Information Service Provider (AISP).</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Multi-Currency Support</h3>
+                <p>Connect accounts in 40+ currencies. Automatic currency conversion with competitive rates for cross-border analysis.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Code Example -->
+    <section class="container">
+        <h2 class="section-title">Simple API Integration</h2>
+        <p class="section-subtitle">Get started with just a few lines of code</p>
+        
+        <div class="code-block">
+<span class="comment">// Initialize Open Banking connection</span>
+const bankConnection = await monzo.openBanking.connect({
+  bank: <span class="string">'barclays'</span>,
+  account_id: <span class="string">'user_123'</span>,
+  redirect_uri: <span class="string">'https://yourapp.com/callback'</span>
+});
+
+<span class="comment">// Get real-time account balance</span>
+const balance = await monzo.openBanking.getBalance(
+  bankConnection.id
+);
+console.log(balance.available); <span class="comment">// £2,847.50</span>
+
+<span class="comment">// Retrieve 90 days of transactions</span>
+const transactions = await monzo.openBanking.getTransactions({
+  connection_id: bankConnection.id,
+  since: <span class="string">'2024-09-12'</span>,
+  limit: 100
+});
+
+<span class="comment">// Subscribe to real-time transaction updates</span>
+await monzo.webhooks.subscribe({
+  event: <span class="string">'transaction.created'</span>,
+  connection_id: bankConnection.id,
+  url: <span class="string">'https://yourapp.com/webhooks'</span>
+});
+        </div>
+    </section>
+    
+    <!-- Use Cases -->
+    <section class="container">
+        <h2 class="section-title">Built for Every Financial Application</h2>
+        <p class="section-subtitle">From lending platforms to personal finance apps</p>
+        
+        <div class="use-cases">
+            <div class="use-case">
+                <div class="use-case-icon">🏦</div>
+                <h3>Lending & Credit</h3>
+                <p>Make faster, more accurate lending decisions with real bank data. Verify income, analyze spending patterns, and assess affordability in seconds.</p>
+                <ul>
+                    <li>Instant income verification</li>
+                    <li>Affordability assessment</li>
+                    <li>Debt-to-income calculation</li>
+                    <li>Automated underwriting</li>
+                </ul>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">💰</div>
+                <h3>Personal Finance Apps</h3>
+                <p>Build next-generation budgeting and savings apps. Aggregate accounts, categorize spending, and provide personalized financial insights.</p>
+                <ul>
+                    <li>Multi-account aggregation</li>
+                    <li>Automatic categorization</li>
+                    <li>Spending analytics</li>
+                    <li>Savings recommendations</li>
+                </ul>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">🔍</div>
+                <h3>Accounting & Bookkeeping</h3>
+                <p>Automate bank reconciliation and expense tracking. Import transactions automatically for seamless accounting workflows.</p>
+                <ul>
+                    <li>Automated bank reconciliation</li>
+                    <li>Receipt matching</li>
+                    <li>Multi-currency support</li>
+                    <li>Export to accounting systems</li>
+                </ul>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">✅</div>
+                <h3>KYC & Verification</h3>
+                <p>Verify customer identity and bank ownership instantly. Reduce fraud with real-time account checks—no micro-deposits needed.</p>
+                <ul>
+                    <li>Instant account verification</li>
+                    <li>Account ownership proof</li>
+                    <li>Balance verification</li>
+                    <li>Source of funds analysis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Compliance -->
+    <section class="container">
+        <h2 class="section-title">Fully Regulated & Secure</h2>
+        <p class="section-subtitle">Bank-grade security with complete regulatory compliance</p>
+        
+        <div class="compliance-badges">
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">🛡️</div>
+                <h4>PSD2 Compliant</h4>
+            </div>
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">✓</div>
+                <h4>FCA Authorized</h4>
+            </div>
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">🔒</div>
+                <h4>ISO 27001</h4>
+            </div>
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">🌐</div>
+                <h4>GDPR Compliant</h4>
+            </div>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit">
+                <h4>Bank-Level Encryption</h4>
+                <p>All data encrypted in transit (TLS 1.3) and at rest (AES-256). Zero-knowledge architecture means we never store banking credentials.</p>
+            </div>
+            
+            <div class="benefit">
+                <h4>Strong Customer Authentication</h4>
+                <p>Every connection uses two-factor authentication as mandated by PSD2 SCA. Customers authenticate directly with their bank.</p>
+            </div>
+            
+            <div class="benefit">
+                <h4>Consent Management</h4>
+                <p>Granular consent controls let customers choose exactly what data to share. Automatic consent expiry after 90 days per PSD2 requirements.</p>
+            </div>
+            
+            <div class="benefit">
+                <h4>Regular Security Audits</h4>
+                <p>Annual penetration testing by independent security firms. SOC 2 Type II certified with continuous monitoring.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section">
+            <h2>Start Connecting Banks Today</h2>
+            <p>Get instant access to 10,000+ banks with our sandbox environment</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Get API Keys</a>
+                <a href="#" class="btn btn-secondary">View Documentation</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Monzo Platform. All rights reserved. | FCA Authorized AISP | PSD2 Compliant</p>
+            <p style="margin-top: 10px; font-size: 14px;">For portfolio demonstration purposes</p>
+        </div>
+    </footer>
+</body>
+</html>

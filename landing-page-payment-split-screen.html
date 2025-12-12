@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processing API - Interactive Demo | Monzo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* Split Screen Layout */
+        .split-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .panel {
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        /* Left Panel - Code */
+        .left-panel {
+            background: #0a0e27;
+            border-right: 2px solid #0891b2;
+            position: relative;
+        }
+        
+        .panel-header {
+            padding: 30px 40px;
+            border-bottom: 1px solid rgba(8, 145, 178, 0.2);
+            position: sticky;
+            top: 0;
+            background: #0a0e27;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #0891b2;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .panel-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .panel-subtitle {
+            font-size: 18px;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        /* Code Editor */
+        .code-editor {
+            padding: 40px;
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(8, 145, 178, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(8, 145, 178, 0.2);
+        }
+        
+        .code-title {
+            font-size: 14px;
+            color: #0891b2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .copy-btn {
+            background: #0891b2;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #06b6d4;
+            transform: scale(1.05);
+        }
+        
+        .code-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #e5e5e5;
+        }
+        
+        .code-line {
+            margin: 5px 0;
+        }
+        
+        .line-number {
+            color: #666;
+            margin-right: 20px;
+            user-select: none;
+        }
+        
+        .keyword {
+            color: #0891b2;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #10b981;
+        }
+        
+        .number {
+            color: #f59e0b;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        /* Right Panel - Preview */
+        .right-panel {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Stats Dashboard */
+        .dashboard {
+            padding: 40px;
+            flex: 1;
+        }
+        
+        .dashboard-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #0891b2;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .metric-card {
+            background: rgba(8, 145, 178, 0.1);
+            border: 1px solid rgba(8, 145, 178, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            background: rgba(8, 145, 178, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .metric-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: #0891b2;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+        
+        /* Live Output */
+        .live-output {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(8, 145, 178, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .output-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .output-title {
+            font-size: 16px;
+            color: #0891b2;
+            font-weight: 600;
+        }
+        
+        .output-content {
+            font-size: 14px;
+            line-height: 2;
+        }
+        
+        .output-line {
+            margin: 10px 0;
+            padding-left: 20px;
+            border-left: 2px solid rgba(8, 145, 178, 0.3);
+        }
+        
+        .success {
+            color: #10b981;
+        }
+        
+        .info {
+            color: #0891b2;
+        }
+        
+        .warning {
+            color: #f59e0b;
+        }
+        
+        /* Feature List */
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(8, 145, 178, 0.05);
+            border-radius: 12px;
+            border-left: 3px solid #0891b2;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(8, 145, 178, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #0891b2;
+        }
+        
+        .feature-content p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: rgba(8, 145, 178, 0.1);
+            border-top: 1px solid rgba(8, 145, 178, 0.3);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .btn-primary {
+            background: #0891b2;
+            color: #fff;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #06b6d4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #0891b2;
+            border: 2px solid #0891b2;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(8, 145, 178, 0.1);
+        }
+        
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #0891b2 50%, transparent 100%);
+            margin: 50px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .split-container {
+                flex-direction: column;
+                overflow-y: auto;
+                height: auto;
+            }
+            
+            .panel {
+                overflow-y: visible;
+            }
+            
+            .left-panel {
+                border-right: none;
+                border-bottom: 2px solid #0891b2;
+            }
+            
+            .panel-title {
+                font-size: 36px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        <!-- Left Panel - Code -->
+        <div class="panel left-panel">
+            <div class="panel-header">
+                <div class="logo">MONZO.DEV</div>
+                <h1 class="panel-title">Real-Time<br>Payment API</h1>
+                <p class="panel-subtitle">Process payments in 80ms with our lightning-fast infrastructure</p>
+            </div>
+            
+            <div class="code-editor">
+                <!-- Code Block 1 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">1. Initialize Client</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line">
+                            <span class="line-number">01</span>
+                            <span class="keyword">import</span> { MonzoClient } <span class="keyword">from</span> <span class="string">'@monzo/sdk'</span>;
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">02</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">03</span>
+                            <span class="keyword">const</span> monzo = <span class="keyword">new</span> MonzoClient({
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">04</span>
+                            &nbsp;&nbsp;apiKey: process.env.<span class="string">MONZO_API_KEY</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">05</span>
+                            });
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Code Block 2 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">2. Process Payment</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line">
+                            <span class="line-number">01</span>
+                            <span class="keyword">const</span> payment = <span class="keyword">await</span> monzo.payments.create({
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">02</span>
+                            &nbsp;&nbsp;amount: <span class="number">5000</span>, <span class="comment">// £50.00</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">03</span>
+                            &nbsp;&nbsp;currency: <span class="string">'GBP'</span>,
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">04</span>
+                            &nbsp;&nbsp;customer_id: <span class="string">'cust_123'</span>,
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">05</span>
+                            &nbsp;&nbsp;payment_method: <span class="string">'card_xyz'</span>,
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">06</span>
+                            &nbsp;&nbsp;description: <span class="string">'Order #4892'</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">07</span>
+                            });
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Code Block 3 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">3. Get Response</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line">
+                            <span class="line-number">01</span>
+                            console.log(payment.status); <span class="comment">// 'succeeded'</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">02</span>
+                            console.log(payment.latency); <span class="comment">// 78ms</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">03</span>
+                            console.log(payment.fraud_score); <span class="comment">// 0.12</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">04</span>
+                            console.log(payment.network_response); <span class="comment">// 'approved'</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <!-- Features List -->
+                <h3 style="font-size: 24px; margin-bottom: 30px; color: #0891b2;">Key Features</h3>
+                
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <div class="feature-content">
+                            <h4>Sub-100ms Latency</h4>
+                            <p>P50: 80ms, P95: 120ms, P99: 200ms across all regions</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <span class="feature-icon">🔄</span>
+                        <div class="feature-content">
+                            <h4>Event-Driven Architecture</h4>
+                            <p>Kafka processes 3+ billion events daily with zero downtime</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <span class="feature-icon">🌍</span>
+                        <div class="feature-content">
+                            <h4>Multi-Region Deployment</h4>
+                            <p>Active-active across 3 AWS zones with automatic failover</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <span class="feature-icon">🔐</span>
+                        <div class="feature-content">
+                            <h4>Zero-Trust Security</h4>
+                            <p>mTLS encryption + Istio service mesh for all communications</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Right Panel - Preview -->
+        <div class="panel right-panel">
+            <div class="dashboard">
+                <h2 class="dashboard-title">Live Performance Metrics</h2>
+                
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-value">80ms</span>
+                        <span class="metric-label">P50 Latency</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">99.99%</span>
+                        <span class="metric-label">Uptime</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">3,847</span>
+                        <span class="metric-label">Peak TPS</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">10M+</span>
+                        <span class="metric-label">Daily TXNs</span>
+                    </div>
+                </div>
+                
+                <!-- Live Output -->
+                <div class="live-output">
+                    <div class="output-header">
+                        <div class="status-dot"></div>
+                        <span class="output-title">LIVE API RESPONSE</span>
+                    </div>
+                    <div class="output-content">
+                        <div class="output-line success">
+                            ✓ Payment authorized successfully
+                        </div>
+                        <div class="output-line info">
+                            → Transaction ID: txn_8f92a3b4c5d6
+                        </div>
+                        <div class="output-line info">
+                            → Amount: £50.00 GBP
+                        </div>
+                        <div class="output-line info">
+                            → Processing time: 78ms
+                        </div>
+                        <div class="output-line success">
+                            → Fraud score: 0.12 (LOW RISK)
+                        </div>
+                        <div class="output-line info">
+                            → Network: Visa
+                        </div>
+                        <div class="output-line success">
+                            ✓ Funds settled to merchant account
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pipeline Stages -->
+                <div class="live-output">
+                    <div class="output-header">
+                        <span class="output-title">PROCESSING PIPELINE</span>
+                    </div>
+                    <div class="output-content">
+                        <div class="output-line success">
+                            [Stage 1] Validation → 5ms ✓
+                        </div>
+                        <div class="output-line success">
+                            [Stage 2] Fraud Check → 15ms ✓
+                        </div>
+                        <div class="output-line success">
+                            [Stage 3] Authorization → 30ms ✓
+                        </div>
+                        <div class="output-line success">
+                            [Stage 4] Settlement → 28ms ✓
+                        </div>
+                        <div class="output-line" style="margin-top: 20px; border-left-color: #10b981;">
+                            <strong class="success">TOTAL: 78ms</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h3 style="font-size: 28px; margin-bottom: 15px; color: #0891b2;">Ready to Get Started?</h3>
+                <p style="font-size: 16px; opacity: 0.8;">Deploy to production in hours with our sandbox</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Get API Keys</a>
+                    <a href="#" class="btn btn-secondary">Read Docs</a>
+                </div>
+                <p style="margin-top: 30px; font-size: 12px; opacity: 0.5;">For portfolio demonstration purposes</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
